@@ -17,7 +17,6 @@ class BdTypePackages extends Migration
         Schema::create('bd_type_packages', function (Blueprint $table) {
             $table->bigIncrements('bd_type_packages_id');            
             $table->string('name');            
-            $table->rememberToken();
             $table->timestamps();
     
         });

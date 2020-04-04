@@ -18,7 +18,6 @@ class BdOrganization extends Migration
             $table->bigIncrements('bd_organization_id');
             $table->string('name');
             $table->boolean('status');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

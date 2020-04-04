@@ -13,14 +13,7 @@ class BdClients extends Migration
      */
     public function up()
     {
-        //TABLA BD_ORGANIZATION
-        Schema::create('bd_organization', function (Blueprint $table) {
-            $table->bigIncrements('bd_organization_id');
-            $table->string('name');
-            $table->boolean('status');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+
 
         //TABLA BD_CLIENTS
         Schema::create('bd_clients', function (Blueprint $table) {
@@ -30,7 +23,6 @@ class BdClients extends Migration
             $table->decimal('weight');
             $table->date('birth_day');
             $table->integer('passport');
-            $table->rememberToken();
             $table->timestamps();
             //FOREIGN KEY
             $table->unsignedBigInteger('bd_organization_id');
@@ -50,6 +42,5 @@ class BdClients extends Migration
     {
         //
         Schema::dropIfExists('bd_clients');
-        Schema::dropIfExists('bd_organization');
     }
 }

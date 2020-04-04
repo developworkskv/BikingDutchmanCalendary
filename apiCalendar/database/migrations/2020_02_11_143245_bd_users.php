@@ -20,7 +20,6 @@ class BdUsers extends Migration
             $table->string('email');
             $table->string('token');
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
             //FOREIGN KEY
             $table->unsignedBigInteger('bd_organization_id');

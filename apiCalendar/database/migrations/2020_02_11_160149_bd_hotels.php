@@ -18,7 +18,6 @@ class BdHotels extends Migration
             $table->bigIncrements('bd_hotels_id');            
             $table->string('name');             
             $table->boolean('status');             
-            $table->rememberToken();
             $table->timestamps();
             //foregien
             $table->unsignedBigInteger('bd_destination_id');

@@ -19,7 +19,6 @@ class BdClientsPackages extends Migration
             $table->bigIncrements('bd_clients_packages_id');            
             $table->double('total');
             $table->boolean('status');
-            $table->rememberToken();
             $table->timestamps();
             //FOREIGN KEY
             $table->unsignedBigInteger('bd_clients_id');

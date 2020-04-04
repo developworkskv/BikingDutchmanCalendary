@@ -17,7 +17,6 @@ class BdCities extends Migration
         Schema::create('bd_cities', function (Blueprint $table) {
             $table->bigIncrements('bd_cities_id');            
             $table->string('name');            
-            $table->rememberToken();
             $table->timestamps();
 
             //Foreign Key

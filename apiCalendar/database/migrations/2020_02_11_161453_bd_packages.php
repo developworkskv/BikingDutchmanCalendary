@@ -19,7 +19,6 @@ class BdPackages extends Migration
             $table->string('name');
             $table->double('price');
             $table->integer('numbers_clients');
-            $table->rememberToken();
             $table->timestamps();
 
             //FOREIGN KEY

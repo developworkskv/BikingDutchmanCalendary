@@ -20,7 +20,6 @@ class BdTypeUsers extends Migration
             $table->string('type_user');
             $table->boolean('status');
             $table->string('code');            
-            $table->rememberToken();
             $table->timestamps();
             
         });   

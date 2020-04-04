@@ -19,7 +19,6 @@ class BdDestination extends Migration
             $table->string('name');
             $table->integer('availability'); 
             $table->boolean('status');             
-            $table->rememberToken();
             $table->timestamps();
     
         });
