@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   });
   }
  
-  onSubmit(loginForm: NgForm){ // Crea una FormGroupinstancia de nivel superior y la vincula a un formulario para rastrear el valor agregado del formulario y el estado de validación
+  onSubmit(loginForm){ // Crea una FormGroupinstancia de nivel superior y la vincula a un formulario para rastrear el valor agregado del formulario y el estado de validación
    
     // datos vacios en el formulario
     if (this.loginForm.invalid) {
