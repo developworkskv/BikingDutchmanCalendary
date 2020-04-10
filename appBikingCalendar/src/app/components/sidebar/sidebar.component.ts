@@ -14,13 +14,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/news', title: 'Noticias y promociones.',  icon: 'fiber_new', class: '' },
     { path: '/request-form-bkd', title: 'Formulario Solicitud.',  icon: 'list_alt', class: '' },
 
-    //{ path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
 ];
 // rutas del menu sidebar ADMINISTRADOR
 export const ROUTES_ADMIN: RouteInfo[] = [
-  //{ path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
- // { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
- // { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
+  //
 ];
 
 @Component({
