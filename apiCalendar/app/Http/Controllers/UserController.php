@@ -9,8 +9,8 @@ class UserController extends BaseController
 {
   public function dataUserById($id_user){
     // verificar si existe el usuario
-    $user = DB::table('users')
-    ->where('id', $id_user)
+    $user = DB::table('bd_users')
+    ->where('bd_users_id', $id_user)
     ->first();
     // get ==> Array
     //first ==> Objeto
@@ -23,7 +23,7 @@ class UserController extends BaseController
 }
 public function dataUserByEmail($email_user){
     // verificar si existe el usuario
-    $user = DB::table('users')
+    $user = DB::table('bd_users')
     ->where('email', $email_user)
     ->first();
     // get ==> Array

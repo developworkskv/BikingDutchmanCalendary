@@ -27,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+
   ],
   declarations: [
     AppComponent,

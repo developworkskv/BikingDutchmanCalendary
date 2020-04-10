@@ -10,15 +10,17 @@ declare interface RouteInfo {
 // rutas del menu sidebar CLIENTE
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-   { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+    { path: '/calendary', title: 'Calendario de eventos.',  icon: 'event_note', class: '' },
+    { path: '/news', title: 'Noticias y promociones.',  icon: 'fiber_new', class: '' },
+    { path: '/request-form-bkd', title: 'Formulario Solicitud.',  icon: 'list_alt', class: '' },
+
+    //{ path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
 ];
 // rutas del menu sidebar ADMINISTRADOR
 export const ROUTES_ADMIN: RouteInfo[] = [
-  { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-  { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-  { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
+  //{ path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
+ // { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
+ // { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
 ];
 
 @Component({
@@ -59,6 +61,9 @@ export class SidebarComponent implements OnInit {
       // Usuario no registrado no hay nada en local stroage
         this.menuItems = ROUTES.filter(menuItem => menuItem); // RUTAS CLIENTE
     }else{
+
+      console.log( ROUTES.filter(menuItem => menuItem));
+      
       const menuItemsClient = ROUTES.filter(menuItem => menuItem);
       const menuItemsAdmin = ROUTES_ADMIN.filter(menuItem => menuItem);
       this.menuItems = menuItemsClient.concat(menuItemsAdmin);

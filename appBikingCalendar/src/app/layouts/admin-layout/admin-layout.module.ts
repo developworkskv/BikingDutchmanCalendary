@@ -10,6 +10,10 @@ import { IconsComponent } from '../../icons/icons.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { LoginComponent } from '../../login/login.component';
+import { CalendaryComponent } from '../../calendary/calendary.component';
+import { NewsComponent } from '../../news/news.component';
+import { GeneralFormComponent } from '../../general-form/general-form.component';
+import { ChartsModule } from 'ng2-charts';
 
 import {
   MatButtonModule,
@@ -31,17 +35,22 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    
+    ChartsModule
+
   ],
   // todos mis componentes
   declarations: [
     DashboardComponent,
     UserProfileComponent,
-    TableListComponent,
-    IconsComponent,
-    NotificationsComponent,
-    UpgradeComponent,
-    LoginComponent
+    //TableListComponent,
+   // IconsComponent,
+   // NotificationsComponent,
+   // UpgradeComponent,
+    LoginComponent,
+    CalendaryComponent,
+    NewsComponent,
+    GeneralFormComponent,
+
   ]
 })
 

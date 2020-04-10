@@ -16,27 +16,24 @@ export class LoginService {
 
                       switch (resp['status']) {
                         case 0:
-                          //localStorage.removeItem('token_sesion');
+                          this.toastService.showNotification('top','right','danger',resp['data']);
                           break;
                         case 1:
-                          // consumir servicio datos del usuario
                           let email_user = this.datosUserLogueado(user['email']);
-                          //console.log(email_user);
+                          this.toastService.showNotification('top','right','success',resp['data']);
                           break;
                      
                       }
-                      return this.toastService.showNotification('top','right','success',resp['data']);
-                    });
-   // console.log( user);
-    
-  }
 
+                    });
+
+  }
+ // GUARDAR DATOS DEL USUARIO EN LOCALSTORAGE
   datosUserLogueado(email_user){
     return this.http.get(URL_SERVICIOS + '/dataUserByEmail/'+email_user)
     .subscribe(resp => {
       console.log(resp);
-      localStorage.setItem('user_token', resp[0]['id']);
-      localStorage.setItem('token_sesion', resp[0]['id'] + resp[0]['email'] + resp[0]['password']);
+      localStorage.setItem('token_bd_users', resp[0]['token']);
       window.location.reload();
       
     });

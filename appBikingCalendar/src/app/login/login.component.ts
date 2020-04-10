@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
- 
 
   constructor(public toastService: ToastService,
   public _login: LoginService,
@@ -32,15 +31,15 @@ export class LoginComponent implements OnInit {
     // datos vacios en el formulario
     if (this.loginForm.invalid) {
      this.loginForm.reset();
-     return this.toastService.showNotification('top','right','success','Completar los datos solicitados.');
+     return this.toastService.showNotification('top','right','danger','Completar los datos solicitados.');
     }
     //consumir servicio POST Login
     this._login.iniciarSesion(loginForm.value);
     }
 
-    // determinar Si existe algo en LOCAL STORAGE sesion
+    // SESION USER 
   userIsActive(){
-    if(localStorage.getItem('token_sesion')){
+    if(localStorage.getItem('token_bd_users')){
       this.router.navigate(['dashboard']);
     }
   }

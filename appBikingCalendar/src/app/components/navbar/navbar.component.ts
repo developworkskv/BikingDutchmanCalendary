@@ -132,7 +132,7 @@ export class NavbarComponent implements OnInit {
     }
     // determinar si existe mi local storage para mostrar las opciones del navbar
     existLocalStorageApp(){
-        if(localStorage.getItem('token_sesion')){
+        if(localStorage.getItem('token_bd_users')){
             this.navbarIslogin = true;
         }else{
             this.navbarIslogin = false;
