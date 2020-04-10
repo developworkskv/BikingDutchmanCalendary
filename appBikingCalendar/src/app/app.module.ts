@@ -11,13 +11,13 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import {
   AgmCoreModule
-} from '@agm/core';
+} from '@agm/core'; 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-@NgModule({
+@NgModule({ 
   imports: [
     BrowserAnimationsModule,
     FormsModule,

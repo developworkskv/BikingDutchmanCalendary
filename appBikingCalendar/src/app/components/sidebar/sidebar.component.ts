@@ -17,7 +17,13 @@ export const ROUTES: RouteInfo[] = [
 ];
 // rutas del menu sidebar ADMINISTRADOR
 export const ROUTES_ADMIN: RouteInfo[] = [
-  //
+  { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
+  { path: '/users-admin', title: 'Gestión de Usuarios',  icon: 'account_box', class: '' },
+  { path: '/packages-gestion', title: 'Gestión de Paquetes',  icon: 'vertical_split', class: '' },
+  { path: '/clients-gestion', title: 'Gestión de Clientes',  icon: 'person_pin', class: '' },
+  { path: '/destinations-gestion', title: 'Gestión de Destinos',  icon: 'place', class: '' },  
+  { path: '/request-form-bkd', title: 'Formulario Solicitud.',  icon: 'list_alt', class: '' },
+
 ];
 
 @Component({
@@ -57,13 +63,11 @@ export class SidebarComponent implements OnInit {
     if(this._user.isLoggin == false){
       // Usuario no registrado no hay nada en local stroage
         this.menuItems = ROUTES.filter(menuItem => menuItem); // RUTAS CLIENTE
-    }else{
-
-      console.log( ROUTES.filter(menuItem => menuItem));
-      
-      const menuItemsClient = ROUTES.filter(menuItem => menuItem);
-      const menuItemsAdmin = ROUTES_ADMIN.filter(menuItem => menuItem);
-      this.menuItems = menuItemsClient.concat(menuItemsAdmin);
     }
+    if(this._user.isLoggin == true){
+      // Usuario no registrado no hay nada en local stroage
+        this.menuItems = ROUTES_ADMIN.filter(menuItem => menuItem); // RUTAS CLIENTE
+    }
+   
   } 
 }

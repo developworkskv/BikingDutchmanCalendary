@@ -18,6 +18,10 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { UsersComponent } from 'app/users/users.component';
+import { PackagesComponent } from 'app/packages/packages.component';
+import { DestinationsComponent } from 'app/destinations/destinations.component';
+import { ClientsComponent } from 'app/clients/clients.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,6 +44,10 @@ import {
     CalendaryComponent,
     NewsComponent,
     GeneralFormComponent,
+    UsersComponent,
+    PackagesComponent,
+    DestinationsComponent,
+    ClientsComponent,
 
   ]
 })

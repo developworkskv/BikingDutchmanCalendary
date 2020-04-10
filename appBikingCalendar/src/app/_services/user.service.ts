@@ -17,8 +17,10 @@ export class UserService {
 
    // Determinar Si el usuario esta logeado, LOCALSTORAGE
    isLogginUser(){
-     if(localStorage.getItem('token_sesion')){
+     if(localStorage.getItem('token_bd_users')){
       this.isLoggin = true;
+      console.log(this.isLoggin);
+      
      }
    }
 
