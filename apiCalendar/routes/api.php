@@ -26,4 +26,9 @@ Route::post('iniciarSesion', 'LoginController@iniciarSesion');
 Route::get('dataUserById/{id_user}', 'UserController@dataUserById');
 Route::get('dataUserByEmail/{email_user}', 'UserController@dataUserByEmail');
 
-
+// ===================================================0
+//CRUD para ADMINISTRADOR Y EMPLEADOS
+Route::post('adminCreate', 'UserController@createAdmin');
+Route::get('adminRead', 'UserController@getAllAdministrators');
+Route::post('admin/{bd_users_id}/update', 'UserController@updateAdministratorData');
+Route::delete('adminDelete/{id}', 'UserController@deleteAdmin');
