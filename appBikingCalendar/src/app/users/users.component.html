@@ -1,12 +1,109 @@
 <div class="main-content">
-  <div class="row justify-content-md-center">
 
-    <div class="col-md-auto" style="padding-top: 0%;">
-      <h3>GESTIÓN DE USUARIOS ADMINISTRADORES - EMPLEADOS - ENCARGADOS</h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        GESTIÓN DE USUARIOS ADMINISTRADORES
+      </div>
+      <div class="col-md-auto">
+        <button type="button" class="btn btn-info" data-toggle="modal"
+          data-target="#exampleModal">
+          <i class="material-icons">add_circle</i> &nbsp;&nbsp;&nbsp;
+          Nuevo
+        </button>
+      </div>
+      <div class="col-md-auto">
+        <button type="button" class="btn btn-info">
+          <i class="material-icons">print</i>&nbsp;&nbsp;&nbsp;
+          Reporte
+        </button>
+      </div>
     </div>
 
+    <!--TABLE-->
+    <div class="col-6">
+      Busqueda por nombre: <input class="form-control" type="text"
+        placeholder="Buscar por nombre del Administrador" aria-label="Search"
+        name="filterPost" [(ngModel)]="filterPost">
+    </div>
+    <hr>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Tipo de Usuario</th>
+          <th scope="col">Opciones</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let admin of administrators | filter: filterPost | paginate:
+          { itemsPerPage: 10, currentPage: p } ; let i= index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{admin.name}}</td>
+          <td>{{admin.email}}</td>
+          <td>{{admin.bd_type_users_id}}</td>
+          <td>
+
+                <button type="button" class="btn btn-outline-success">
+                  <i class="material-icons">create</i>
+                </button> 
+             
+                <button type="button" class="btn btn-outline-danger ">
+                  <i class="material-icons">delete</i>
+                </button> 
+
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p= $event"></pagination-controls>
+
   </div>
-  <div class="container-fluid">
-   <h3>CRUD</h3>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Administrador.</h5>
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="adminForm" (ngSubmit)="onSubmit(adminForm)">
+          <h4>REGISTRO Y ASIGNACION DE NUEVO ADMINISTRADOR </h4>
+
+          <div class="form-group">
+              <label for="exampleInputEmail1">Nombre</label>
+              <input formControlName="name" type="text" class="form-control" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Contraseña</label>
+          <input formControlName="password" type="text" class="form-control" placeholder="Contraseña" required>
+      </div>
+     
+
+          <button type="submit " class="btn btn-primary " >Guardar</button>
+      </form>
+        <small> Después de completar el formulario es necesario editar al administrador creado y asignarle un rol de administrador.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

@@ -22,6 +22,10 @@ import { UsersComponent } from 'app/users/users.component';
 import { PackagesComponent } from 'app/packages/packages.component';
 import { DestinationsComponent } from 'app/destinations/destinations.component';
 import { ClientsComponent } from 'app/clients/clients.component';
+
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { FilterPipe } from 'app/_pipes/filter.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -34,7 +38,8 @@ import { ClientsComponent } from 'app/clients/clients.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    ChartsModule
+    ChartsModule,
+    NgxPaginationModule
 
   ],
   // todos mis componentes
@@ -48,7 +53,7 @@ import { ClientsComponent } from 'app/clients/clients.component';
     PackagesComponent,
     DestinationsComponent,
     ClientsComponent,
-
+    FilterPipe
   ]
 })
 

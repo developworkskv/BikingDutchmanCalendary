@@ -7,12 +7,12 @@ import { URL_SERVICIOS } from '../config/url.servicios';
 })
 export class UserService {
   isLoggin: boolean = false;
+  administrators: any;
 
   constructor(public htpp: HttpClient) {
     console.log('User Service Active');
-     this.getUsers();// TEST
+     this.testConexion();// TEST
      this.isLogginUser();
-
    }
 
    // Determinar Si el usuario esta logeado, LOCALSTORAGE
@@ -24,15 +24,25 @@ export class UserService {
      }
    }
 
-   getUsers(){ // TEST
+   testConexion(){ // TEST
      console.log( this.htpp.get( URL_SERVICIOS+'/conexionApiTest')
      .subscribe(data=> {
-      console.log(data);
-      
+            console.log(data);
+            
      })
      );
      
     
    }
+
+   //CRUD 
+   getAllAdministrators(){ // TEST
+    return this.htpp.get( URL_SERVICIOS+'/adminRead');
+    
+  }
+//CrEATE
+  createAdmin(admin: any){
+      return this.htpp.post(URL_SERVICIOS +'/adminCreate', admin)
+  }
 
 }
