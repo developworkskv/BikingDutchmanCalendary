@@ -29,6 +29,7 @@ class UserServiceRepository
     public function getAllUserAdmin()
     {
         $usersAdministrators = DB::table('bd_users')
+            ->orderBy('created_at', 'desc')
             ->get();
         return $usersAdministrators;
     }
@@ -36,9 +37,17 @@ class UserServiceRepository
     public function getUserAdminById($id_admin)
     {
         $userAdministrator = DB::table('bd_users')
-            ->where('bd_users_id', $id_admin)
+            ->join('bd_type_users', 'bd_type_users.bd_type_users_id', '=', 'bd_users.bd_type_users_id')
+            ->select('bd_users.*', 'bd_type_users.*')
+            ->where('bd_users.bd_users_id', $id_admin)
             ->get();
         return $userAdministrator;
+    }
+    //tipes user
+    public function getAllTipesUser(){
+      $tipes = DB::table('bd_type_users')
+          ->get();
+      return $tipes;
     }
 
     //update

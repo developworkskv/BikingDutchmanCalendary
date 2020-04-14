@@ -20,13 +20,16 @@
       </div>
     </div>
 
-    <!--TABLE-->
-    <div class="col-6">
-      Busqueda por nombre: <input class="form-control" type="text"
+    <hr>
+
+    <div class="card">
+      <h5 class="card-header bg-success"><b> Filtro de Busqueda </b></h5>
+      <div class="card-body">
+        <input class="form-control" type="text"
         placeholder="Buscar por nombre del Administrador" aria-label="Search"
         name="filterPost" [(ngModel)]="filterPost">
+      </div>
     </div>
-    <hr>
 
     <table class="table">
       <thead class="thead-dark">
@@ -35,8 +38,9 @@
           <th scope="col">Nombre</th>
           <th scope="col">Email</th>
           <th scope="col">Tipo de Usuario</th>
-          <th scope="col">Opciones</th>
-
+          <th scope="col">Fecha creación</th>
+          <th scope="col">Ver</th>
+          <th scope="col">Eliminar</th>
 
         </tr>
       </thead>
@@ -47,17 +51,18 @@
           <td>{{admin.name}}</td>
           <td>{{admin.email}}</td>
           <td>{{admin.bd_type_users_id}}</td>
+          <td>{{admin.created_at}}</td>
           <td>
 
-                <button type="button" class="btn btn-outline-success">
-                  <i class="material-icons">create</i>
-                </button> 
-             
-                <button type="button" class="btn btn-outline-danger ">
-                  <i class="material-icons">delete</i>
+                <button [routerLink]="['/user-admin', admin.bd_users_id]" type="button" class="btn btn-outline-success">
+                  <i class="material-icons">visibility</i>
                 </button> 
 
-
+          </td>
+          <td>
+            <button (click)="deleteUserAdmin(admin.bd_users_id, admin.name)" type="button" class="btn btn-outline-danger">
+              <i class="material-icons">delete</i>
+            </button> 
           </td>
         </tr>
       </tbody>
@@ -95,11 +100,17 @@
           <label for="exampleInputEmail1">Contraseña</label>
           <input formControlName="password" type="text" class="form-control" placeholder="Contraseña" required>
       </div>
+      
+      <div class="form-group">
+        <label for="exampleInputEmail1">Tipo de Usuario Administrador</label>
+        <select class="custom-select" id="inputGroupSelect01" formControlName="bd_type_users_id" >
+          <option  *ngFor="let item of tipesUser" value="{{item.bd_type_users_id}}">{{item.type_user}}</option>
      
-
+        </select>      
+      </div>
+      
           <button type="submit " class="btn btn-primary " >Guardar</button>
       </form>
-        <small> Después de completar el formulario es necesario editar al administrador creado y asignarle un rol de administrador.</small>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

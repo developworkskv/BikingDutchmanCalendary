@@ -86,10 +86,36 @@ class UserController extends BaseController
         }
 
     }
+    // Get - By Id
+    public function getAdmin($id_user)
+    {
+        $gestionUser = new UserServiceRepository;
+        $administrator = $gestionUser->getUserAdminById($id_user);
+
+        if (count($administrator) == 0) {
+            // no hay Datos
+            return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
+        } else {
+            return $this->sendResponse($administrator, 'Usuario administrador creado correctamente.');
+        }
+
+    }
+    // Get - all Tipe USER
+    public function allTipesUser(){
+      $gestionUser = new UserServiceRepository;
+      $tipes = $gestionUser->getAllTipesUser();
+      if (count($tipes) == 0) {
+          // no hay Datos
+          return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
+      } else {
+          return $this->sendResponse($tipes, 'Tipos de administradores');
+      }
+    }
 
     //UPDATE - MODIFI DATA $administrators
     public function updateAdministratorData($id_administrator, Request $request)
     {
+
 
         $gestionUser = new UserServiceRepository;
         // verficate if exist this user
@@ -137,5 +163,6 @@ class UserController extends BaseController
 
         }
     }
+
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'app/_services/user.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ToastService } from 'app/_services/toast.service';
+import { TypeUsersService } from 'app/_services/type-users.service';
 
 @Component({
   selector: 'app-users',
@@ -12,19 +13,21 @@ export class UsersComponent implements OnInit {
   administrators: any;
   filterPost : any;
   adminForm: FormGroup;
-
+  tipesUser: any;
+  id_org: any;
   constructor(public _user: UserService,
     private formBuilder: FormBuilder,
     private toast: ToastService,
+    private _typeUser: TypeUsersService
     ) { 
-    this.getAll();    
+    this.getAll();  
+    this.typesAdmin();  
+    this.id_org = localStorage.getItem('bd_org');
+
   }
 
   ngOnInit() {
-    this.crearFormularios();
-
-    console.log(this.administrators);
-    
+    this.crearFormularios();    
   }
   // CRUD  
   // GET ALL ADMINS
@@ -39,6 +42,8 @@ export class UsersComponent implements OnInit {
   // CREATE
   // CREAR RUTA
   onSubmit(adminForm: NgForm){ // 
+    console.log(adminForm);
+    
     // datos vacios en el formulario
     if (this.adminForm.invalid) {
       return this.toast.showNotification('top','right','danger','Completar los datos solicitados.');
@@ -60,15 +65,32 @@ export class UsersComponent implements OnInit {
  });   
 }
 
+//TIPES ADMIN
+typesAdmin(){
+  this._typeUser.getTypesUser().subscribe(
+    resp=>{
+      console.log("A");
+
+      if( resp['status'] == 1){
+        this.tipesUser = resp['data'];
+        console.log(this.tipesUser);
+        
+      }
+    }
+  );
+  
+}
+
 
 crearFormularios(){
   // Creamos el formulario  
+  
   this.adminForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
-    bd_organization_id: ['1', Validators.required],
-    bd_type_users_id: ['1', Validators.required],
+    bd_organization_id: [this.id_org, Validators.required],
+    bd_type_users_id: ['', Validators.required],
 });
 
   // Creamos el formulario  
@@ -77,6 +99,22 @@ crearFormularios(){
    hora_ruta: ['', Validators.required],
    mes_ruta_id: ['', Validators.required]
 });*/
+}
+
+//DELETE
+deleteUserAdmin(idUserAdmin: number, name: string){
+
+    if(confirm("Esta seguro de eliminar al administrador:"+name)) {
+      //console.log("Implement delete functionality here");
+      this._user.deleteAdmin(idUserAdmin).subscribe(
+        resp=>{
+          this.toast.showNotification('top','right','success',resp['data']);
+          this.getAll();
+        }
+      );
+    }
+  
+
 }
 
 }

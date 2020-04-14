@@ -25,6 +25,7 @@ import { ClientsComponent } from 'app/clients/clients.component';
 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { FilterPipe } from 'app/_pipes/filter.pipe';
+import { UserDetailsComponent } from 'app/_details/user-details/user-details.component';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { FilterPipe } from 'app/_pipes/filter.pipe';
     PackagesComponent,
     DestinationsComponent,
     ClientsComponent,
+    UserDetailsComponent,
     FilterPipe
   ]
 })

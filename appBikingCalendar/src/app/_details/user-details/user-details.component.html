@@ -1,0 +1,52 @@
+<div class="main-content" *ngIf="administrator">
+
+  <div class="container-fluid">
+   
+    <h4>Detalles</h4>
+
+    <form [formGroup]="adminForm" (ngSubmit)="onSubmit(adminForm)">
+      <div class="row">
+        <div class="col">
+          
+        </div>
+        <div class="col-md-auto">
+          <button type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#exampleModal">
+            <i class="material-icons">save</i> &nbsp;&nbsp;&nbsp;
+            Guardar cambios.
+          </button>
+        </div>
+  
+      </div>
+      <div class="card">
+        <div class="card-header">
+          DATOS DEL ADMINISTRADOR
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input formControlName="name" value="{{administrator.name}}" type="text" class="form-control"required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input formControlName="email" value="{{administrator.email}}" type="email" class="form-control" required>
+      </div>
+      
+    <div class="form-group">
+      <label for="exampleInputEmail1">Tipo de Usuario Administrador</label>
+      <input  value="{{administrator.name}}" type="text" class="form-control"  readonly>
+    </div>
+        </div>
+      </div>
+
+
+  
+  </form>
+  </div>
+
+
+</div>
+
+
+
+

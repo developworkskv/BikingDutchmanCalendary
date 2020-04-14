@@ -44,5 +44,19 @@ export class UserService {
   createAdmin(admin: any){
       return this.htpp.post(URL_SERVICIOS +'/adminCreate', admin)
   }
+  //READ
+  //getUserById
+  detailsAdministrator(idAdmin: number){
+    return this.htpp.get( URL_SERVICIOS+'/adminById/' + idAdmin);
+  }
+  //UPDATE
+  updateAdmin(id_user, admin:any){
+    return this.htpp.post( URL_SERVICIOS+'/admin/' +id_user+'/update', admin);
+  }
 
+  //DELETE
+  deleteAdmin(id_user){
+    return this.htpp.get( URL_SERVICIOS+'/adminDelete/' +id_user);
+  }
+  
 }

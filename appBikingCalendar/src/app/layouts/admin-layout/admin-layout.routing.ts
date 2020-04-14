@@ -9,6 +9,7 @@ import { UsersComponent } from '../../users/users.component';
 import { PackagesComponent } from 'app/packages/packages.component';
 import { DestinationsComponent } from 'app/destinations/destinations.component';
 import { ClientsComponent } from 'app/clients/clients.component';
+import { UserDetailsComponent } from 'app/_details/user-details/user-details.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -20,7 +21,8 @@ export const AdminLayoutRoutes: Routes = [
 
     // GESTION DE USUARIOS
     { path: 'users-admin', component: UsersComponent},
-
+    { path: 'user-admin/:id_admin', component: UserDetailsComponent},
+ 
     // GESTION DE CLIENTES-PACKETES TOURS
     { path: 'calendary', component: CalendaryComponent},
 

@@ -34,6 +34,7 @@ export class LoginService {
     .subscribe(resp => {
       console.log(resp);
       localStorage.setItem('token_bd_users', resp[0]['token']);
+      localStorage.setItem('bd_org', resp[0]['bd_organization_id']);
       window.location.reload();
       
     });

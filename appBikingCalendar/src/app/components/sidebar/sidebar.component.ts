@@ -23,6 +23,7 @@ export const ROUTES_ADMIN: RouteInfo[] = [
   { path: '/clients-gestion', title: 'Gestión de Clientes',  icon: 'person_pin', class: '' },
   { path: '/destinations-gestion', title: 'Gestión de Destinos',  icon: 'place', class: '' },  
   { path: '/request-form-bkd', title: 'Formulario Solicitud.',  icon: 'list_alt', class: '' },
+  { path: '/user-admin/:id_admin', title: '',  icon: '', class: '' },
 
 ];
 
