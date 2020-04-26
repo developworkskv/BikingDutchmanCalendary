@@ -18,8 +18,15 @@ class BdTypeUsers extends Migration
         Schema::create('bd_type_users', function (Blueprint $table) {
             $table->bigIncrements('bd_type_users_id');
             $table->string('type_user');
-            $table->boolean('status');
-            $table->string('code');            
+            $table->string('code');
+            $table->boolean('isAdmin');
+            $table->boolean('isEmployer');
+            $table->boolean('isDesigned');
+            $table->boolean('isActive')->nullable();
+            $table->char('description1', 255)->nullable();
+            $table->char('description2', 255)->nullable();
+            $table->double('value')->nullable();
+            $table->boolean('status')->nullable();            
             $table->timestamps();
             
         });   

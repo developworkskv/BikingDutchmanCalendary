@@ -18,7 +18,12 @@ class BdDestination extends Migration
             $table->bigIncrements('bd_destination_id');            
             $table->string('name');
             $table->integer('availability'); 
-            $table->boolean('status');             
+            $table->boolean('isActive')->nullable();
+            $table->char('description1', 255)->nullable();
+            $table->char('description2', 255)->nullable();
+            $table->double('value')->nullable();
+            $table->boolean('status')->nullable();            
+            //$table->rememberToken();
             $table->timestamps();
     
         });

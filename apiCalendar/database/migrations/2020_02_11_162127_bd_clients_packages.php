@@ -13,12 +13,16 @@ class BdClientsPackages extends Migration
      */
     public function up()
     {
-        //
-        //
+        
         Schema::create('bd_clients_packages', function (Blueprint $table) {
             $table->bigIncrements('bd_clients_packages_id');            
             $table->double('total');
-            $table->boolean('status');
+            $table->boolean('isActive')->nullable();
+            $table->char('description1', 255)->nullable();
+            $table->char('description2', 255)->nullable();
+            $table->double('value')->nullable();
+            $table->boolean('status')->nullable();
+           // $table->rememberToken();
             $table->timestamps();
             //FOREIGN KEY
             $table->unsignedBigInteger('bd_clients_id');

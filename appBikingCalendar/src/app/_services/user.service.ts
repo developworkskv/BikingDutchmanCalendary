@@ -55,8 +55,8 @@ export class UserService {
   }
 
   //DELETE
-  deleteAdmin(id_user){
-    return this.htpp.get( URL_SERVICIOS+'/adminDelete/' +id_user);
+  deleteAdmin(id_person){
+    return this.htpp.get( URL_SERVICIOS+'/adminDelete/' +id_person);
   }
   
 }

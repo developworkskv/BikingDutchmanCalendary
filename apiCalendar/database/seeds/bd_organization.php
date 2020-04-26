@@ -13,6 +13,9 @@ class bd_organization extends Seeder
     {
         DB::table('bd_organization')->insert([
             'name' => 'Biking Dutchman Mountain',
+            'isActive' => true,
+            'description1' => true,
+            'description2' => true,
             'status' => true
         ]);
     }

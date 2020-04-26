@@ -13,20 +13,31 @@ class BdClients extends Migration
      */
     public function up()
     {
-
+        
+       
 
         //TABLA BD_CLIENTS
+        
         Schema::create('bd_clients', function (Blueprint $table) {
             $table->bigIncrements('bd_clients_id');
             $table->string('nacionality');
             $table->decimal('height');
             $table->decimal('weight');
-            $table->date('birth_day');
-            $table->integer('passport');
+            //$table->date('birth_day');
+            $table->integer('passport')->nullable();
+            $table->boolean('isActive')->nullable();
+            $table->char('description1', 255)->nullable();
+            $table->char('description2', 255)->nullable();
+            $table->double('value')->nullable();
+            $table->boolean('status')->nullable();
+           // $table->rememberToken();
             $table->timestamps();
-            //FOREIGN KEY
+            //FOREIGN KEY 
             $table->unsignedBigInteger('bd_organization_id');
             $table->foreign('bd_organization_id')->references('bd_organization_id')->on('bd_organization');
+
+            $table->unsignedBigInteger('bd_persons_id');
+            $table->foreign('bd_persons_id')->references('bd_persons_id')->on('bd_persons');
             
             
         });
@@ -42,5 +53,6 @@ class BdClients extends Migration
     {
         //
         Schema::dropIfExists('bd_clients');
+        Schema::dropIfExists('bd_organization');
     }
 }

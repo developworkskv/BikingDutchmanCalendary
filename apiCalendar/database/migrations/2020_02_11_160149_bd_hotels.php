@@ -17,7 +17,12 @@ class BdHotels extends Migration
         Schema::create('bd_hotels', function (Blueprint $table) {
             $table->bigIncrements('bd_hotels_id');            
             $table->string('name');             
-            $table->boolean('status');             
+            $table->boolean('isActive')->nullable();
+            $table->char('description1', 255)->nullable();
+            $table->char('description2', 255)->nullable();
+            $table->double('value')->nullable();
+            $table->boolean('status')->nullable();            
+            //$table->rememberToken();
             $table->timestamps();
             //foregien
             $table->unsignedBigInteger('bd_destination_id');

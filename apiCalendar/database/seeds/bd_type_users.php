@@ -12,9 +12,8 @@ class bd_type_users extends Seeder
      */
     public function run()
     {
-        $typesUsers = array("administrator", "employer", "designed");
-        
-
+        $typesUsers = array("AdministradorSys", "EmployerSys", "DesignedSys");
+    
         for ($i=0; $i < count($typesUsers); $i++) { 
             $int = rand(0,51);
             $int2 = rand(10,31);
@@ -24,8 +23,14 @@ class bd_type_users extends Seeder
             //return $rand_letter;
             DB::table('bd_type_users')->insert([
                 'type_user' => $typesUsers[$i],
-                'status' => true,
                 'code' => $rand_letter,
+                'isAdmin' => true,
+                'isEmployer' => true,
+                'isDesigned' => true,
+                'isActive' => true,
+                'description1' => "Usuario Administrador",
+                'description2' => "Usuario Administrador",
+                'status' => true,
             ]);
 
         }

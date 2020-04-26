@@ -19,6 +19,11 @@ class BdPackages extends Migration
             $table->string('name');
             $table->double('price');
             $table->integer('numbers_clients');
+            $table->boolean('isActive')->nullable();
+            $table->char('description1', 255)->nullable();
+            $table->char('description2', 255)->nullable();
+            $table->double('value')->nullable();
+            $table->boolean('status')->nullable(); 
             $table->timestamps();
 
             //FOREIGN KEY

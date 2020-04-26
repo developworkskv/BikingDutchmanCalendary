@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BdCities extends Migration
+class BdPerson extends Migration
 {
     /**
      * Run the migrations.
@@ -14,23 +14,24 @@ class BdCities extends Migration
     public function up()
     {
         //
-        Schema::create('bd_cities', function (Blueprint $table) {
-            $table->bigIncrements('bd_cities_id');            
+        Schema::create('bd_persons', function (Blueprint $table) {
+            $table->bigIncrements('bd_persons_id');
             $table->string('name');
+            $table->string('lastName');
+            $table->string('email');
+           // $table->string('password');
+           // $table->string('nacionality');
+          //  $table->decimal('height');
+         //   $table->decimal('weight');
+            $table->date('birth_date');
+            $table->string('gender');
+            $table->integer('dni')->unique()->nullable();
             $table->boolean('isActive')->nullable();
             $table->char('description1', 255)->nullable();
             $table->char('description2', 255)->nullable();
             $table->double('value')->nullable();
-            $table->boolean('status')->nullable();            
-           // $table->rememberToken();
+            $table->boolean('status')->nullable();
             $table->timestamps();
-
-            //Foreign Key
-            $table->unsignedBigInteger('bd_destination_id');
-            $table->foreign('bd_destination_id')->references('bd_destination_id')->on('bd_destination');
-            $table->unsignedBigInteger('bd_hotels_id');
-            $table->foreign('bd_hotels_id')->references('bd_hotels_id')->on('bd_hotels');
-    
         });
     }
 
@@ -42,6 +43,6 @@ class BdCities extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('bd_cities');
+        Schema::dropIfExists('bd_person');
     }
 }

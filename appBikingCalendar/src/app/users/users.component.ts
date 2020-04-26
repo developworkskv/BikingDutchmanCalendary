@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
     this._user.getAllAdministrators().subscribe(data=> {
      //console.log(data["data"][0]);
       this.administrators = data["data"];
-     // console.log(this.administrators);
+      console.log(this.administrators);
       });
   }
 
@@ -58,10 +58,11 @@ export class UsersComponent implements OnInit {
         this.adminForm.reset(); 
 
       }else{
-        this.toast.showNotification('top','right','danger','Ingresa los datos solicitados.');
+        this.toast.showNotification('top','right','danger','Error en datos ingresados.');
       }
  }, err => {
-   //this.toastr.error('Servicio Ejecutado', err['data']);
+   this.toast.showNotification('top','right','danger','Tus datos coinciden con un registro ya existente');
+   
  });   
 }
 
@@ -69,8 +70,6 @@ export class UsersComponent implements OnInit {
 typesAdmin(){
   this._typeUser.getTypesUser().subscribe(
     resp=>{
-      console.log("A");
-
       if( resp['status'] == 1){
         this.tipesUser = resp['data'];
         console.log(this.tipesUser);
@@ -87,7 +86,11 @@ crearFormularios(){
   
   this.adminForm = this.formBuilder.group({
     name: ['', Validators.required],
+    lastName: ['', Validators.required],
     email: ['', Validators.required],
+    fechaNacimiento: ['', Validators.required],
+    gender: ['', Validators.required],
+    dni: ['', Validators.required],
     password: ['', Validators.required],
     bd_organization_id: [this.id_org, Validators.required],
     bd_type_users_id: ['', Validators.required],
@@ -102,11 +105,11 @@ crearFormularios(){
 }
 
 //DELETE
-deleteUserAdmin(idUserAdmin: number, name: string){
+deleteUserAdmin(idPerson: number, name: string){
 
     if(confirm("Esta seguro de eliminar al administrador:"+name)) {
       //console.log("Implement delete functionality here");
-      this._user.deleteAdmin(idUserAdmin).subscribe(
+      this._user.deleteAdmin(idPerson).subscribe(
         resp=>{
           this.toast.showNotification('top','right','success',resp['data']);
           this.getAll();

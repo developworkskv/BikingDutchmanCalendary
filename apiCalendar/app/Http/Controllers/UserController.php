@@ -49,14 +49,19 @@ class UserController extends BaseController
             return $this->sendError('Datos Incompletos', 'Error, porfavor ingresa los datos solicitados');
         }
 
-        if (count($request->all()) >= 4) {
+        if (count($request->all()) >= 9 ) {
             // verificar si ese email ya existe registrado
             $userExist = $gestionUser->userExist($request->input('email'));
             // si existe no existe usuario registrado con ese email inserte
             if (count($userExist) == 0) {
                 $insert = $gestionUser->newAdmin(
                     $request->input('name'),
+                    $request->input('lastName'),
                     $request->input('email'),
+                    $request->input('fechaNacimiento'),
+                    $request->input('gender'),
+                    $request->input('dni'),
+
                     md5(uniqid($request->input('email'), true)), // TOKEN depende de email
                     md5(($request->input('password'))),
                     $request->input('bd_organization_id'),
@@ -113,30 +118,32 @@ class UserController extends BaseController
     }
 
     //UPDATE - MODIFI DATA $administrators
-    public function updateAdministratorData($id_administrator, Request $request)
+    public function updateAdministratorData($id_person, Request $request)
     {
-
-
         $gestionUser = new UserServiceRepository;
         // verficate if exist this user
-        $userIsRegister = $gestionUser->getUserAdminById($id_administrator);
-
+        $userIsRegister = $gestionUser->getUserAdminById($id_person);
         if (count($userIsRegister) == 0) {
             // no hay Datos
             return $this->sendError('Usuario no encontrado', 'Ningun registro insertado en esta tabla.');
         } else {
-            // Puedo borrar, first search data of user;
-            // return $this->sendResponse($userIsRegister,'Usuario existe');
-            //CONFIRM update, only name, email or $password
-            if (count($request->all()) >= 3) {
-                $update = $gestionUser->updateAdmin($id_administrator,
+            if (count($request->all()) >= 6) {
+                //EDIT TABLE bd_persons
+                $gestionUser->updateAdminPerson(
+                    $id_person,
                     $request->input('name'),
+                    $request->input('lastName'),
                     $request->input('email'),
-                    //md5(uniqid($request->input('email'), true)), // TOKEN depende de email
-                    md5(($request->input('password'))),
-                    //$request->input('bd_organization_id'),
-                    $userIsRegister[0]->bd_type_users_id); // SI SE QUIERE MODIFICAR ESTE CAMPO CREAR OTRA FUNCION - CAMBIAR TIPO DE Usuario
-
+                    $request->input('fechaNacimiento'),
+                    $request->input('gender'),
+                    $request->input('dni')
+                );
+                //getIdPerson modificated
+                $userEdit = $gestionUser->getUserAdminById($id_person);
+                // EDIT TABLE bd_users where idPersons
+                $update = $gestionUser->updateAdmin($userEdit[0]->bd_persons_id,
+                    $request->input('bd_type_users_id')
+                                 ); // SI SE QUIERE MODIFICAR ESTE CAMPO CREAR OTRA FUNCION - CAMBIAR TIPO DE Usuario
                 return $this->sendResponse($userIsRegister, 'Usuario administrador modificado correctamente.');
 
             } else {
@@ -147,18 +154,17 @@ class UserController extends BaseController
 
     }
 
-    public function deleteAdmin($id_administrator)
+    public function deleteAdmin($id_person)
     {
         $gestionUser = new UserServiceRepository;
 
         // verificar si el usuario existe para borrar
-        $userIsRegister = $gestionUser->getUserAdminById($id_administrator);
+        $userIsRegister = $gestionUser->getUserAdminById($id_person);
         if (count($userIsRegister) == 0) {
             // no hay Datos
             return $this->sendError('Usuario no encontrado', 'Ningun registro insertado en esta tabla.');
         } else {
-            $userIsRegister = $gestionUser->deleteAdmin($id_administrator);
-
+            $userIsRegister = $gestionUser->deleteAdmin($id_person);
             return $this->sendResponse('Usuario Amdinistrador Eliminado', 'Administrador dado de baja');
 
         }

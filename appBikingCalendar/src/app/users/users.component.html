@@ -35,9 +35,12 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
+          <th scope="col">DNI</th>
           <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
           <th scope="col">Email</th>
           <th scope="col">Tipo de Usuario</th>
+          <th scope="col">Género</th>
           <th scope="col">Fecha creación</th>
           <th scope="col">Ver</th>
           <th scope="col">Eliminar</th>
@@ -48,19 +51,22 @@
         <tr *ngFor="let admin of administrators | filter: filterPost | paginate:
           { itemsPerPage: 10, currentPage: p } ; let i= index">
           <th scope="row">{{i + 1}}</th>
+          <td>{{admin.dni}}</td>
           <td>{{admin.name}}</td>
+          <td>{{admin.lastName}}</td>
           <td>{{admin.email}}</td>
-          <td>{{admin.bd_type_users_id}}</td>
+          <td>{{admin.type_user}}</td>
+          <td>{{admin.gender}}</td>
           <td>{{admin.created_at}}</td>
           <td>
 
-                <button [routerLink]="['/user-admin', admin.bd_users_id]" type="button" class="btn btn-outline-success">
+                <button [routerLink]="['/user-admin', admin.bd_persons_id]" type="button" class="btn btn-outline-success">
                   <i class="material-icons">visibility</i>
                 </button> 
 
           </td>
           <td>
-            <button (click)="deleteUserAdmin(admin.bd_users_id, admin.name)" type="button" class="btn btn-outline-danger">
+            <button (click)="deleteUserAdmin(admin.bd_persons_id, admin.name)" type="button" class="btn btn-outline-danger">
               <i class="material-icons">delete</i>
             </button> 
           </td>
@@ -87,15 +93,40 @@
       <div class="modal-body">
         <form [formGroup]="adminForm" (ngSubmit)="onSubmit(adminForm)">
           <h4>REGISTRO Y ASIGNACION DE NUEVO ADMINISTRADOR </h4>
-
+          
+          <div class="form-group" hidden>
+            <label for="exampleInputEmail1">Org</label>
+            <input formControlName="bd_organization_id" value="{{id_org}}" type="text" class="form-control" placeholder="Org" required>
+        </div>
           <div class="form-group">
               <label for="exampleInputEmail1">Nombre</label>
               <input formControlName="name" type="text" class="form-control" placeholder="Name" required>
           </div>
           <div class="form-group">
+            <label for="exampleInputEmail1">Apellido</label>
+            <input formControlName="lastName" type="text" class="form-control" placeholder="LastName" required>
+        </div>
+          <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
             <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
         </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Fecha Nacimiento</label>
+          <input formControlName="fechaNacimiento" type="date" class="form-control" placeholder="Email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="exampleInputEmail1">Género</label>
+          <select formControlName="gender">
+            <option>Masculino</option>
+            <option>Femenino</option>
+          </select>
+       </div>
+       <div class="form-group">
+        <label for="exampleInputEmail1">DNI/Pasaporte</label>
+        <input formControlName="dni" type="number" class="form-control" placeholder="Email" required>
+      </div>
+
         <div class="form-group">
           <label for="exampleInputEmail1">Contraseña</label>
           <input formControlName="password" type="text" class="form-control" placeholder="Contraseña" required>
@@ -105,7 +136,6 @@
         <label for="exampleInputEmail1">Tipo de Usuario Administrador</label>
         <select class="custom-select" id="inputGroupSelect01" formControlName="bd_type_users_id" >
           <option  *ngFor="let item of tipesUser" value="{{item.bd_type_users_id}}">{{item.type_user}}</option>
-     
         </select>      
       </div>
       
