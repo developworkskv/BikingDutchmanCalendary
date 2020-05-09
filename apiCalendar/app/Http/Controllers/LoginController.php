@@ -18,11 +18,13 @@ class LoginController extends BaseController
         if (empty($datos)) {
             return $this->sendError('Completar la información solicitada', '');
         }
-        // verificar si existe el usuario DATOS CORRECTOS
-        $user = DB::table('bd_users')
-            ->where('email', $email)
-            ->where('password', $password)
-            ->first();
+        // JOIN PERSON _ USER _ 
+        $user = $users = DB::table('bd_users')
+        ->join('bd_persons', 'bd_users.bd_persons_id', '=', 'bd_persons.bd_persons_id')
+        ->where('bd_users.password', $password)
+        ->where('bd_persons.email', $email)
+        ->first();
+
         if (empty($user)) {
             return $this->sendError('Datos incorrectos.', $user);
         } else {

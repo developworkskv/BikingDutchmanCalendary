@@ -18,6 +18,7 @@ export const ROUTES: RouteInfo[] = [
 // rutas del menu sidebar ADMINISTRADOR
 export const ROUTES_ADMIN: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
+  { path: '/calendary', title: 'Calendario de eventos.',  icon: 'event_note', class: '' },
   { path: '/users-admin', title: 'Gestión de Usuarios',  icon: 'account_box', class: '' },
   { path: '/packages-gestion', title: 'Gestión de Paquetes',  icon: 'vertical_split', class: '' },
   { path: '/clients-gestion', title: 'Gestión de Clientes',  icon: 'person_pin', class: '' },
@@ -38,23 +39,6 @@ export class SidebarComponent implements OnInit {
   constructor(private _user: UserService) { }
 
   ngOnInit() { 
-    // Determinar si el usuario es Administrador  
-    // TODOS
-    /* => DASHBOARD == INFORMACION PUBLICITARIA PARA LA EMPRESA
-       => PAQUETES == Tours que se ofrece, informacion y solicitar tour ==>  STANDAR Y PREMIUM
-       => CALENDARY == SOLO LECTURA
-       => COMENTARIOS == LECTURA y ESCRITURA de usuarios registrados;
-       => CONTACTOS == SOLO LECTURA  
-       */
-    // USUARIO ADMINISTRADOR LOGUEADO
-    /*   => DASHBOARD == ""
-        => PAQUETES == CRUD 
-       => CALENDARY // ASIGNAR VENTA => PAQUETE_USUARIO
-        => DESTINOS == CRUD 
-        => HOTELES == CRUD
-        => COMIDA == CRUD // MAYBE
-        
-    */
    this.estadoSesion();
   }
 
