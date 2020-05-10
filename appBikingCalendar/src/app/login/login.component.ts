@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
     // SESION USER 
   userIsActive(){
-    if(localStorage.getItem('token_bd_users')){
+    if(localStorage.getItem('token_bd_users')){ // EL TOKEN ES EL EMAIL EN MD5
       this.router.navigate(['dashboard']);
     }
   }

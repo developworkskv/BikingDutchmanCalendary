@@ -19,7 +19,7 @@ class LoginController extends BaseController
             return $this->sendError('Completar la información solicitada', '');
         }
         // JOIN PERSON _ USER _ 
-        $user = $users = DB::table('bd_users')
+        $user = DB::table('bd_users')
         ->join('bd_persons', 'bd_users.bd_persons_id', '=', 'bd_persons.bd_persons_id')
         ->where('bd_users.password', $password)
         ->where('bd_persons.email', $email)
@@ -31,5 +31,21 @@ class LoginController extends BaseController
             return $this->sendResponse('Sesión iniciada', $user);
         }
 
+    }
+
+    // VALIDATE SESION 
+    public function sesion($token, $id_org){ //token is email code md5
+
+        $userSesion = DB::table('bd_users')
+        ->join('bd_persons', 'bd_users.bd_persons_id', '=', 'bd_persons.bd_persons_id')
+        ->where('bd_users.token', $token)
+        ->where('bd_users.bd_organization_id', $id_org)
+        ->first();
+
+        if (empty($userSesion)) {
+            return $this->sendError('Datos incorrectos.', $userSesion);
+        } else {
+            return $this->sendResponse($userSesion, $userSesion);
+        }
     }
 }

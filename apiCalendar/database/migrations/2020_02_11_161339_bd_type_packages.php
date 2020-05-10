@@ -24,7 +24,10 @@ class BdTypePackages extends Migration
             $table->boolean('status')->nullable();           
            // $table->rememberToken();
             $table->timestamps();
-    
+     //FOREIGN KEY
+     $table->unsignedBigInteger('bd_organization_id');
+     $table->foreign('bd_organization_id')->references('bd_organization_id')->on('bd_organization');
+ 
         });
     }
 

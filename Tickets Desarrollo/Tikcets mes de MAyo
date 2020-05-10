@@ -1,0 +1,24 @@
+BRYAN - 0001 - mayo09
+R1.
+MODIFICACIONES A VISTAS NUEVAS
+Aplicar paginador a tabla CALENDARIO DE EVENTOS del menu.
+solo se requiere utilizar el pipe instalado 
+ver en el menu GESTION DE USUARIOS copiar desde ahi tanto los botones como el filtro 
+no es neesario la funcionalidad del filtro ni de los botones solamente debe estar puesto 
+Siempre validar en la consola q no exista 
+
+R2. 
+
+Copiar la pagina del dashboard template original 
+en el dashboard de nuestra pagina 
+no implementar los graficos anterirores 
+
+
+
+----------------------------------------------------
+KV - 0001 - mayo 09
+GESTION DE DESTIONS Y PAQUETES 
+CRUD 
+-----------------------------------------------------
+
+

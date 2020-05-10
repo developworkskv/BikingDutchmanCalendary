@@ -35,10 +35,14 @@ export class LoginService {
       console.log(resp);
       localStorage.setItem('token_bd_users', resp[0]['token']);
       localStorage.setItem('bd_org', resp[0]['bd_organization_id']);
+   //  localStorage.setItem('bd_org', resp[0]['email']);
       window.location.reload();
       
     });
 
+  }
+  sesionActive( token, id_org ){
+    return this.http.get(URL_SERVICIOS + '/sesion/' + token + '/'+ id_org);
   }
 }
 

@@ -21,6 +21,8 @@ Route::get('conexionApiTest', 'TestController@conexionApiTest');
 
 //Login
 Route::post('iniciarSesion', 'LoginController@iniciarSesion');
+Route::get('sesion/{token_email}/{id_org}', 'LoginController@sesion');
+
 
 // User
 Route::get('dataUserById/{id_user}', 'UserController@dataUserById');
@@ -36,3 +38,12 @@ Route::get('adminDelete/{id_admin}', 'UserController@deleteAdmin');
 
 // TIPE USERS
 Route::get('typesUser', 'UserController@allTipesUser');
+
+//CRUD para TIPOS DE PAQUETES
+Route::post('packageCreate/{id_org}', 'PackagesController@createTypePackages');
+Route::get('packagesRead', 'PackagesController@getAllTypesPackages');
+Route::get('packageById/{id_admin}/org/{id_org}', 'PackagesController@getTypePackageId');
+Route::post('package/{bd_users_id}/update/{id_org}/org', 'PackagesController@updateTypePackageData');
+Route::get('packageDelete/{id_package}/org/{id_org}', 'PackagesController@deleteTypePackage');
+
+
