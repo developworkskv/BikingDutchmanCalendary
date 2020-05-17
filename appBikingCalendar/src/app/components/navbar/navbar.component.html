@@ -19,17 +19,14 @@
                 <li class="nav-item dropdown">
                     <a *ngIf="navbarIslogin" class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">notifications</i>
-                        <span class="notification">5</span>
+                        <span class="notification">{{ numberNotifications}} </span>
                         <p>
                             <span class="d-lg-none d-md-block">Some Actions</span>
                         </p>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Mike John, solicitud standar</a>
-                        <a class="dropdown-item" href="#">Kevin Velasco, solicitud premium</a>
-                        <a class="dropdown-item" href="#">Bryan Roblero, solicitud standar</a>
-                        <a class="dropdown-item" href="#">Tours finalizados</a>
-                        <a class="dropdown-item" href="#">Mike John, solicitud premium</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" >
+                        <a class="dropdown-item" *ngFor="let notification of notifications" href="#">El usuario {{notification.id}} ha dicho {{notification.bd_ch_name}}</a>
+                        
                     </div>
                 </li>
                 <li class="nav-item dropdown">

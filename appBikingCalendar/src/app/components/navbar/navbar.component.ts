@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import { ChatbotService } from 'app/_services/chatbot.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,11 +16,15 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     navbarIslogin: boolean;
+    notifications:any;
+    numberNotifications: any;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    constructor(location: Location,  private element: ElementRef, private router: Router,
+        private _chatbot: ChatbotService) {
       this.location = location;
       this.sidebarVisible = false;
       this.existLocalStorageApp();
+      this.notificationChatbot();
     }
 
     ngOnInit(){
@@ -137,5 +142,19 @@ export class NavbarComponent implements OnInit {
         }else{
             this.navbarIslogin = false;
         }
+    }
+
+    //********************NOTIFICATIONS CHATBOT *************************/
+    notificationChatbot(){
+        this._chatbot.getAllNotifications()
+        .subscribe(
+            resp=>{
+                this.notifications = resp;
+                console.log(this.notifications);
+                this.numberNotifications = this.notifications.length;
+                console.log(this.notifications.length );
+                
+            }
+        )
     }
 }

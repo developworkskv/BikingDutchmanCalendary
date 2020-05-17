@@ -112,7 +112,7 @@ class PackagesController extends BaseController
     }
 
     public function getAllTypesPackagesBot(){
-    
+    // https://docs.chatfuel.com/en/articles/735122-json-api
         $json='
         {
             "messages": [
