@@ -9,6 +9,7 @@ import { CalendaryComponent } from '../../calendary/calendary.component';
 import { NewsComponent } from '../../news/news.component';
 import { GeneralFormComponent } from '../../general-form/general-form.component';
 import { ChartsModule } from 'ng2-charts';
+import {DataTablesModule} from 'angular-datatables';
 
 import {
   MatButtonModule,
@@ -26,6 +27,8 @@ import { ClientsComponent } from 'app/clients/clients.component';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { FilterPipe } from 'app/_pipes/filter.pipe';
 import { UserDetailsComponent } from 'app/_details/user-details/user-details.component';
+import { TourComponent } from 'app/tour/tour.component';
+import { NotificationsComponent } from 'app/notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -40,7 +43,8 @@ import { UserDetailsComponent } from 'app/_details/user-details/user-details.com
     MatSelectModule,
     MatTooltipModule,
     ChartsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DataTablesModule
 
   ],
   // todos mis componentes
@@ -55,7 +59,10 @@ import { UserDetailsComponent } from 'app/_details/user-details/user-details.com
     DestinationsComponent,
     ClientsComponent,
     UserDetailsComponent,
-    FilterPipe
+    FilterPipe,
+    TourComponent,
+    NotificationsComponent,
+
   ]
 })
 

@@ -6,11 +6,12 @@
 
     <div class="col-md-auto" style="padding-top: 0%;">
       <h3>CALENDARIO DE EVENTOS</h3>
+      aun no esta aplicado el control de datatables -> referirse al UserComponent
     </div>
   </div>
   <div class="container-fluid">
 
-    <table class="table" >
+    <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Titulo</th>
@@ -35,24 +36,24 @@
           <td>08/02/2020 12:00</td>
           <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
             <i class="material-icons">visibility</i><br>
-           <small>  Ver Detalles </small>
+           
            </button></td>
         </tr>
         <tr>
-          <td>Tour Premium</td>
+          <td>Tour Premium A</td>
           <td>Papallacta - Quito</td>
-          <td><div class="alert alert-success" role="alert">Baja</div></td>
+          <td><div class="alert alert-success" role="alert"> <small> Baja  </small></div></td>
           <td><div class="alert alert-warning" role="alert"><small>En proceso</small></div></td>
           <td>11/02/2020 18:00</td>
           <td>11/04/2020 15:00</td>
           <td>08/02/2020 12:00</td>
           <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
             <i class="material-icons">visibility</i><br>
-           <small>  Ver Detalles </small>
+           
            </button></td>
         </tr>
         <tr>
-          <td>Tour Premium</td>
+          <td>Tour Premium B</td>
           <td>Papallacta - Quito</td>
           <td><div class="alert alert-success" role="alert">Alta</div></td>
           <td><div class="alert alert-success" role="alert">Finalizado</div></td>
@@ -61,11 +62,11 @@
           <td>08/02/2020 12:00</td>
           <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
             <i class="material-icons">visibility</i><br>
-           <small>  Ver Detalles </small>
+           
            </button></td>
         </tr>
         <tr>
-          <td>Tour Premium</td>
+          <td>Tour Premium C</td>
           <td>Papallacta - Quito</td>
           <td><div class="alert alert-dark" role="alert"> <small> Media </small></div></td>
           <td><div class="alert alert-success" role="alert">Finalizado</div></td>
@@ -74,7 +75,7 @@
           <td>08/02/2020 12:00</td>
           <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
             <i class="material-icons">visibility</i><br>
-           <small>  Ver Detalles </small>
+           
            </button></td>
         </tr>
         <tr>
@@ -85,15 +86,228 @@
           <td>11/02/2020 18:00</td>
           <td>11/04/2020 15:00</td>
           <td>08/02/2020 12:00</td>
-          <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
 
             <i class="material-icons">visibility</i><br>
-           <small>  Ver Detalles </small>
+          
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium A</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert"> <small> Baja  </small></div></td>
+          <td><div class="alert alert-warning" role="alert"><small>En proceso</small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium B</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert">Alta</div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium C</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-dark" role="alert"> <small> Media </small></div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-light" role="alert"><small>Borrador</small></div></td>
+          <td><div class="alert alert-light" role="alert"> <small> No ejecutado </small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
+
+            <i class="material-icons">visibility</i><br>
+          
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium A</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert"> <small> Baja  </small></div></td>
+          <td><div class="alert alert-warning" role="alert"><small>En proceso</small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium B</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert">Alta</div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium C</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-dark" role="alert"> <small> Media </small></div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-light" role="alert"><small>Borrador</small></div></td>
+          <td><div class="alert alert-light" role="alert"> <small> No ejecutado </small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
+
+            <i class="material-icons">visibility</i><br>
+          
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium A</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert"> <small> Baja  </small></div></td>
+          <td><div class="alert alert-warning" role="alert"><small>En proceso</small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium B</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert">Alta</div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium C</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-dark" role="alert"> <small> Media </small></div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-light" role="alert"><small>Borrador</small></div></td>
+          <td><div class="alert alert-light" role="alert"> <small> No ejecutado </small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
+
+            <i class="material-icons">visibility</i><br>
+          
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium A</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert"> <small> Baja  </small></div></td>
+          <td><div class="alert alert-warning" role="alert"><small>En proceso</small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium B</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-success" role="alert">Alta</div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium C</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-dark" role="alert"> <small> Media </small></div></td>
+          <td><div class="alert alert-success" role="alert">Finalizado</div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+            <i class="material-icons">visibility</i><br>
+           
+           </button></td>
+        </tr>
+        <tr>
+          <td>Tour Premium</td>
+          <td>Papallacta - Quito</td>
+          <td><div class="alert alert-light" role="alert"><small>Borrador</small></div></td>
+          <td><div class="alert alert-light" role="alert"> <small> No ejecutado </small></div></td>
+          <td>11/02/2020 18:00</td>
+          <td>11/04/2020 15:00</td>
+          <td>08/02/2020 12:00</td>
+          <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">
+
+            <i class="material-icons">visibility</i><br>
+          
            </button></td>
         </tr>
       </tbody>
     </table>
 
+    
   </div>
 </div>
 

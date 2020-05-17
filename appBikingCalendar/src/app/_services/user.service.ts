@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../config/url.servicios';
- 
+import { Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   isLoggin: boolean = false;
   administrators: any;
+
 
   constructor(public htpp: HttpClient) {
     console.log('User Service Active');

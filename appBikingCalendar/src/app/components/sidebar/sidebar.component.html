@@ -1,19 +1,134 @@
 <div class="logo">
     <a href="#" class="simple-text">
-        <img style="padding-left: 0px; border-radius: 20px;" src="http://www.bikingdutchman.com/wp-content/uploads/sites/3/2018/11/logo-biking-dutchman-mountain-bike.jpg" />
+        <img style="padding-left: 0px; border-radius: 20px;"
+            src="http://www.bikingdutchman.com/wp-content/uploads/sites/3/2018/11/logo-biking-dutchman-mountain-bike.jpg"
+            />
         <h2><b> Calendary</b></h2>
     </a>
 
 </div>
 <div class="sidebar-wrapper">
-
+    
     <ul class="nav">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            
-            <a class="nav-link" [routerLink]="[menuItem.path]" *ngIf="menuItem.title">
+        <li routerlinkactive="active" *ngFor="let menuItem of menuItemsGeneral"
+        class="{{menuItem.class}} nav-item">
+        <a class="nav-link" [routerLink]="[menuItem.path]"
+        *ngIf="menuItem.title">
+        <i class="material-icons">{{menuItem.icon}}</i>
+        <p>{{menuItem.title}}</p>
+    </a>
+        </li>
+    </ul>
+    <ul class="nav" *ngIf="!showMenu">
+        <li routerlinkactive="active" *ngFor="let menuItem of menuItems"
+        class="{{menuItem.class}} nav-item">
+        <a class="nav-link" [routerLink]="[menuItem.path]"
+        *ngIf="menuItem.title">
+        <i class="material-icons">{{menuItem.icon}}</i>
+        <p>{{menuItem.title}}</p>
+    </a>
+        </li>
+    </ul>
+    
+    <ul class="nav" *ngIf="showMenu">
+       
+        <li routerlinkactive="active" class="nav-item"><!---->
+            <a data-toggle="collapse" class="nav-link" href="#componentsOrders">
+                <i class="material-icons">reorder</i>
+                <p>Órdenes Tours<b class="caret"></b></p>
+            </a><!---->
+            <div class="collapse"
+                id="componentsOrders">
+
+                <ul class="nav">
+                    <li routerlinkactive="active" *ngFor="let menuItem of menuItemsTours"
+                    class="{{menuItem.class}} nav-item">
+                    <a class="nav-link" [routerLink]="[menuItem.path]"
+                    *ngIf="menuItem.title">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <!--ADMINISTRACION-->
+
+    <ul class="nav" *ngIf="showMenu">
+       
+        <li routerlinkactive="active" class="nav-item"><!---->
+            <a data-toggle="collapse" class="nav-link" href="#componentsAdministracion">
+                <i class="material-icons">layers</i>
+                <p>Administración<b class="caret"></b></p>
+            </a><!---->
+            <div class="collapse"
+                id="componentsAdministracion">
+
+                <ul class="nav">
+                    <li routerlinkactive="active" *ngFor="let menuItem of menuItems"
+                    class="{{menuItem.class}} nav-item">
+                    <a class="nav-link" [routerLink]="[menuItem.path]"
+                    *ngIf="menuItem.title">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <!--REPORTS-->
+    <ul class="nav" *ngIf="showMenu">
+       
+        <li routerlinkactive="active" class="nav-item">
+            <a data-toggle="collapse" class="nav-link" href="#componentsReportes">
+                <i class="material-icons">toc</i>
+                <p>Reportes<b class="caret"></b></p>
+            </a><!---->
+            <div class="collapse"
+                id="componentsReportes">
+
+                <ul class="nav">
+                    <li routerlinkactive="active" *ngFor="let menuItem of menuItemsReports"
+                    class="{{menuItem.class}} nav-item">
+                    <a class="nav-link" [routerLink]="[menuItem.path]"
+                    *ngIf="menuItem.title">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+  <!--NOTIFICACIONES-->
+
+  <ul class="nav" *ngIf="showMenu">
+       
+    <li routerlinkactive="active" class="nav-item"><!---->
+        <a data-toggle="collapse" class="nav-link" href="#componentsNotification">
+            <i class="material-icons">notifications</i>
+            <p>Notifiaciones<b class="caret"></b></p>
+        </a><!---->
+        <div class="collapse"
+            id="componentsNotification">
+
+            <ul class="nav">
+                <li routerlinkactive="active" *ngFor="let menuItem of menuItemsNotification"
+                class="{{menuItem.class}} nav-item">
+                <a class="nav-link" [routerLink]="[menuItem.path]"
+                *ngIf="menuItem.title">
                 <i class="material-icons">{{menuItem.icon}}</i>
                 <p>{{menuItem.title}}</p>
             </a>
-        </li>
-    </ul>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>
+
+<hr><hr><hr><hr>
 </div>

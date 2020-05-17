@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ToastService } from "app/_services/toast.service";
 import { TypePackagesService } from "app/_services/type-packages.service";
+import { Subject } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: "app-packages",
@@ -9,9 +11,12 @@ import { TypePackagesService } from "app/_services/type-packages.service";
   styleUrls: ["./packages.component.scss"],
 })
 export class PackagesComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject = new Subject();
   id_org = localStorage.getItem("bd_org");
   typePackageForm: FormGroup;
   typesPackages: any;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,6 +27,13 @@ export class PackagesComponent implements OnInit {
   ngOnInit() {
     this.getAll();
     this.buildForm();
+    this.buildOptionDatatable();
+  }
+  buildOptionDatatable(){
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5
+    };
   }
 
   buildForm() {
@@ -58,6 +70,9 @@ export class PackagesComponent implements OnInit {
           );
           this.getAll();
           this.typePackageForm.reset();
+          this.buildForm();
+          this.buildOptionDatatable();
+
         } else {
           this.toastService.showNotification(
             "top",
@@ -81,11 +96,15 @@ export class PackagesComponent implements OnInit {
   getAll() {
     this._typePackages.getAllTypesPackages().subscribe((resp) => {
       console.log(resp["data"]);
-
       this.typesPackages = resp["data"];
+      this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
+
     });
   }
-
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
   deleteTypePackage(idTypePackage, idOrg) {
     this._typePackages
       .deleteTypesPackages(idTypePackage, idOrg)

@@ -12,8 +12,8 @@ class LoginController extends BaseController
     public function iniciarSesion(Request $request)
     {
         $email = $request->input('email');
-        $password = md5(($request->input('password')));
-
+        $password = $request->input('password');
+   
         $datos = $request->input(); // todos los datos
         if (empty($datos)) {
             return $this->sendError('Completar la información solicitada', '');
@@ -21,7 +21,7 @@ class LoginController extends BaseController
         // JOIN PERSON _ USER _ 
         $user = DB::table('bd_users')
         ->join('bd_persons', 'bd_users.bd_persons_id', '=', 'bd_persons.bd_persons_id')
-        ->where('bd_users.password', $password)
+        ->where('bd_users.password', md5($password))
         ->where('bd_persons.email', $email)
         ->first();
 

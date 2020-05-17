@@ -111,5 +111,42 @@ class PackagesController extends BaseController
         }
     }
 
+    public function getAllTypesPackagesBot(){
+    
+        $json='
+        {
+            "messages": [
+              {
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "button",
+                    "text": "Hello! soy tu asistente virtual BKD",
+                    "buttons": [
 
+                      {
+                        "type": "show_block",
+                        "block_names": ["name of block"],
+                        "title": "Show Block"
+                      },
+                      {
+                        "type": "web_url",
+                        "url": "https://rockets.chatfuel.com",
+                        "title": "Visit Website"
+                      },
+                      {
+                        "url": "https://rockets.chatfuel.com/api/welcome",
+                        "type":"json_plugin_url",
+                        "title":"Postback"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }';
+
+    echo ($json);
+
+}
 }

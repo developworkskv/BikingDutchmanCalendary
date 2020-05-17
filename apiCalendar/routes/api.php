@@ -46,4 +46,6 @@ Route::get('packageById/{id_admin}/org/{id_org}', 'PackagesController@getTypePac
 Route::post('package/{bd_users_id}/update/{id_org}/org', 'PackagesController@updateTypePackageData');
 Route::get('packageDelete/{id_package}/org/{id_org}', 'PackagesController@deleteTypePackage');
 
+// API BOT
+Route::get('packagesReadB', 'PackagesController@getAllTypesPackagesBot');
 

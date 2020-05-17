@@ -1,79 +1,73 @@
-<div class="main-content">
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        GESTIÓN DE USUARIOS ADMINISTRADORES
-      </div>
-      <div class="col-md-auto">
+<div class="main-content">
+  <div class="row justify-content-md-center">
+
+    <div class="col-md-auto" style="padding-top: 0%;">
+      <h3>GESTIÓN DE USUSARIOS</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <i class="material-icons">reorder</i>&nbsp;&nbsp;&nbsp;
+      Usuarios Administradores
+    </div>
+    <div class="col-md-auto">
         <button type="button" class="btn btn-info" data-toggle="modal"
           data-target="#exampleModal">
           <i class="material-icons">add_circle</i> &nbsp;&nbsp;&nbsp;
           Nuevo
         </button>
-      </div>
-      <div class="col-md-auto">
         <button type="button" class="btn btn-info">
           <i class="material-icons">print</i>&nbsp;&nbsp;&nbsp;
           Reporte
         </button>
-      </div>
+
     </div>
+   
+  </div>
 
-    <hr>
-
-    <div class="card">
-      <h5 class="card-header bg-success"><b> Filtro de Busqueda </b></h5>
-      <div class="card-body">
-        <input class="form-control" type="text"
-        placeholder="Buscar por nombre del Administrador" aria-label="Search"
-        name="filterPost" [(ngModel)]="filterPost">
-      </div>
-    </div>
-
-    <table class="table">
+  <div class="container-fluid">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="row-border hover">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">DNI</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
+          <th scope="col">DNI ó Pasaporte</th>
+          <th scope="col">Usuario</th>
           <th scope="col">Email</th>
           <th scope="col">Tipo de Usuario</th>
-          <th scope="col">Género</th>
           <th scope="col">Fecha creación</th>
           <th scope="col">Ver</th>
           <th scope="col">Eliminar</th>
-
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let admin of administrators | filter: filterPost | paginate:
-          { itemsPerPage: 10, currentPage: p } ; let i= index">
-          <th scope="row">{{i + 1}}</th>
+        <tr *ngFor="let admin of administrators; let i= index">
+          <!--<th scope="row">{{i + 1}}</th>-->
           <td>{{admin.dni}}</td>
-          <td>{{admin.name}}</td>
-          <td>{{admin.lastName}}</td>
+          <td>{{admin.name}} {{admin.lastName}}</td>
           <td>{{admin.email}}</td>
           <td>{{admin.type_user}}</td>
-          <td>{{admin.gender}}</td>
           <td>{{admin.created_at}}</td>
           <td>
 
-                <button [routerLink]="['/user-admin', admin.bd_persons_id]" type="button" class="btn btn-outline-success">
-                  <i class="material-icons">visibility</i>
-                </button> 
+            <button [routerLink]="['/user-admin', admin.bd_persons_id]"
+              type="button" class="btn btn-outline-success">
+              <i class="material-icons">visibility</i>
+            </button>
 
           </td>
           <td>
-            <button (click)="deleteUserAdmin(admin.bd_persons_id, admin.name)" type="button" class="btn btn-outline-danger">
+            <button (click)="deleteUserAdmin(admin.bd_persons_id,
+              admin.name)" type="button" class="btn btn-outline-danger">
               <i class="material-icons">delete</i>
-            </button> 
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-    <pagination-controls (pageChange)="p= $event"></pagination-controls>
+
+
 
   </div>
 </div>
@@ -93,54 +87,63 @@
       <div class="modal-body">
         <form [formGroup]="adminForm" (ngSubmit)="onSubmit(adminForm)">
           <h4>REGISTRO Y ASIGNACION DE NUEVO ADMINISTRADOR </h4>
-          
+
           <div class="form-group" hidden>
             <label for="exampleInputEmail1">Org</label>
-            <input formControlName="bd_organization_id" value="{{id_org}}" type="text" class="form-control" placeholder="Org" required>
-        </div>
+            <input formControlName="bd_organization_id" value="{{id_org}}"
+              type="text" class="form-control" placeholder="Org" required>
+          </div>
           <div class="form-group">
-              <label for="exampleInputEmail1">Nombre</label>
-              <input formControlName="name" type="text" class="form-control" placeholder="Name" required>
+            <label for="exampleInputEmail1">Nombre</label>
+            <input formControlName="name" type="text" class="form-control"
+              placeholder="Name" required>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Apellido</label>
-            <input formControlName="lastName" type="text" class="form-control" placeholder="LastName" required>
-        </div>
+            <input formControlName="lastName" type="text" class="form-control"
+              placeholder="LastName" required>
+          </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Fecha Nacimiento</label>
-          <input formControlName="fechaNacimiento" type="date" class="form-control" placeholder="Email" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="exampleInputEmail1">Género</label>
-          <select formControlName="gender">
-            <option>Masculino</option>
-            <option>Femenino</option>
-          </select>
-       </div>
-       <div class="form-group">
-        <label for="exampleInputEmail1">DNI/Pasaporte</label>
-        <input formControlName="dni" type="number" class="form-control" placeholder="Email" required>
-      </div>
+            <input formControlName="email" type="email" class="form-control"
+              placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Fecha Nacimiento</label>
+            <input formControlName="fechaNacimiento" type="date"
+              class="form-control" placeholder="Email" required>
+          </div>
 
-        <div class="form-group">
-          <label for="exampleInputEmail1">Contraseña</label>
-          <input formControlName="password" type="text" class="form-control" placeholder="Contraseña" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="exampleInputEmail1">Tipo de Usuario Administrador</label>
-        <select class="custom-select" id="inputGroupSelect01" formControlName="bd_type_users_id" >
-          <option  *ngFor="let item of tipesUser" value="{{item.bd_type_users_id}}">{{item.type_user}}</option>
-        </select>      
-      </div>
-      
-          <button type="submit " class="btn btn-primary " >Guardar</button>
-      </form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Género</label>
+            <select formControlName="gender">
+              <option>Masculino</option>
+              <option>Femenino</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">DNI/Pasaporte</label>
+            <input formControlName="dni" type="number" class="form-control"
+              placeholder="DNI or Passport" required>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Contraseña</label>
+            <input formControlName="password" type="text" class="form-control"
+              placeholder="Contraseña" required>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tipo de Usuario Administrador</label>
+            <select class="custom-select" id="inputGroupSelect01"
+              formControlName="bd_type_users_id">
+              <option *ngFor="let item of tipesUser"
+                value="{{item.bd_type_users_id}}">{{item.type_user}}</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -148,3 +151,10 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  $('#example').dataTable( {
+"ordering": false
+} );
+</script>

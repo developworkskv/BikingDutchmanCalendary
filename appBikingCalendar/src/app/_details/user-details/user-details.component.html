@@ -10,7 +10,8 @@
 
         </div>
         <div class="col-md-auto">
-          <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+          <button type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#exampleModal">
             <i class="material-icons">save</i> &nbsp;&nbsp;&nbsp;
             Guardar cambios.
           </button>
@@ -22,41 +23,73 @@
           DATOS DEL ADMINISTRADOR
         </div>
         <div class="card-body">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Nombre</label>
-            <input formControlName="name" value="{{administrator.name}}" type="text" class="form-control" required>
+          <div class="row">
+            <div class="col-sm"> <div class="form-group">
+                <label for="exampleInputEmail1">Nombre</label>
+                <input formControlName="name" value="{{administrator.name}}"
+                  type="text" class="form-control" required>
+              </div></div>
+            <div class="col-sm"> <div class="form-group">
+                <label for="exampleInputEmail1">Apellido</label>
+                <input formControlName="lastName"
+                  value="{{administrator.lastName}}" type="text"
+                  class="form-control" required>
+              </div></div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Apellido</label>
-            <input formControlName="lastName" value="{{administrator.lastName}}" type="text" class="form-control" required>
+          <div class="row">
+            <div class="col-sm"> <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input formControlName="email" value="{{administrator.email}}"
+                  type="email" class="form-control" required>
+              </div></div>
+            <div class="col-sm"> <div class="form-group">
+                <label for="exampleInputEmail1">Fecha Nacimiento</label>
+                <input formControlName="fechaNacimiento"
+                  value="{{administrator.birth_date}}" type="date"
+                  class="form-control" placeholder="Email" required>
+              </div></div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
-            <input formControlName="email" value="{{administrator.email}}" type="email" class="form-control" required>
+          <div class="row">
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label for="exampleInputEmail1">Tipo de Usuario Administrador</label>
+                <br>
+                <small>Estado actual: {{administrator.type_user}}</small>
+                <select class="custom-select" formControlName="bd_type_users_id"
+                  required>
+                  <option *ngFor="let item of tipesUser"
+                    value="{{item.bd_type_users_id}}">{{item.type_user}}</option>
+                </select>
+              </div>
+
+
+            </div>
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label for="exampleInputEmail1">DNI/Pasaporte</label>
+                <input formControlName="dni" value="{{administrator.dni}}"
+                  type="number" class="form-control" placeholder="DNI or
+                  Passport" required>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Fecha Nacimiento</label>
-            <input formControlName="fechaNacimiento" value="{{administrator.birth_date}}" type="date" class="form-control" placeholder="Email" required>
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Género</label>
+                 <select class="custom-select" formControlName="gender"
+                  value="{{administrator.gender}}">
+                  <option>Masculino</option>
+                  <option>Femenino</option>
+                </select>
+              </div>
+
+             
+            </div>
+            <div class="col-sm">
+              <!--INPUT-->
+            </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Género</label>
-            <select formControlName="gender" value="{{administrator.gender}}">
-              <option>Masculino</option>
-              <option>Femenino</option>
-            </select>
-         </div>
-         <div class="form-group">
-          <label for="exampleInputEmail1">DNI/Pasaporte</label>
-          <input formControlName="dni" value="{{administrator.dni}}" type="number" class="form-control" placeholder="DNI or Passport" required>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Tipo de Usuario Administrador</label>
-          <br>
-          <small>Estado actual: {{administrator.type_user}}</small>
-          <select class="custom-select" formControlName="bd_type_users_id" required >
-            <option  *ngFor="let item of tipesUser" value="{{item.bd_type_users_id}}" >{{item.type_user}}</option>
-          </select>      
-        </div>
         </div>
       </div>
 

@@ -5,13 +5,12 @@ import { ToastService } from 'app/_services/toast.service';
 import { TypeUsersService } from 'app/_services/type-users.service';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
-
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-tour',
+  templateUrl: './tour.component.html',
+  styleUrls: ['./tour.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class TourComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject = new Subject();
 
@@ -34,13 +33,12 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.crearFormularios();   
-    this.buildOptionDatatable();
-  }
-  buildOptionDatatable(){
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+
   }
   // CRUD  
   // GET ALL ADMINS
@@ -75,7 +73,7 @@ export class UsersComponent implements OnInit {
         this.toast.showNotification('top','right','success','Usuario Administrador registrado correctamente.');
         this.getAll();
         this.adminForm.reset(); 
-        this.crearFormularios();
+
       }else{
         this.toast.showNotification('top','right','danger','Error en datos ingresados.');
       }
@@ -111,7 +109,7 @@ crearFormularios(){
     gender: ['', Validators.required],
     dni: ['', Validators.required],
     password: ['', Validators.required],
-    bd_organization_id: [localStorage.getItem('bd_org') , Validators.required],
+    bd_organization_id: [this.id_org, Validators.required],
     bd_type_users_id: ['', Validators.required],
 });
 

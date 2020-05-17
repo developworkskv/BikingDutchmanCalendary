@@ -107,10 +107,10 @@
           
           </div>
          
-    <table class="table">
-      <thead class="thead-dark">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+          class="row-border hover">
+                <thead class="thead-dark">
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Tipo Paquete</th>
           <th scope="col">Descrición</th>
           <th scope="col">Descrición 2</th>
@@ -121,16 +121,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let typePackage of typesPackages | filter: filterPost | paginate:
-          { itemsPerPage: 10, currentPage: p } ; let i= index">
-          <th scope="row">{{i + 1}}</th>
+        <tr *ngFor="let typePackage of typesPackages ">
           <td>{{typePackage.name}}</td>
           <td>{{typePackage.description1}}</td>
           <td>{{typePackage.description2}}</td>
           <td>{{typePackage.created_at}}</td>
           <td> 
-             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-          </td>
+            <button
+            type="button" class="btn btn-outline-success">
+            <i class="material-icons">visibility</i>
+          </button>          </td>
           <td>
             <button (click)="deleteTypePackage(typePackage.bd_type_packages_id, id_org)" type="button" class="btn btn-outline-danger">
               <i class="material-icons">delete</i>
@@ -139,7 +139,6 @@
         </tr>
       </tbody>
     </table>
-    <pagination-controls (pageChange)="p= $event"></pagination-controls>
 
         </div>
       </div>

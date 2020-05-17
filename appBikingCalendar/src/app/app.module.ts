@@ -28,12 +28,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-
+    
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-   
+     
   
   ],
   providers: [],

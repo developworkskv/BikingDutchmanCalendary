@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserService } from './_services/user.service';
 import { LoginService } from './_services/login.service';
 
@@ -9,7 +9,17 @@ import { LoginService } from './_services/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public data = [
+    {name: 'therichpost', email: 'therichpost@gmail.com', website:'therichpost.com'},
+    {name: 'therichpost', email: 'therichpost@gmail.com', website:'therichpost.com'},
+    {name: 'therichpost', email: 'therichpost@gmail.com', website:'therichpost.com'},
+    {name: 'therichpost', email: 'therichpost@gmail.com', website:'therichpost.com'},
+];
+title = 'angulardatatables';
+  dtOptions: DataTables.Settings = {};
 
+
+  
   constructor( private _login: LoginService) {
     console.log("SOY EL CONSTRUCTOR Y VOY A VALIDAR");
         // VERIFICAR SI EL TOKEN EMAIL es correcto con algun administrador usuario
@@ -35,7 +45,12 @@ export class AppComponent {
    
   }
   
-      ngOnInit() {
+  ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
       }
 
 }
