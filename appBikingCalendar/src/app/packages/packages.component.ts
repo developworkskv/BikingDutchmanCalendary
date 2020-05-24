@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 })
 export class PackagesComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject = new Subject();
+  dtTrigger = new Subject();
   id_org = localStorage.getItem("bd_org");
   typePackageForm: FormGroup;
   typesPackages: any;

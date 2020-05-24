@@ -55,5 +55,9 @@ Route::get('responseTest', 'TestController@responseChatbotDataToBD');
 //test -show view data of chatbot
 Route::get('notifications', 'TestController@getToShowInView');
 
-
-
+//CRUD PARA DETINOS 
+Route::post('destinoCreate', 'DestinationController@createDestino');
+Route::get('destinoRead', 'DestinationController@readAllDestino');
+Route::post('destinoUpdate/{id}/update', 'DestinationController@updateDestino');
+Route::get('destinoDelete/{id}', 'DestinationController@deleteDestino');
+Route::get('destinoById/{id}', 'DestinationController@getDestinoById');

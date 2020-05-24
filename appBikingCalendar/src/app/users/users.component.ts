@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 })
 export class UsersComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject = new Subject();
+  dtTrigger = new Subject();
 
   administrators: any;
   filterPost : any;

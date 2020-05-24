@@ -11,7 +11,7 @@ export class CalendaryComponent implements OnInit {
   // No hacer caso al error Subject
   
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject = new Subject();
+  dtTrigger = new Subject();
 
   constructor() { }
 
