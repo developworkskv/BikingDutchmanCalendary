@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 import { ToastService } from "app/_services/toast.service";
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -15,7 +15,7 @@ export class DestinationsComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
   id_destination = localStorage.getItem("bd_destination_id");
-  DestinoForm: FormGroup;
+  destinoForm: FormGroup;
   destinos: any;
 
 
@@ -38,7 +38,7 @@ export class DestinationsComponent implements OnInit {
   }
 
   buildForm() {
-    this.DestinoForm = this.formBuilder.group({
+    this.destinoForm = this.formBuilder.group({
       
       name: ["", Validators.required],
       availability: ["", Validators.required],
@@ -49,53 +49,12 @@ export class DestinationsComponent implements OnInit {
     });
   }
 
-  onSubmit(DestinoForm) {
-    // Crea una FormGroupinstancia de nivel superior y la vincula a un formulario para rastrear el valor agregado del formulario y el estado de validación
-    // datos vacios en el formulario
-    if (this.DestinoForm.invalid) {
-      this.DestinoForm.reset();
-      return this.toastService.showNotification(
-        "top",
-        "right",
-        "danger",
-        "Completar los datos solicitados."
-      );
-    }
-    //consumir servicio POST Login
-    this._destinos.createDestino(DestinoForm.value).subscribe(
-      (resp) => {
-        console.log(resp); 
-        if (resp["status"] == 1) {
-          this.toastService.showNotification(
-            "top",
-            "right",
-            "success",
-            resp["data"]
-          );
-          this.getAllDestination();
-          
-          this.buildForm();
-          this.buildOptionDatatable();
 
-        } else {
-          this.toastService.showNotification(
-            "top",
-            "right",
-            "danger",
-            resp["data"]
-          );
-        }
-      },
-      (err) => {
-        this.toastService.showNotification(
-          "top",
-          "right",
-          "danger",
-          "Información incorrecta"
-        );
-      }
-    );
-  }
+  onSubmit(destinoForm: NgForm){ // 
+    console.log(destinoForm);
+    
+
+}
 
   getAllDestination() {
     this._destinos.readAllDestino().subscribe((resp) => {

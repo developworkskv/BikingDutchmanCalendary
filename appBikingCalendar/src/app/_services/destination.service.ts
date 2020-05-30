@@ -11,8 +11,7 @@ export class DestinationService {
 
    //CrEATE
    createDestino(destinos: any ){
-    
-    return this.http.post(URL_SERVICIOS +'/destinoCreate', destinos)
+   
 }
    //GET 
    readAllDestino(){ // TEST
@@ -20,13 +19,12 @@ export class DestinationService {
     
   }
   //getUserById
-  detailsDestinos(idAdmin: number){
-    return this.http.get( URL_SERVICIOS+'/adminById/' + idAdmin);
+  detailsDestinos(idDestino: number){
+    return this.http.get( URL_SERVICIOS+'/destinoById/' + idDestino);
   }
 
   //UPDATE
   updateDestino(idDestino, destino:any){
-    return this.http.post( URL_SERVICIOS+'/destinoUpdate/' +idDestino+'/update', destino);
   }
 
   //DELETE

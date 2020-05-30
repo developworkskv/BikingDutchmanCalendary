@@ -76,7 +76,7 @@ class DestinationController extends BaseController
 
     //UPDATE PARA DESTINOS
 
-    public function updateDestino(Request $request){
+    public function updateDestino($id_destination, Request $request){
         
         $gestionPaquetes = new DestinationsServiceRepository;
 
@@ -88,7 +88,7 @@ class DestinationController extends BaseController
         } else {
             
             if (count($request->all()) >= 2) {
-                //EDIT TABLE bd_persons
+                //EDIT TABLE bd_destinos
                 $gestionDestinos->updateDestino(
                     $id_destination,
                     $request->input('name'),
@@ -102,7 +102,7 @@ class DestinationController extends BaseController
         );
         $newRegisterDestino = $gestionDestino->getDestinoById($id_destination);
 
-        return $this->sendResponse($newRegisterDestino, 'Tipo Paquete  modificado correctamente.');
+        return $this->sendResponse($newRegisterDestino, 'Destino modificado correctamente.');
     } else {
         return $this->sendError('Ingresar los datos solicitados', 'Ningun registro modificado en esta tabla.');
     
@@ -116,11 +116,12 @@ class DestinationController extends BaseController
         //return $bd_destination_id;
         //die();
         $destinoRegister = $gestionDestinos->getDestinoById($id_destination);
+       
         if (count($destinoRegister) == 0) {
             // no hay Datos
-            return $this->sendError('Destinoo no encontrado', 'Ningun destinoo insertado en esta tabla.');
+            return $this->sendError('Destino no encontrado', 'Ningun destinoo insertado en esta tabla.');
         } else {
-            $gestionDestinos->deleteDestinos($id_destination);
+            $destinoRegister = $gestionDestinos->deleteDestino($id_destination);
             return $this->sendResponse('Destino Eliminado', 'Destino dado de baja');
         }
 

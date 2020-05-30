@@ -20,7 +20,7 @@ class DestinationsServiceRepository
      public function getDestinoById($id_destination)
      {
          $destino = DB::table('bd_destination')
-         ->where('bd_destination_id')
+         ->where('bd_destination_id', $id_destination) 
          ->get();
          return $destino;
      }
@@ -48,10 +48,10 @@ class DestinationsServiceRepository
 
 
     //DELETE PARA DESTINOS
-    public function deleteDestinos($id_destination)
+    public function deleteDestino($bd_destination_id)
     {
         $deleteDestino = DB::table('bd_destination')
-        ->where('bd_destination_id', $id_destination)
+        ->where('bd_destination_id', $bd_destination_id)
         ->delete();
         return $deleteDestino;
 
@@ -59,12 +59,12 @@ class DestinationsServiceRepository
 
     //UPDATE PARA DESTINOS 
    
-    public function updateDestino($id_destination, $name, $availability, $isActive, $description, $description2, $value, $status)
+    public function updateDestino($bd_destination_id, $name, $availability, $isActive, $description, $description2, $value, $status)
     {
         date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
         $fecha = new DateTime('NOW');
           $affected = DB::table('bd_destination')
-              ->where('bd_destination_id', $id_destination)
+              ->where('bd_destination_id', $bd_destination_id)
               ->update([
                   'name' => $name,
                   'availability' => $availability,

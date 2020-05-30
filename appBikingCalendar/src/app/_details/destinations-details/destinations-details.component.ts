@@ -79,23 +79,7 @@ export class DestinationsDetailsComponent implements OnInit {
   onSubmit(destinoForm: NgForm){ // 
     console.log(destinoForm);
     
-    // datos vacios en el formulario
-    if (this.destinoForm.invalid) {
-      return this.toast.showNotification('top','right','danger','Completar los datos solicitados.');
-    }
-  //consumir servicio POST CrearRuta/id_usuario
-  //let id_user:any =  localStorage.getItem('user_id');
-  this._destinos.updateDestino(this.DestinoA.bd_destination_id, this.destinoForm.value).subscribe(resp => {
-     console.log(resp);
-      if(resp['status'] == 1){
-        this.toast.showNotification('top','right','success','Destino editado correctamente.');
-        this._destinos.readAllDestino();
-      }else{
-        this.toast.showNotification('top','right','danger','Ingresa los datos solicitados.');
-      }
-  }, err => {
-   //this.toastr.error('Servicio Ejecutado', err['data']);
-  });   
+    
   }
   
   
