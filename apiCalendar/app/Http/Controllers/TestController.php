@@ -20,6 +20,29 @@ class TestController extends Controller
         ]);
         return "SERVICIO POST";
     }
+    public function testChatbotWA($productoAndComent){
+ 
+        $newAdmin = DB::table('bd_ch_test')->insert([
+            'bd_ch_name' => $productoAndComent,
+        ]);
+        return "SERVICIO POST";
+    }
+    public function responseChatbotDataToBDWA(){
+ 
+        $data = DB::table('bd_ch_test')
+        ->get();
+    
+        return $data;
+    }
+    public function deleteBDWA(){
+
+        $delete = DB::table('bd_ch_test')
+        ->delete();
+    return $delete;
+    }
+
+
+
     public function responseChatbotDataToBD(){
  
         $data = DB::table('bd_ch_test')

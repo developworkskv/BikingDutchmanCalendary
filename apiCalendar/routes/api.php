@@ -55,5 +55,9 @@ Route::get('responseTest', 'TestController@responseChatbotDataToBD');
 //test -show view data of chatbot
 Route::get('notifications', 'TestController@getToShowInView');
 
+//test- WA
+Route::get('testWA/{prdoComent}', 'TestController@testChatbotWA');
+Route::get('responseTestWA', 'TestController@responseChatbotDataToBDWA');
+Route::get('deleteBDWA', 'TestController@deleteBDWA');
 
 
