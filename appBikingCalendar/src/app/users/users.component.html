@@ -88,7 +88,7 @@
         <form [formGroup]="adminForm" (ngSubmit)="onSubmit(adminForm)">
           <h4>REGISTRO Y ASIGNACION DE NUEVO ADMINISTRADOR </h4>
 
-          <div class="form-group" hidden>
+          <div class="form-group" >
             <label for="exampleInputEmail1">Org</label>
             <input formControlName="bd_organization_id" value="{{id_org}}"
               type="text" class="form-control" placeholder="Org" required>

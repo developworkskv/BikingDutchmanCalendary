@@ -29,6 +29,7 @@ import { FilterPipe } from 'app/_pipes/filter.pipe';
 import { UserDetailsComponent } from 'app/_details/user-details/user-details.component';
 import { TourComponent } from 'app/tour/tour.component';
 import { NotificationsComponent } from 'app/notifications/notifications.component';
+import { DestinationsDetailsComponent } from "app/_details/destinations-details/destinations-details.component";
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { NotificationsComponent } from 'app/notifications/notifications.componen
     MatTooltipModule,
     ChartsModule,
     NgxPaginationModule,
-    DataTablesModule
+    DataTablesModule,
+       
 
   ],
   // todos mis componentes
@@ -62,6 +64,7 @@ import { NotificationsComponent } from 'app/notifications/notifications.componen
     FilterPipe,
     TourComponent,
     NotificationsComponent,
+    DestinationsDetailsComponent,
 
   ]
 })
