@@ -64,18 +64,21 @@
               <div class="col">
                 <label for="exampleInputEmail1">Ciudad</label>
           <select  formControlName="id_city" class="custom-select">
-            <option>1</option>
-            <option>2</option>
+            <option value="1"> -- Selecionar</option>
+            <option
+            *ngFor="let city of cities_select"
+            value="{{ city.bd_cities_id }}"
+            >{{ city.name }}</option
+          >
           </select>
               </div>
               <div class="col">
                 <label>Disponible</label>
-                <input
-                  formControlName="availability"
-                  type="text"
-                  class="form-control"
-                  placeholder="Disponible "
-                />
+                <select  formControlName="availability" class="custom-select">
+                  <option value="1"> SI</option>
+                  <option value="0"> NO</option>
+                </select>
+
               </div>
 
             </div>
@@ -121,24 +124,24 @@
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Destino</th>
+                <th scope="col">Ciudad</th>
                 <th scope="col">Disponible</th>
-                <th scope="col">Activo</th>
-                <th scope="col">Descripción 1</th>
-                <th scope="col">Descripción 2</th>
-                <th scope="col">Fecha creación</th>
+                <th scope="col">Descripción Destino</th>
+                <th scope="col">Descripción ciudad</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
             <tbody >
               <tr *ngFor="let destino of destinos">
-                <td>{{ destino.name }}</td>
-                <td>{{ destino.availability }}</td>
-                <td *ngIf="destino.isActive == 1">SI</td>
-                <td *ngIf="destino.isActive == 0">NO</td>
+                <td>{{ destino.name }}</td>  
+                <td>{{ destino.city }}</td>  
+                <!--DISPONIBILIDAD -->
+                <td *ngIf="destino.availability == 1"><div class="alert alert-success" role="alert">SI</div></td>
+                <td *ngIf="destino.availability == 0"><div class="alert alert-danger" role="alert">NO</div></td>
+                <!-- -->
                 <td>{{ destino.description1 }}</td>
-                <td>{{ destino.description2 }}</td>
-                <td>{{ destino.created_at }}</td>
+                <td>{{ destino.descriptionCity }}</td>
                 <td>
                   <button
                     [routerLink]="[

@@ -62,7 +62,7 @@ Route::get('deleteBDWA', 'TestController@deleteBDWA');
 
 //CRUD PARA DETINOS 
 Route::post('destinoCreate/{id_org}', 'DestinationController@createDestino');
-Route::get('destinoRead/{id_org}', 'DestinationController@readAllDestino');
+Route::get('destinoRead/{id_org}', 'DestinationController@readAllDestinations');
 Route::post('destinoUpdate/{id_destino}/update', 'DestinationController@updateDestino');
 Route::get('destinoDelete/{id_destino}/org/{id_org}', 'DestinationController@deleteDestino');
 Route::get('destinoById/{id_destino}/org/{id_org}', 'DestinationController@getDestinoById');

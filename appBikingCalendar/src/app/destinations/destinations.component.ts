@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DestinationService } from "app/_services/destination.service";
 import { DataTableDirective } from 'angular-datatables';
+import { CitiesService } from "app/_services/cities.service";
 
 @Component({
   selector: 'app-destinations',
@@ -18,6 +19,8 @@ export class DestinationsComponent implements OnInit {
   id_org = localStorage.getItem("bd_org");
   destinoForm: FormGroup;
   destinos: any;
+  cities_select: any;
+  
   @ViewChild(DataTableDirective, null)
   private _dtElement: DataTableDirective;
 
@@ -32,13 +35,18 @@ export class DestinationsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public toastService: ToastService,
-    public _destinos: DestinationService
-  ) {}
+    public _destinos: DestinationService,
+    public _cities: CitiesService
+  ) {
+    this.getAllCitiesSelect();
+
+  }
 
   ngOnInit() {
     this.getAllDestination();
     this.buildForm();
     this.buildOptionDatatable();
+    this.getAllCitiesSelect();
   }
   buildOptionDatatable(){
     this.dtOptions = {
@@ -51,8 +59,8 @@ export class DestinationsComponent implements OnInit {
     this.destinoForm = this.formBuilder.group({
       
       name: ["", Validators.required],
-      id_city:["", Validators.required],
-      availability: ["", Validators.required],
+      id_city:[ /*Valor Integer*/, Validators.required],
+      availability: [/*Valor Integer*/ , Validators.required],
       description1: ["", Validators.required],
       description2: ["", Validators.required],
       
@@ -141,10 +149,18 @@ export class DestinationsComponent implements OnInit {
               // Destroy the table first
               dtInstance.destroy();
               // Call the dtTrigger to rerender again
+              this.getAllDestination();
             });
-        this.getAllDestination();
+        
       });
     }
     
+  }
+
+  getAllCitiesSelect(){
+    this._cities.getAllCities().subscribe((resp) => {
+      this.cities_select = resp["data"];
+     // this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
+    });
   }
 }

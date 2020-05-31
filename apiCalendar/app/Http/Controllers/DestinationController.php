@@ -11,17 +11,17 @@ use App\Repositories\DestinationsServiceRepository;
 class DestinationController extends BaseController
 {
     //GET PARA DESTINOS
-    public function readAllDestino(){
+    public function readAllDestinations($id_org){
+        $gestionDestino = new DestinationsServiceRepository;
 
-        $results = DB::table('bd_destination')->get();
+        $results = $gestionDestino->readAllDestinos($id_org); 
 
         if (count($results) == 0) {
             return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
+        } else {
+            return $this->sendResponse($results, 'Mostrar Destinos correctamente.');
 
-    } else {
-        return $this->sendResponse($results, 'Mostrar Destino correctamente.');
-
-    }
+        }
 
     }
 

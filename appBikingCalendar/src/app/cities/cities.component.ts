@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
 import { CitiesService } from "app/_services/cities.service";
+import { DestinationService } from "app/_services/destination.service";
 
 @Component({
   selector: 'app-cities',
@@ -30,7 +31,8 @@ export class CitiesComponent implements  OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public toastService: ToastService,
-    public _cities: CitiesService
+    public _cities: CitiesService,
+    
   ) {}
   ngOnInit() {
     this.getAll();
@@ -114,6 +116,7 @@ export class CitiesComponent implements  OnInit {
     });
   }
 
+
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
@@ -129,12 +132,13 @@ export class CitiesComponent implements  OnInit {
           "danger",
           resp["data"]
         );
-        this.getAll();
+        
         // NECESARIO.. volver actualizar la data y la datatable 
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
           // Destroy the table first
           dtInstance.destroy();
           // Call the dtTrigger to rerender again
+          this.getAll();
         });
       });
     }
