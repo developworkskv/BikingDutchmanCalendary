@@ -74,3 +74,9 @@ Route::get('citiesRead/{id_org}', 'CitiesController@getAllCities');
 Route::get('getCityId/{id_city}/org/{id_org}', 'CitiesController@getCityId');
 Route::post('city/{id_city}/update/{id_org}/org', 'CitiesController@updateCityData');
 Route::get('deleteCity/{id_package}/org/{id_org}', 'CitiesController@deleteCity');
+
+
+
+// PDF REPORTS BIKING DUTCHMAN
+Route::get('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
+

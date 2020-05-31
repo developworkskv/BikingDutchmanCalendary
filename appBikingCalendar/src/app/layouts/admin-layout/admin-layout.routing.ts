@@ -13,6 +13,7 @@ import { UserDetailsComponent } from "app/_details/user-details/user-details.com
 import { TourComponent } from "app/tour/tour.component";
 import { NotificationsComponent } from "app/notifications/notifications.component";
 import { DestinationsDetailsComponent } from "app/_details/destinations-details/destinations-details.component";
+import { ReportsComponent } from "app/reports/reports.component";
 
 export const AdminLayoutRoutes: Routes = [
   // GENERALES*******
@@ -42,6 +43,7 @@ export const AdminLayoutRoutes: Routes = [
 
 
   //REPORTES***********
+  { path: "reports", component: ReportsComponent },
 
   //NOTIFICACIONES*********
   { path: "notifications", component: NotificationsComponent },

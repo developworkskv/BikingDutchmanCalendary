@@ -31,6 +31,7 @@ import { TourComponent } from 'app/tour/tour.component';
 import { NotificationsComponent } from 'app/notifications/notifications.component';
 import { DestinationsDetailsComponent } from "app/_details/destinations-details/destinations-details.component";
 import { CitiesComponent } from 'app/cities/cities.component';
+import { ReportsComponent } from 'app/reports/reports.component';
 
 @NgModule({
   imports: [
@@ -67,6 +68,7 @@ import { CitiesComponent } from 'app/cities/cities.component';
     NotificationsComponent,
     DestinationsDetailsComponent,
     CitiesComponent,
+    ReportsComponent,
 
   ]
 })

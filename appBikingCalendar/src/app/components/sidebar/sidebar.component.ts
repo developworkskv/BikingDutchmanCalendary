@@ -26,7 +26,7 @@ export const ROUTES_ORDERS_TOURS: RouteInfo[] = [
 
 // rutas del menu sidebar reports
 export const ROUTES_REPORTS: RouteInfo[] = [
-  { path: '/dashboard', title: 'Pag Reportes',  icon: 'dashboard', class: '' },
+  { path: '/reports', title: 'Reportes',  icon: 'list_alt', class: '' },
 
 ];
 // rutas del menu sidebar ADMINISTRACION
