@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ToastService } from "app/_services/toast.service";
 import { TypePackagesService } from "app/_services/type-packages.service";
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: "app-packages",
@@ -17,6 +18,15 @@ export class PackagesComponent implements OnInit {
   typePackageForm: FormGroup;
   typesPackages: any;
 
+  @ViewChild(DataTableDirective, null)
+  private _dtElement: DataTableDirective;
+
+  public get dtElement(): DataTableDirective {
+    return this._dtElement;
+  }
+  public set dtElement(value: DataTableDirective) {
+    this._dtElement = value;
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,6 +79,12 @@ export class PackagesComponent implements OnInit {
             resp["data"]
           );
           this.getAll();
+          // NECESARIO.. volver actualizar la data y la datatable 
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          // Destroy the table first
+          dtInstance.destroy();
+          // Call the dtTrigger to rerender again
+        });
           this.typePackageForm.reset();
           this.buildForm();
           this.buildOptionDatatable();
@@ -105,17 +121,27 @@ export class PackagesComponent implements OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
-  deleteTypePackage(idTypePackage, idOrg) {
-    this._typePackages
+  deleteTypePackage(idTypePackage, idOrg, name) {
+    if(confirm("Esta seguro de eliminar el tipo de paquete:"+name)) {
+      this._typePackages
       .deleteTypesPackages(idTypePackage, idOrg)
       .subscribe((resp) => {
         this.toastService.showNotification(
           "top",
           "right",
-          "success",
+          "danger",
           resp["data"]
         );
+        
+        // NECESARIO.. volver actualizar la data y la datatable 
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          // Destroy the table first
+          dtInstance.destroy();
+          // Call the dtTrigger to rerender again
+        });
         this.getAll();
       });
+    }
+    
   }
 }

@@ -25,7 +25,12 @@ class BdDestination extends Migration
             $table->boolean('status')->nullable();            
             //$table->rememberToken();
             $table->timestamps();
-    
+           //Foreign Key
+           $table->unsignedBigInteger('bd_organization_id');
+           $table->foreign('bd_organization_id')->references('bd_organization_id')->on('bd_organization');
+           $table->unsignedBigInteger('bd_cities_id');
+           $table->foreign('bd_cities_id')->references('bd_cities_id')->on('bd_cities');
+   
         });
     }
 

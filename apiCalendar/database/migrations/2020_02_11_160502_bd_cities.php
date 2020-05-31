@@ -18,18 +18,17 @@ class BdCities extends Migration
             $table->bigIncrements('bd_cities_id');            
             $table->string('name');
             $table->boolean('isActive')->nullable();
-            $table->char('description1', 255)->nullable();
-            $table->char('description2', 255)->nullable();
+            $table->char('description', 255)->nullable();
             $table->double('value')->nullable();
             $table->boolean('status')->nullable();            
            // $table->rememberToken();
             $table->timestamps();
 
             //Foreign Key
-            $table->unsignedBigInteger('bd_destination_id');
-            $table->foreign('bd_destination_id')->references('bd_destination_id')->on('bd_destination');
-            $table->unsignedBigInteger('bd_hotels_id');
-            $table->foreign('bd_hotels_id')->references('bd_hotels_id')->on('bd_hotels');
+            $table->unsignedBigInteger('bd_organization_id');
+            $table->foreign('bd_organization_id')->references('bd_organization_id')->on('bd_organization');
+            //$table->unsignedBigInteger('bd_hotels_id');
+            //$table->foreign('bd_hotels_id')->references('bd_hotels_id')->on('bd_hotels');
     
         });
     }

@@ -8,25 +8,42 @@ use DateTime;
 class DestinationsServiceRepository
 {
     //validar si existe el destino
-    public function destinoExist($nombreDestino){
+    public function destinoExist($nombreDestino,$id_city, $id_org){
         $destino = DB::table('bd_destination')
         ->where('name', $nombreDestino)
+        ->where('bd_cities_id', $id_city)
+        ->where('bd_organization_id', $id_org)
         ->get();
         
     return $destino;
     }
-
+        //validar si existe el destino
+        public function cityExist($id_city){
+            $city = DB::table('bd_cities')
+            ->where('bd_cities_id', $id_city)
+            ->get();
+            
+        return $city;
+        }
+        public function orgExist($id_org){
+            $org = DB::table('bd_organization')
+            ->where('bd_organization_id', $id_org)
+            ->get();
+            
+        return $org;
+        }
      //GET BY ID DESTINOS
-     public function getDestinoById($id_destination)
+     public function getDestinoById($id_destination, $id_org)
      {
          $destino = DB::table('bd_destination')
          ->where('bd_destination_id', $id_destination) 
+         ->where('bd_organization_id', $id_org)
          ->get();
          return $destino;
      }
 
     //POST CREAR DESTINO
-    public function newDestino($name,$availability, $description,$description2)
+    public function newDestino($name,$availability, $description1,$description2, $id_org, $id_city)
     {
       date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
       $fecha = new DateTime('NOW');
@@ -35,11 +52,12 @@ class DestinationsServiceRepository
             'name' => $name,
             'isActive' => true,
             'availability' => $availability,
-            'description1' => $description,
+            'description1' => $description1,
             'description2' => $description2,
             'value' => 1,
             'status' => 1,
-            //'bd_organization_id' => $id_org,
+            'bd_organization_id' => $id_org,
+            'bd_cities_id' => $id_city,
             'created_at' => $fecha->format('Y-m-d H:i:s')
         ]);
     
@@ -48,10 +66,11 @@ class DestinationsServiceRepository
 
 
     //DELETE PARA DESTINOS
-    public function deleteDestino($bd_destination_id)
+    public function deleteDestino($bd_destination_id, $id_org)
     {
         $deleteDestino = DB::table('bd_destination')
         ->where('bd_destination_id', $bd_destination_id)
+        ->where('bd_organization_id', $id_org)
         ->delete();
         return $deleteDestino;
 

@@ -61,8 +61,16 @@ Route::get('deleteBDWA', 'TestController@deleteBDWA');
 
 
 //CRUD PARA DETINOS 
-Route::post('destinoCreate', 'DestinationController@createDestino');
-Route::get('destinoRead', 'DestinationController@readAllDestino');
-Route::post('destinoUpdate/{id}/update', 'DestinationController@updateDestino');
-Route::get('destinoDelete/{id}', 'DestinationController@deleteDestino');
-Route::get('destinoById/{id}', 'DestinationController@getDestinoById');
+Route::post('destinoCreate/{id_org}', 'DestinationController@createDestino');
+Route::get('destinoRead/{id_org}', 'DestinationController@readAllDestino');
+Route::post('destinoUpdate/{id_destino}/update', 'DestinationController@updateDestino');
+Route::get('destinoDelete/{id_destino}/org/{id_org}', 'DestinationController@deleteDestino');
+Route::get('destinoById/{id_destino}/org/{id_org}', 'DestinationController@getDestinoById');
+
+
+//CRUD CITIES
+Route::post('newCity/{id_org}', 'CitiesController@createCity');
+Route::get('citiesRead/{id_org}', 'CitiesController@getAllCities');
+Route::get('getCityId/{id_city}/org/{id_org}', 'CitiesController@getCityId');
+Route::post('city/{id_city}/update/{id_org}/org', 'CitiesController@updateCityData');
+Route::get('deleteCity/{id_package}/org/{id_org}', 'CitiesController@deleteCity');

@@ -26,43 +26,50 @@ class DestinationController extends BaseController
     }
 
     //POST PARA DESTINOS
-    public function createDestino(Request $request)
+    public function createDestino(Request $request, $id_org)
     {
+        
         $gestionDestino = new DestinationsServiceRepository;
-
-        //validate if existe all Request // return count($request->all()); == 6
-        if (count($request->all()) < 4) {
+        //VALIDATE inputs
+        if (count($request->all()) < 2) {
             return $this->sendError('Datos Incompletos', 'Error, porfavor ingresa los datos solicitados');
         }
-
         if (count($request->all()) >= 2 ) {
-       
-            // verificar si ese email ya existe registrado
-            $destinoExist = $gestionDestino->destinoExist($request->input('name'));
-         
-            // si existe o no existe destino registrado con ese nombre inserte
-            if (count($destinoExist) == 0) {
-        
-        $insert = $gestionDestino->newDestino(
-            $request ->input('name'),
-            $request ->input('availability'),
-            $request ->input('description'),
-            $request ->input('description2')     
-        );
-        return $this->sendResponse('Destino creado', 'Destino creado correctamente.');
-            } else {
-                // Existe un registro en el Array $userExist - un registro en la base con el email ingresado
-                return $this->sendError('Destino ya registrado', 'Error, ya existe un destino.');
+            $destinoExist = $gestionDestino->destinoExist($request->input('name'), $request->input('id_city'), $id_org);
+            $cityExist = $gestionDestino->cityExist( $request->input('id_city'));
+            $org = $gestionDestino->orgExist( $id_org);
+
+            if(count($cityExist)== 0 && count($org)==0 ){
+                return $this->sendError('Parámetros inválidos.', 'ID Foreign KEYS'); 
+            }
+            if (count($destinoExist) == 0 ) {
+                //REGISTRAR
+                $insert = $gestionDestino->newDestino(
+                    $request->input('name'),
+                    $request->input('availability'), 
+                    $request->input('description1'),
+                    $request->input('description2'),
+                    $id_org,
+                    $request->input('id_city')
+                );
+                return $this->sendResponse('Destino creado correctamente', 'Destino Biking Dutchman registrado.');
+
+            }else{
+                // YA ESTA REGISTRADO
+                return $this->sendError('Registro incorrecto, ya existe un registro con el mismo nombre, parámetros inválidos.', 'Registro coincide con uno existente');
+
             }
         }
+    
+
     }
 
     // Get - By Id DESTINOS
-    public function getDestinoById($id_destination)
+    public function getDestinoById($id_destination, $id_org)
     {
         $gestionDestino = new DestinationsServiceRepository;
         
-        $destino = $gestionDestino->getDestinoById($id_destination);
+        $destino = $gestionDestino->getDestinoById($id_destination, $id_org);
 
         if (count($destino) == 0) {
             // no hay Datos
@@ -111,17 +118,17 @@ class DestinationController extends BaseController
     }
 
     //DELETE PARA DESTINOS
-    public function deleteDestino($id_destination){
+    public function deleteDestino($id_destination, $id_org){
         $gestionDestinos = new DestinationsServiceRepository;
         //return $bd_destination_id;
         //die();
-        $destinoRegister = $gestionDestinos->getDestinoById($id_destination);
+        $destinoRegister = $gestionDestinos->getDestinoById($id_destination, $id_org);
        
         if (count($destinoRegister) == 0) {
             // no hay Datos
             return $this->sendError('Destino no encontrado', 'Ningun destinoo insertado en esta tabla.');
         } else {
-            $destinoRegister = $gestionDestinos->deleteDestino($id_destination);
+            $destinoRegister = $gestionDestinos->deleteDestino($id_destination, $id_org);
             return $this->sendResponse('Destino Eliminado', 'Destino dado de baja');
         }
 

@@ -1,0 +1,79 @@
+
+<div class="row">
+  <div class="col">
+    <h2 _ngcontent-xkm-c107="">CIUDADES BIKING DUTCHMAN</h2>
+  </div>
+  <div class="col-md-auto">
+    <button type="button" class="btn btn-info bmd-btn-fab"
+    data-toggle="collapse" href="#collapseExample3" role="button"
+    aria-expanded="false" aria-controls="collapseExample3">
+    <i class="material-icons">fiber_new</i> Registrar
+  </button>
+  </div>
+</div>
+<div class="collapse" id="collapseExample3">
+  
+  
+  <div class="card">
+    <div class="card-header">
+      FORMULARIO CIUDADES
+    </div>
+    <div class="card-body">
+      <form [formGroup]="cityForm" (ngSubmit)="onSubmit(cityForm)">
+        <div class="form-row">
+          <div class="col">
+            <label>Nombre de la Ciudad:</label>
+            <input formControlName="name" type="text" class="form-control" placeholder="Ciudad">
+          </div>
+          <div class="col">
+            <label>Descripción </label>
+            <input formControlName="description" type="text" class="form-control" placeholder="Descripción ">
+          </div>
+
+          <button type="submit" class="btn btn-danger">Guardar.</button>
+
+        </div>
+       
+      </form>
+      
+    </div>
+  </div>
+
+</div>
+
+<table
+class="row-border hover"
+datatable
+[dtOptions]="dtOptions"
+[dtTrigger]="dtTrigger"
+>
+<thead class="thead-dark">
+  <tr>
+    <th scope="col">Ciudad</th>
+    <th scope="col">Descripción</th>
+    <th scope="col">Activo</th>
+    <th scope="col">Fecha creación</th>
+    <th scope="col">Editar</th>
+    <th scope="col">Eliminar</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let city of cities ">
+    <td>{{city.name}}</td>
+    <td>{{city.description}}</td>
+    <td *ngIf="city.isActive" >SI</td>  <td *ngIf="!city.isActive" >NO</td>
+    <td>{{city.created_at}}</td>
+
+    <td> 
+      <button
+      type="button" class="btn btn-outline-success">
+      <i class="material-icons">visibility</i>
+    </button>          </td>
+    <td>
+      <button (click)="deleteCity(city.bd_cities_id, city.bd_organization_id, city.name)" type="button" class="btn btn-outline-danger">
+        <i class="material-icons">delete</i>
+      </button> 
+    </td>
+  </tr>
+</tbody>
+</table>

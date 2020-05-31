@@ -1,23 +1,22 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ToastService } from "app/_services/toast.service";
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
-import { DestinationService } from "app/_services/destination.service";
 import { DataTableDirective } from 'angular-datatables';
+import { CitiesService } from "app/_services/cities.service";
 
 @Component({
-  selector: 'app-destinations',
-  templateUrl: './destinations.component.html',
-  styleUrls: ['./destinations.component.scss']
+  selector: 'app-cities',
+  templateUrl: './cities.component.html',
+  styleUrls: ['./cities.component.scss']
 })
-export class DestinationsComponent implements OnInit {
-
+export class CitiesComponent implements  OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
   id_org = localStorage.getItem("bd_org");
-  destinoForm: FormGroup;
-  destinos: any;
+  cityForm: FormGroup;
+  cities: any;
   @ViewChild(DataTableDirective, null)
   private _dtElement: DataTableDirective;
 
@@ -28,15 +27,13 @@ export class DestinationsComponent implements OnInit {
     this._dtElement = value;
   }
 
-
   constructor(
     private formBuilder: FormBuilder,
     public toastService: ToastService,
-    public _destinos: DestinationService
+    public _cities: CitiesService
   ) {}
-
   ngOnInit() {
-    this.getAllDestination();
+    this.getAll();
     this.buildForm();
     this.buildOptionDatatable();
   }
@@ -48,22 +45,17 @@ export class DestinationsComponent implements OnInit {
   }
 
   buildForm() {
-    this.destinoForm = this.formBuilder.group({
-      
+    this.cityForm = this.formBuilder.group({
       name: ["", Validators.required],
-      id_city:["", Validators.required],
-      availability: ["", Validators.required],
-      description1: ["", Validators.required],
-      description2: ["", Validators.required],
-      
+      description: ["", Validators.required],
     });
   }
 
-
-  onSubmit(destinoForm){ // 
-    console.log(destinoForm);
-    if (this.destinoForm.invalid) {
-      this.destinoForm.reset();
+  onSubmit(cityForm) {
+    // Crea una FormGroupinstancia de nivel superior y la vincula a un formulario para rastrear el valor agregado del formulario y el estado de validación
+    // datos vacios en el formulario
+    if (this.cityForm.invalid) {
+      this.cityForm.reset();
       return this.toastService.showNotification(
         "top",
         "right",
@@ -71,7 +63,8 @@ export class DestinationsComponent implements OnInit {
         "Completar los datos solicitados."
       );
     }
-    this._destinos.createDestination(destinoForm.value).subscribe(
+    //consumir servicio POST Login
+    this._cities.createCity(cityForm.value).subscribe(
       (resp) => {
         console.log(resp);
         if (resp["status"] == 1) {
@@ -81,14 +74,14 @@ export class DestinationsComponent implements OnInit {
             "success",
             resp["data"]
           );
-          this.getAllDestination();
+          this.getAll();
           // NECESARIO.. volver actualizar la data y la datatable 
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
           // Destroy the table first
           dtInstance.destroy();
           // Call the dtTrigger to rerender again
         });
-          this.destinoForm.reset();
+          this.cityForm.reset();
           this.buildForm();
           this.buildOptionDatatable();
 
@@ -110,25 +103,25 @@ export class DestinationsComponent implements OnInit {
         );
       }
     );
+  }
 
-}
-
-  getAllDestination() {
-    this._destinos.readAllDestinations().subscribe((resp) => {
-      
-      this.destinos = resp["data"];
+  getAll() {
+    this._cities.getAllCities().subscribe((resp) => {
+      console.log(resp["data"]);
+      this.cities = resp["data"];
       this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
 
     });
   }
+
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
-  deleteDestinos(idDestino, name) {
-    if(confirm("Esta seguro de eliminar el destino: "+name)) {
-      this._destinos
-      .deleteDestination(idDestino)
+  deleteCity(idTypePackage, idOrg, name) {
+    if(confirm("Esta seguro de eliminar la ciudad:"+name)) {
+      this._cities
+      .deleteCity(idTypePackage, idOrg)
       .subscribe((resp) => {
         this.toastService.showNotification(
           "top",
@@ -136,15 +129,16 @@ export class DestinationsComponent implements OnInit {
           "danger",
           resp["data"]
         );
-            // NECESARIO.. volver actualizar la data y la datatable 
-            this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-              // Destroy the table first
-              dtInstance.destroy();
-              // Call the dtTrigger to rerender again
-            });
-        this.getAllDestination();
+        this.getAll();
+        // NECESARIO.. volver actualizar la data y la datatable 
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          // Destroy the table first
+          dtInstance.destroy();
+          // Call the dtTrigger to rerender again
+        });
       });
     }
-    
+   
   }
+
 }

@@ -4,91 +4,89 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
-use App\Repositories\PackageServiceRepository;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\CitiesServiceRepository;
 
-class PackagesController extends BaseController
+class CitiesController extends BaseController
 {
    
-    //*******************************  CRUD - TIPE PACKAGE ********************************
+    //*******************************  CRUD - Cities  ********************************
     //POST CREAR ADMIN
-    public function createTypePackages(Request $request, $id_org)
+    public function createCity(Request $request, $id_org)
     {
-        $gestionPaquetes = new PackageServiceRepository;
+        $gestionCities = new CitiesServiceRepository;
         //validate if existe all Request // return count($request->all()); == 6
-        if (count($request->all()) < 2) {
+        if (count($request->all()) < 1) {
             return $this->sendError('Datos Incompletos', 'Error, porfavor ingresa los datos solicitados');
         }
 
-        if (count($request->all()) >= 2 ) {
+        if (count($request->all()) >= 1 ) {
             // verificar si ese email ya existe registrado
-            $packExist = $gestionPaquetes->typePackExist($request->input('name'));
+            $cityExistName = $gestionCities->cityExist($request->input('name'), $id_org);
             // si existe no existe usuario registrado con ese email inserte
-            if (count($packExist) == 0) {
-                $insert = $gestionPaquetes->newTipePack(
+            if (count($cityExistName) == 0) {
+                $insert = $gestionCities->newCity(
                     $request->input('name'),
                     $request->input('description'),
-                    $request->input('description2'),
                     $id_org,
  
                 );
-                return $this->sendResponse('Tipo paquete creado', 'Tipo de Paquete Biking Dutchman registrado.');
+                return $this->sendResponse('Nueva ciudad registrada: ' . $request->input('name'), 'Registro correcto.');
             } else {
                 // Existe un registro en el Array $userExist - un registro en la base con el email ingresado
-                return $this->sendError('Tipo de paquete ya existe.', 'Error, no se puede crear un tipo de paquete con el mismo nombre de uno ya existente.');
+                return $this->sendError('La ciudad ya esta registrada en el sistema.', 'Error, registro ya existente.');
             }
         }
     }
 
     // GET - TYPE PACKAGES
-    public function getAllTypesPackages($id_org =1 ) //DATO QUEMADO HASTA UTILIZAR FRONT END
+    public function getAllCities($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
     {
-        $gestionPaquetes = new PackageServiceRepository;
-        $packages = $gestionPaquetes->getAllTypePackages($id_org);
-        if (count($packages) == 0) {
+        $gestionCities = new CitiesServiceRepository;
+        $cities = $gestionCities->getAllCities($id_org);
+        if (count($cities) == 0) {
             // no hay Datos
             return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
         } else {
-            return $this->sendResponse($packages, 'Todos los tipos de paquetes');
+            return $this->sendResponse($cities, 'Todas las ciudades');
         }
     }
     // Get - By Id
-    public function getTypePackageId($id_package, $id_org)
+    public function getCityId($id_city, $id_org)
     {
-        $gestionPaquetes = new PackageServiceRepository;
-        $package = $gestionPaquetes->getTypePackageById($id_package, $id_org);
+        $gestionCities = new CitiesServiceRepository;
+        $city = $gestionCities->getCityById($id_city, $id_org);
 
-        if (count($package) == 0) {
+        if (count($city) == 0) {
             // no hay Datos
             return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
         } else {
            
-            return $this->sendResponse($package, 'Tipo de paquete');
+            return $this->sendResponse($city, 'Ciudad');
         }
 
     }
      //UPDATE - MODIFI DATA $administrators
-    public function updateTypePackageData($id_type_package, $id_org, Request $request)
+    public function updateCityData($id_city, $id_org, Request $request)
     {
-        $gestionPaquetes = new PackageServiceRepository;
+        $gestionCities = new CitiesServiceRepository;
         // verficate if exist this user
-        $typePackageIsRegister = $gestionPaquetes->getTypePackageById($id_type_package, $id_org);
-        if (count($typePackageIsRegister) == 0) {
+        $cityIsRegister = $gestionCities->getCityById($id_city, $id_org);
+        if (count($cityIsRegister) == 0) {
             // no hay Datos
-            return $this->sendError('Tipo Paquete no encontrado', 'Ningun registro insertado en esta tabla.');
+            return $this->sendError('No se ha encontrado el servicio', 'Ningun registro insertado en esta tabla.');
         } else {
-            if (count($request->all()) >= 2) {
+            if (count($request->all()) >= 1) {
                 //EDIT TABLE bd_persons
-                $gestionPaquetes->updateTypePackage(
-                    $id_type_package,
+                $gestionCities->updateCityData(
+                    $id_city,
+                    $cityIsRegister[0]->bd_organization_id,
                     $request->input('name'),
-                    $request->input('description1'),
-                    $request->input('description2'),
-                    $typePackageIsRegister[0]->bd_organization_id
+                    $request->input('description'),
                 );
-                $newRegisterEdit = $gestionPaquetes->getTypePackageById($id_type_package, $id_org);
+                $newRegisterEdit = $gestionCities->getCityById($id_city, $id_org);
 
-                return $this->sendResponse($newRegisterEdit, 'Tipo Paquete  modificado correctamente.');
+                return $this->sendResponse($newRegisterEdit, 'Registro modificado correcto.');
             } else {
                 return $this->sendError('Ingresar los datos solicitados', 'Ningun registro modificado en esta tabla.');
 
@@ -97,17 +95,17 @@ class PackagesController extends BaseController
 
     }
 
-    public function deleteTypePackage($id_package, $id_org)
+    public function deleteCity($id_city, $id_org)
     {
-        $gestionPaquetes = new PackageServiceRepository;
+        $gestionCities = new CitiesServiceRepository;
         // verificar si el usuario existe para borrar
-        $typePackageIsRegister = $gestionPaquetes->getTypePackageById($id_package, $id_org);
-        if (count($typePackageIsRegister) == 0) {
+        $cityIsRegister = $gestionCities->getCityById($id_city, $id_org);
+        if (count($cityIsRegister) == 0) {
             // no hay Datos
             return $this->sendError('Registro no encontrado', 'Ningun registro insertado en esta tabla.');
         } else {
-            $gestionPaquetes->deleteTypePackages($id_package, $id_org);
-            return $this->sendResponse('Tipo Paquete Eliminado', 'Tipo Paquete dado de baja');
+            $gestionCities->deleteCity($id_city, $id_org);
+            return $this->sendResponse('Registro ciudad eliminado correctamente', 'Tipo Paquete dado de baja');
         }
     }
 

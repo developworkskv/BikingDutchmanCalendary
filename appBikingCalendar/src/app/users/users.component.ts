@@ -1,17 +1,21 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { UserService } from 'app/_services/user.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ToastService } from 'app/_services/toast.service';
 import { TypeUsersService } from 'app/_services/type-users.service';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit ,AfterViewInit {
+  @ViewChild(DataTableDirective, null)
+  private _dtElement: DataTableDirective;
+  
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
 
@@ -21,6 +25,12 @@ export class UsersComponent implements OnInit {
   tipesUser: any;
   id_org: any;
 
+  public get dtElement(): DataTableDirective {
+    return this._dtElement;
+  }
+  public set dtElement(value: DataTableDirective) {
+    this._dtElement = value;
+  }
   constructor(public _user: UserService,
     private formBuilder: FormBuilder,
     private toast: ToastService,
@@ -30,6 +40,9 @@ export class UsersComponent implements OnInit {
     this.typesAdmin();  
     this.id_org = localStorage.getItem('bd_org');
 
+  }
+  ngAfterViewInit() {
+    // It is necesary to reload the datatable
   }
 
   ngOnInit() {
@@ -60,7 +73,7 @@ export class UsersComponent implements OnInit {
 
   // CREATE
   // CREAR RUTA
-  onSubmit(adminForm: NgForm){ // 
+  onSubmit(adminForm){ // 
     console.log(adminForm);
     
     // datos vacios en el formulario
@@ -74,8 +87,16 @@ export class UsersComponent implements OnInit {
       if(resp['status'] == 1){
         this.toast.showNotification('top','right','success','Usuario Administrador registrado correctamente.');
         this.getAll();
+        // NECESARIO.. volver actualizar la data y la datatable 
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          // Destroy the table first
+          dtInstance.destroy();
+          // Call the dtTrigger to rerender again
+        });
+
         this.adminForm.reset(); 
         this.crearFormularios();
+
       }else{
         this.toast.showNotification('top','right','danger','Error en datos ingresados.');
       }
@@ -132,6 +153,12 @@ deleteUserAdmin(idPerson: number, name: string){
         resp=>{
           this.toast.showNotification('top','right','success',resp['data']);
           this.getAll();
+          // NECESARIO.. volver actualizar la data y la datatable 
+          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+          });
         }
       );
     }
