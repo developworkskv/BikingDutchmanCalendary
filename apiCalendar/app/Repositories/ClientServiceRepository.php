@@ -68,14 +68,11 @@ public function getPersonById($id_person)
         'created_at' => $fecha->format('Y-m-d H:i:s')
     ]);
     
-    //GET LAST REGISTER AND INSERT WITH HIS ID TO BD_USERS
+    // CONSULTAR EL ID DE LA ULTIMA PERSONA INGRESADA
     $lastPersonCreated = DB::table('bd_persons')
     ->where('dni', $dniP)
     ->get(); 
 
-    // INSERTAR PERSONA
-
-    // CONSULTAR EL ID DE LA ULTIMA PERSONA INGRESADA
 
     // INSERTAR EN LA TABLA BD CLIENT
     $newClient = DB::table('bd_clients')->insert([
