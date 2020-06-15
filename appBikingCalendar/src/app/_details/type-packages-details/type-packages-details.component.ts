@@ -32,14 +32,14 @@ export class TypePackagesDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    console.log("EN ONINIT");
+    //console.log("EN ONINIT");
 
     this.route.params.subscribe(
       (param: Params) =>{
         console.log(param);
         
         const idTypePackages = param.id_typePackages;
-        //consumir servicio type_packages by id
+        //consumir servicio type_packages by ID
         this._typePackages.getTypePackageId(idTypePackages).subscribe(
           resp=>{
 

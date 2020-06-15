@@ -55,9 +55,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: "user-admin/:id_admin", component: UserDetailsComponent },
   // DETAILS DESTINATION
   { path: "destinations-gestion/:id_destino", component: DestinationsDetailsComponent },
-  //DEATILS TYPEPACKAGES
+  //DEATILS TYPEPACKAGES BKD
   { path: "typePackages-gestion/:id_typePackages", component: TypePackagesDetailsComponent },
-  //DETAILS CITIES
+  //DETAILS CITIES BKD
   { path: "cities-gestion/:id_city", component: CitiesDetailsComponent },
 
 ];

@@ -27,7 +27,7 @@ export class CitiesDetailsComponent implements OnInit {
     }
 
   ngOnInit() {
-    //OBTENER PARAMETROS
+    //OBTENER PARAMETROS "DATOS"
     this.route.params.subscribe(
       (param: Params) =>{
         //console.log(param);

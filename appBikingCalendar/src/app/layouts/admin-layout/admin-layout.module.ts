@@ -24,7 +24,7 @@ import { PackagesComponent } from 'app/packages/packages.component';
 import { DestinationsComponent } from 'app/destinations/destinations.component';
 import { ClientsComponent } from 'app/clients/clients.component';
 
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the moduleS
 import { FilterPipe } from 'app/_pipes/filter.pipe';
 import { UserDetailsComponent } from 'app/_details/user-details/user-details.component';
 import { TourComponent } from 'app/tour/tour.component';
@@ -51,8 +51,6 @@ import { CitiesDetailsComponent } from "app/_details/cities-details/cities-detai
     ChartsModule,
     NgxPaginationModule,
     DataTablesModule,
-       
-
   ],
   // todos mis componentes
   declarations: [

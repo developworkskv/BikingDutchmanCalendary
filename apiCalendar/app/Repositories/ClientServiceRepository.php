@@ -91,7 +91,6 @@ public function getPersonById($id_person)
     ]);
     return $newClient;
 }
-
     //POST - ELIMINAR CLIENTE
     public function deleteClient($bd_clients_id, $id_org)
     {
