@@ -32,6 +32,9 @@ import { NotificationsComponent } from 'app/notifications/notifications.componen
 import { DestinationsDetailsComponent } from "app/_details/destinations-details/destinations-details.component";
 import { CitiesComponent } from 'app/cities/cities.component';
 import { ReportsComponent } from 'app/reports/reports.component';
+import { TypePackagesDetailsComponent } from "app/_details/type-packages-details/type-packages-details.component";
+import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
+
 
 @NgModule({
   imports: [
@@ -69,7 +72,11 @@ import { ReportsComponent } from 'app/reports/reports.component';
     DestinationsDetailsComponent,
     CitiesComponent,
     ReportsComponent,
-
+    TypePackagesDetailsComponent,
+    CitiesDetailsComponent
+    
+   
+  
   ]
 })
 

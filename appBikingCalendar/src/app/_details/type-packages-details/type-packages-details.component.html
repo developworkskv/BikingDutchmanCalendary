@@ -1,0 +1,81 @@
+<div class="main-content" *ngIf="typeP">
+ <div class="container-fluid">
+    <h4>DETALLES DE TIPOS DE PAQUETES</h4>
+
+    <form  [formGroup]="typePackagesDetailsForm" (ngSubmit)="onSubmit(typePackagesDetailsForm)">
+      <div class="row">
+        <div class="col">
+
+        </div>
+
+        <div class="col-md-auto">
+          <button type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#exampleModal">
+            <i class="material-icons">save</i> &nbsp;&nbsp;&nbsp;
+            Guardar cambios.
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          DATOS 
+        </div> 
+        <div class="card-body">
+          <div class="row">
+          <div class="col-sm"> <div class="form-group">
+            <label >Tipo de Paquete</label>
+            <input formControlName="name" value="{{typeP.name}}"
+              type="text" class="form-control" required>
+          </div>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="col-sm"> <div class="form-group">
+            <label >Activo</label>
+            <input formControlName="isActive" value="{{typeP.isActive}}"
+              type="number" class="form-control" required>
+          </div></div>
+
+        <div class="col-sm"> <div class="form-group">
+            <label >Descripcion 1</label>
+            <input formControlName="description1"
+              value="{{typeP.description1}}" type="text"
+              class="form-control" placeholder="Descripcion" required>
+          </div></div>
+          <div class="col-sm"> <div class="form-group">
+            <label >Descripcion 2</label>
+            <input formControlName="description2"
+              value="{{typeP.description2}}" type="text"
+              class="form-control" placeholder="Descripcion" required>
+          </div></div>
+      </div>
+      <div class="row">
+        
+        <div class="col-sm"> 
+          <div class="form-group">
+            <label >Valor</label>
+            <input formControlName="value" value="{{typeP.value}}"
+              type="number" class="form-control" placeholder="Valor" required>
+          </div>
+        </div>
+        <div class="col-sm"> 
+          <div class="form-group">
+            <label >Estado</label>
+            <input formControlName="status" value="{{typeP.status}}"
+              type="number" class="form-control" placeholder="Estado" required>
+          </div>
+        </div>
+      </div>
+      
+          
+
+        </div>
+
+      </div>
+    </form>
+  
+  </div>
+
+</div>
+

@@ -1,0 +1,72 @@
+<div class="main-content" *ngIf="cityA">
+  <div class="container-fluid">
+    <h4>DETALLES DE LA CIUDAD</h4>
+
+    <form [formGroup]="cityForm" (ngSubmit)="onSubmit(cityForm)">
+      <div class="row">
+        <div class="col">
+
+        </div>
+
+        <div class="col-md-auto">
+          <button type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#exampleModal">
+            <i class="material-icons">save</i> &nbsp;&nbsp;&nbsp;
+            Guardar cambios.
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          DATOS DE LA CITY
+        </div> 
+        <div class="card-body">
+          <div class="row">
+          <div class="col-sm"> <div class="form-group">
+            <label >Ciudad</label>
+            <input formControlName="name" value="{{cityA.name}}"
+              type="text" class="form-control" required>
+          </div>
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="col-sm"> <div class="form-group">
+            <label >Activo</label>
+            <input formControlName="isActive" value="{{cityA.isActive}}"
+              type="text" class="form-control" required>
+          </div></div>
+
+        <div class="col-sm"> <div class="form-group">
+            <label >Descripcion</label>
+            <input formControlName="description"
+              value="{{cityA.description}}" type="text"
+              class="form-control" placeholder="Descripcion" required>
+          </div></div>
+      </div>
+      <div class="row">
+        
+        <div class="col-sm"> 
+          <div class="form-group">
+            <label >Valor</label>
+            <input formControlName="value" value="{{cityA.value}}"
+              type="number" class="form-control" placeholder="Valor" required>
+          </div>
+        </div>
+        <div class="col-sm"> 
+          <div class="form-group">
+            <label >Estado</label>
+            <input formControlName="status" value="{{cityA.status}}"
+              type="text" class="form-control" placeholder="Estado" required>
+          </div>
+        </div>
+      </div>
+          
+
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+</div>
