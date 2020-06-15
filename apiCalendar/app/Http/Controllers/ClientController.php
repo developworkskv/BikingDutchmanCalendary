@@ -9,7 +9,7 @@ use App\Repositories\ClientServiceRepository;
 
 class ClientController extends BaseController
 {
-    //
+    //VALIDACION
     public function dataclientById($id_client)
     {
         $client = DB::table('bd_clients')

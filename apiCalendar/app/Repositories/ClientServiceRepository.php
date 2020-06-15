@@ -73,7 +73,6 @@ public function getPersonById($id_person)
     ->where('dni', $dniP)
     ->get(); 
 
-
     // INSERTAR EN LA TABLA BD CLIENT
     $newClient = DB::table('bd_clients')->insert([
         'nacionality' => $nacionalityC,

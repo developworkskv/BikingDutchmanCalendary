@@ -80,7 +80,7 @@ Route::get('deleteCity/{id_package}/org/{id_org}', 'CitiesController@deleteCity'
 // PDF REPORTS BIKING DUTCHMAN
 Route::get('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
 
-//CRUD CLIENTES M
+//CRUD CLIENTES 
 Route::post('clientCreate/{id_org}', 'ClientController@createClient');
 Route::get('clientRead/{id_org}', 'ClientController@getAllClient');
 Route::post('clientUpdate/{id_client}/update', 'ClientController@updateClient');
