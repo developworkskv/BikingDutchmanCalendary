@@ -17,7 +17,7 @@ createCity(city: any ){
   return this.http.get( URL_SERVICIOS+'/citiesRead/'+localStorage.getItem('bd_org'));
   
 }
-//getCityById
+//GET CITY BY ID
 getCityId(idCity: number){
   return this.http.get( URL_SERVICIOS+'/getCityId/' + idCity +'/org/' + localStorage.getItem('bd_org'));
 }

@@ -19,7 +19,7 @@ export class TypePackagesService {
     return this.http.get( URL_SERVICIOS+'/packagesRead');
     
   }
-  //getTypePacksById
+  //GET TYPEPAKAGES BY ID
   getTypePackageId(idTypePackages: number){
     return this.http.get( URL_SERVICIOS+'/packageById/' + idTypePackages +'/org/' + localStorage.getItem('bd_org'));
   }

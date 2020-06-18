@@ -31,6 +31,7 @@ export class TypePackagesDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    //ARRANCAR PRIMERO EL FORMULARIO
     this.buildForm();
     //console.log("EN ONINIT");
 

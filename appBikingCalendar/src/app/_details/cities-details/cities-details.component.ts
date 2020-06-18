@@ -64,7 +64,7 @@ export class CitiesDetailsComponent implements OnInit {
   });
 }
 
-  // EDITAR D
+  // EDITAR CIUDAD
   onSubmit(cityForm: NgForm){ // 
     console.log(cityForm);
   }
