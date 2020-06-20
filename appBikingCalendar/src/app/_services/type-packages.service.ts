@@ -19,6 +19,10 @@ export class TypePackagesService {
     return this.http.get( URL_SERVICIOS+'/packagesRead');
     
   }
+  //GET TYPEPAKAGES BY ID
+  getTypePackageId(idTypePackages: number){
+    return this.http.get( URL_SERVICIOS+'/packageById/' + idTypePackages +'/org/' + localStorage.getItem('bd_org'));
+  }
 //DELETE
 deleteTypesPackages(idTypePackage, idOrg){
   return this.http.get( URL_SERVICIOS+'/packageDelete/' +idTypePackage+ '/org/' + idOrg);

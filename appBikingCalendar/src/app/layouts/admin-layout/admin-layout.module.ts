@@ -24,7 +24,7 @@ import { PackagesComponent } from 'app/packages/packages.component';
 import { DestinationsComponent } from 'app/destinations/destinations.component';
 import { ClientsComponent } from 'app/clients/clients.component';
 
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the moduleS
 import { FilterPipe } from 'app/_pipes/filter.pipe';
 import { UserDetailsComponent } from 'app/_details/user-details/user-details.component';
 import { TourComponent } from 'app/tour/tour.component';
@@ -32,6 +32,9 @@ import { NotificationsComponent } from 'app/notifications/notifications.componen
 import { DestinationsDetailsComponent } from "app/_details/destinations-details/destinations-details.component";
 import { CitiesComponent } from 'app/cities/cities.component';
 import { ReportsComponent } from 'app/reports/reports.component';
+import { TypePackagesDetailsComponent } from "app/_details/type-packages-details/type-packages-details.component";//DETAILS
+import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
+
 
 @NgModule({
   imports: [
@@ -48,8 +51,6 @@ import { ReportsComponent } from 'app/reports/reports.component';
     ChartsModule,
     NgxPaginationModule,
     DataTablesModule,
-       
-
   ],
   // todos mis componentes
   declarations: [
@@ -69,7 +70,11 @@ import { ReportsComponent } from 'app/reports/reports.component';
     DestinationsDetailsComponent,
     CitiesComponent,
     ReportsComponent,
-
+    TypePackagesDetailsComponent,
+    CitiesDetailsComponent
+    
+   
+  
   ]
 })
 

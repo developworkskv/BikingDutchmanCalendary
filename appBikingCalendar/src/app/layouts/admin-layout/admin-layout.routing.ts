@@ -14,6 +14,9 @@ import { TourComponent } from "app/tour/tour.component";
 import { NotificationsComponent } from "app/notifications/notifications.component";
 import { DestinationsDetailsComponent } from "app/_details/destinations-details/destinations-details.component";
 import { ReportsComponent } from "app/reports/reports.component";
+import { TypePackagesDetailsComponent } from "app/_details/type-packages-details/type-packages-details.component";
+import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
+
 
 export const AdminLayoutRoutes: Routes = [
   // GENERALES*******
@@ -52,5 +55,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: "user-admin/:id_admin", component: UserDetailsComponent },
   // DETAILS DESTINATION
   { path: "destinations-gestion/:id_destino", component: DestinationsDetailsComponent },
+  //DEATILS TYPEPACKAGES 
+  { path: "typePackages-gestion/:id_typePackages", component: TypePackagesDetailsComponent },
+  //DETAILS CITIES 
+  { path: "cities-gestion/:id_city", component: CitiesDetailsComponent },
 
 ];
