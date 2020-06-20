@@ -1,4 +1,4 @@
-<div class="main-content" *ngIf="DestinoA">
+<div class="main-content" *ngIf="destinoA">
 
   <div class="container-fluid">
 
@@ -26,48 +26,61 @@
           <div class="row">
             <div class="col-sm"> <div class="form-group">
                 <label >Destino</label>
-                <input formControlName="name" value="{{DestinoA.name}}"
+                <input formControlName="name" value="{{destinoA.name}}"
                   type="text" class="form-control" required>
               </div>
             </div>
             <div class="col-sm"> <div class="form-group">
+              <label >Ciudad</label>
+              <input formControlName="city" value="{{destinoA.city}}"
+                type="text" class="form-control" required>
+            </div>
+          </div>
+            <div class="col-sm"> <div class="form-group">
                 <label >Disponibilidad</label>
                 <input formControlName="availability"
-                  value="{{DestinoA.availability}}" type="text"
+                  value="{{destinoA.availability}}" type="text"
                   class="form-control" required>
               </div></div>
+              
           </div>
           <div class="row">
             <div class="col-sm"> <div class="form-group">
                 <label >Activo</label>
-                <input formControlName="isActive" value="{{DestinoA.isActive}}"
+                <input formControlName="isActive" value="{{destinoA.isActive}}"
                   type="text" class="form-control" required>
               </div></div>
-            <div class="col-sm"> <div class="form-group">
+            
+              <div class="col-sm"> <div class="form-group">
+                <label >Descripcion Ciudad</label>
+                <input formControlName="descriptionCity" value="{{destinoA.descriptionCity}}"
+                  type="text" class="form-control" required>
+              </div></div>
+              <div class="col-sm"> <div class="form-group">
                 <label >Descripcion 1</label>
-                <input formControlName="description"
-                  value="{{DestinoA.description}}" type="text"
+                <input formControlName="description1"
+                  value="{{destinoA.description1}}" type="text"
                   class="form-control" placeholder="Descripcion" required>
               </div></div>
           </div>
           <div class="row">
             <div class="col-sm"> <div class="form-group">
-              <label >Descripcion 2</label>
+              <label >descripcion 2</label>
               <input formControlName="description2"
-                value="{{DestinoA.description2}}" type="text"
+                value="{{destinoA.description2}}" type="text"
                 class="form-control" placeholder="Descripcion 2" required>
             </div></div>
             <div class="col-sm"> 
               <div class="form-group">
                 <label >Valor</label>
-                <input formControlName="value" value="{{DestinoA.value}}"
+                <input formControlName="value" value="{{destinoA.value}}"
                   type="number" class="form-control" placeholder="Valor" required>
               </div>
             </div>
             <div class="col-sm"> 
               <div class="form-group">
                 <label >Estado</label>
-                <input formControlName="status" value="{{DestinoA.status}}"
+                <input formControlName="status" value="{{destinoA.status}}"
                   type="text" class="form-control" placeholder="Estado" required>
               </div>
             </div>
