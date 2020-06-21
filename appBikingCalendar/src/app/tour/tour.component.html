@@ -2,7 +2,7 @@
   <div class="row justify-content-md-center">
 
     <div class="col-md-auto" style="padding-top: 0%;">
-      <h3>GESTIÓN DE USUSARIOS</h3>
+      <h3>BIKING TOURS </h3>
     </div>
   </div>
 
@@ -34,13 +34,13 @@
             <li _ngcontent-fuw-c5="" class="nav-item"><a _ngcontent-fuw-c5="" class="nav-link active mat-button"
                 data-toggle="tab" href="#profile" mat-button="" tabindex="0" aria-disabled="false"><span
                   class="mat-button-wrapper"><i _ngcontent-fuw-c5="" class="material-icons">bug_report</i>
-                  Formulario <div _ngcontent-fuw-c5="" class="ripple-container"></div></span>
+                  Pedido de compra <div _ngcontent-fuw-c5="" class="ripple-container"></div></span>
                 <div class="mat-button-ripple mat-ripple" matripple=""></div>
                 <div class="mat-button-focus-overlay"></div>
               </a></li>
             <li _ngcontent-fuw-c5="" class="nav-item"><a _ngcontent-fuw-c5="" class="nav-link mat-button"
                 data-toggle="tab" href="#messages" mat-button="" tabindex="0" aria-disabled="false"><span
-                  class="mat-button-wrapper"><i _ngcontent-fuw-c5="" class="material-icons">code</i> HISTORIAL TOURS <div
+                  class="mat-button-wrapper"><i _ngcontent-fuw-c5="" class="material-icons">code</i> FACTURA COMPRA <div
                     _ngcontent-fuw-c5="" class="ripple-container"></div></span>
                 <div class="mat-button-ripple mat-ripple" matripple=""></div>
                 <div class="mat-button-focus-overlay"></div>
@@ -55,39 +55,81 @@
         <div _ngcontent-fuw-c5="" class="tab-pane active" id="profile">
           <div class="row">
             <div class="col">
-              <h2 _ngcontent-xkm-c107="">FORMULARIO DE RESERVAS TOURS</h2>
+              <h2 _ngcontent-xkm-c107="">FORMULARIO DE PEDIDOS TOURS </h2>
             </div>
           </div>
+          <form [formGroup]="tourForm" (ngSubmit)="onSubmit(tourForm)">
+
+
           <div class="row">
             <div class="col-sm">
-              <h6 for="exampleInputEmail1">Nombre</h6>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                required
-              />
+              <div class="form-group">
+                <label for="exampleInputEmail1">Tour</label>
+                <select  formControlName="tourId" class="custom-select">
+                  <option>tour 1 </option>
+                  <option>tour 2</option>
+                </select>
+              </div>
             </div>
+
             <div class="col-sm">
-              <h6 for="exampleInputEmail1">Nombre</h6>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                required
-              />
+              <div class="form-group">
+                <label for="exampleInputEmail1">Cliente</label>
+                <select  formControlName="clientId" class="custom-select">
+                  <option>cliente 1 </option>
+                  <option>cliente 2</option>
+                </select>
+              </div>
             </div>
+
             <div class="col-sm">
-              <h6 for="exampleInputEmail1">Nombre</h6>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                required
-              />
+              <div class="form-group">
+                <label for="exampleInputEmail1">Día</label>
+                <br>
+                  <input formControlName="dateTour" type="date">
+              </div>
             </div>
-            <!--END FOR-->
+   
           </div>  
+
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Diet</label>
+                <input
+                formControlName="diet"
+                type="text"
+                class="form-control"
+                placeholder="Descripción dieta"
+                required
+              />
+              </div>
+            </div>
+        
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Hotel</label>
+                <select  formControlName="hotel" class="custom-select">
+                  <option>SI</option>
+                  <option>NO</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Estado Bicicleta</label>
+                <select  formControlName="statusBicicle" class="custom-select">
+                  <option>Nueva</option>
+                  <option>Medio uso</option>
+                  <option>Personal</option>
+                </select>
+              </div>
+            </div>
+   
+          </div>  
+          <button type="submit" class="btn btn-primary">Guardar</button>
+
+          </form>
         </div>
         <div _ngcontent-fuw-c5="" class="tab-pane" id="messages">
           <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
@@ -101,6 +143,9 @@
           <th scope="col">Fecha creación</th>
           <th scope="col">Ver</th>
           <th scope="col">Eliminar</th>
+          <th scope="col">Pago</th>
+          <th scope="col">Estado</th>
+
         </tr>
       </thead>
       <tbody>
@@ -112,6 +157,13 @@
           <td>d</td>
           <td>as</td>
           <td>asas</td>
+          <td>    <button
+            type="button"
+            class="btn btn-outline-danger"
+          >
+            <i class="material-icons">monetization_on</i>
+          </button></td>
+          <td><div class="alert alert-warning" role="alert"> <small> En proceso  </small></div></td>
 
         </tr>
         <tr>
@@ -122,6 +174,13 @@
           <td>d</td>
           <td>as</td>
           <td>asas</td>
+          <td>    <button
+            type="button"
+            class="btn btn-outline-success"
+          >
+            <i class="material-icons">monetization_on</i>
+          </button></td>
+          <td><div class="alert alert-success" role="alert"> <small> Finalizado  </small></div></td>
 
         </tr> <tr>
           <td>s</td>
@@ -131,6 +190,13 @@
           <td>d</td>
           <td>as</td>
           <td>asas</td>
+          <td>    <button
+            type="button"
+            class="btn btn-outline-danger"
+          >
+            <i class="material-icons">monetization_on</i>
+          </button></td>
+          <td><div class="alert alert-danger" role="alert"> <small> Borrador  </small></div></td>
 
         </tr>
       </tbody>

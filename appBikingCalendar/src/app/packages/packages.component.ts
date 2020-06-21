@@ -5,6 +5,7 @@ import { TypePackagesService } from "app/_services/type-packages.service";
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
+import { LoginService } from "app/_services/login.service";
 
 @Component({
   selector: "app-packages",
@@ -31,8 +32,11 @@ export class PackagesComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public toastService: ToastService,
-    public _typePackages: TypePackagesService
-  ) {}
+    public _typePackages: TypePackagesService,
+    public _login: LoginService) {
+      // VERIFICAR SESION DEL USUARIO
+    this._login.sesionActive(localStorage.getItem('token_bd_users'), localStorage.getItem('bd_org'));  
+}
 
   ngOnInit() {
     this.getAll();

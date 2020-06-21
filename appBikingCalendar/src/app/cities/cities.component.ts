@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
 import { CitiesService } from "app/_services/cities.service";
 import { DestinationService } from "app/_services/destination.service";
+import { LoginService } from "app/_services/login.service";
 
 @Component({
   selector: 'app-cities',
@@ -32,8 +33,10 @@ export class CitiesComponent implements  OnInit {
     private formBuilder: FormBuilder,
     public toastService: ToastService,
     public _cities: CitiesService,
-    
-  ) {}
+    public _login: LoginService) {
+      // VERIFICAR SESION DEL USUARIO
+      this._login.sesionActive(localStorage.getItem('token_bd_users'), localStorage.getItem('bd_org'));
+    }
   ngOnInit() {
     this.getAll();
     this.buildForm();
