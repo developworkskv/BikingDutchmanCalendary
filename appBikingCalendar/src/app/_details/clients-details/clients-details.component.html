@@ -1,0 +1,140 @@
+
+<div class="main-content" *ngIf="clientA">
+
+  <div class="container-fluid">
+
+    <h4>Detalles</h4>
+
+    <form [formGroup]="clientFormDetails" (ngSubmit)="onSubmit(clientFormDetails)">
+      <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col-md-auto">
+          <button type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#exampleModal">
+            <i class="material-icons">save</i> &nbsp;&nbsp;&nbsp;
+            Guardar cambios.
+          </button>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="card-header">
+          DETALLES
+        </div>
+        <!--FORMULARIO DE PERSONAS-->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm"> <div class="form-group">
+                <label >Nombre</label>
+                <input formControlName="name" value="{{clientA.name}}"
+                  type="text" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-sm"> <div class="form-group">
+                <label >Apellido</label>
+                <input formControlName="lastName"
+                  value="{{clientA.lastName}}" type="text"
+                  class="form-control" required>
+              </div></div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label >Género</label>
+                   <select class="custom-select" formControlName="gender"
+                    value="{{clientA.gender}}">
+                    <option>Masculino</option>
+                    <option>Femenino</option>
+                  </select>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            
+            <div class="col-sm"> <div class="form-group">
+                <label >Cedula</label>
+                <input formControlName="dni"
+                  value="{{clientA.dni}}" type="number"
+                  class="form-control"  required>
+              </div></div>
+              <div class="col-sm"> <div class="form-group">
+                <label >Fecha de Nacimiento</label>
+                <input formControlName="birth_date"
+                  value="{{clientA.birth_date}}" type="date"
+                  class="form-control" required>
+              </div></div>
+              <div class="col-sm"> 
+                <div class="form-group">
+                  <label >Email</label>
+                  <input formControlName="email" value="{{clientA.email}}"
+                    type="email" class="form-control" required>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label >Descripcion Persona</label>
+                <input formControlName="description1" value="{{clientA.description1}}"
+                  type="text" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <!--FORMULARIO DE CLIENTES-->
+          <div class="row">
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label >Nacionalidad</label>
+                <input formControlName="nacionality" value="{{clientA.nacionality}}"
+                  type="text" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label >Pasaporte</label>
+                <input formControlName="passport" value="{{clientA.passport}}"
+                  type="number" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label >Altura</label>
+                <input formControlName="height" value="{{clientA.height}}"
+                  type="number" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label >Peso</label>
+                <input formControlName="weight" value="{{clientA.weight}}"
+                  type="number" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label >Descripcion C1</label>
+                <input formControlName="descriptionC" value="{{clientA.descriptionC}}"
+                  type="text" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-sm"> 
+              <div class="form-group">
+                <label >Descripcion C2</label>
+                <input formControlName="descriptionC2" value="{{clientA.descriptionC2}}"
+                  type="text" class="form-control" required>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </form>
+  </div>
+
+
+</div>
