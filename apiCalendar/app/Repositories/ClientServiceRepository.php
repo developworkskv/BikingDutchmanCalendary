@@ -91,6 +91,55 @@ public function getPersonById($id_person)
     ]);
     return $newClient;
 }
+
+
+//UPDATE CLIENTS
+/*public function updateClient($bd_clients_id, $bd_persons_id)
+{
+    date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
+    $fecha = new DateTime('NOW');
+      $affected = DB::table('bd_clients')
+          ->where('bd_persons_id', $bd_persons_id)
+          ->update([
+            /*'nacionality' => $nacionalityC,
+            'height' => $heightC,
+            'weight' => $weightC,
+            'passport' => $passportC,
+            'description1' => $description1C,
+            'description2' => $description2C,
+    
+            //'bd_organization_id' => $id_org,
+            'bd_persons_id' => $persons_id,
+            'updated_at' =>  $fecha->format('Y-m-d H:i:s')]);
+      return $affected;
+}*/
+public function updateClientsPerson($id_person, $nameP, $lastNameP, $emailP, $fechaNacimientoP, $genderP, $dniP, $descriptionP,
+$nacionalityC, $heightC ,$weightC ,$passportC, $description1C, $description2C)
+{
+  date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
+  $fecha = new DateTime('NOW');
+    $affected = DB::table('bd_persons')
+        ->where('bd_persons_id', $id_person)
+        ->update([
+            ///form persons
+            'name' => $nameP,
+            'lastName' => $lastNameP,
+            'email' => $emailP,
+            'birth_date' => $fechaNacimientoP,
+            'gender' => $genderP,
+            'dni' => $dniP,
+            'description1' => $descriptionP,
+            ///form clients
+            'nacionality' => $nacionalityC,
+            'height' => $heightC,
+            'weight' => $weightC,
+            'passport' => $passportC,
+            'description1' => $description1C,
+            'description2' => $description2C,
+            'updated_at' =>  $fecha->format('Y-m-d H:i:s')]);
+    return $affected;
+}
+
     //POST - ELIMINAR CLIENTE
     public function deleteClient($bd_clients_id, $id_org)
     {
