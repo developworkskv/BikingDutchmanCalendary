@@ -86,7 +86,7 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Crear Cliente.</h5>
@@ -176,67 +176,12 @@
                 formControlName="dniP" 
                 type="number" class="form-control"
                 placeholder="Nº Cédula" 
+                maxlength="10"
                 required>
               </div>
             </div>
           </div>
 
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Descripcion Persona</label>
-                <input 
-                formControlName="descriptionPersonP" 
-                type="text" class="form-control"
-                placeholder="Descripcion P" 
-                required>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--FORMULARIO PARA CLIENTES-->
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Nacionalidad</label>
-                <input
-                  formControlName="nacionality"
-                  type="text"
-                  class="form-control"
-                  placeholder="Nacionalidad"
-                  required
-                />
-              </div>
-              </div>
-              <div class="col-sm">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Altura</label>
-                  <input
-                    formControlName="height"
-                    type="number"
-                    class="form-control"
-                    placeholder="Altura"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="col-sm">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Peso</label>
-                  <input
-                    formControlName="weight"
-                    type="number"
-                    class="form-control"
-                    placeholder="Peso"
-                    required
-                  />
-                </div>
-              </div>
-            
-          </div>
         </div>
         <div class="container">
           <div class="row">
@@ -254,28 +199,92 @@
             </div>
             <div class="col-sm">
               <div class="form-group">
-                <label for="exampleInputEmail1">Descripcion 1</label>
+                <label for="exampleInputEmail1">Nacionalidad</label>
                 <input
-                  formControlName="description1"
+                  formControlName="nacionality"
                   type="text"
                   class="form-control"
-                  placeholder="Descripcion 1"
+                  placeholder="Nacionalidad"
                   required
                 />
+              </div>
+              </div>
+            
+          </div>
+        </div>
+        <!--FORMULARIO PARA CLIENTES-->
+        <div class="container">
+          <div class="row">
+            
+              <div class="col-sm">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Altura</label>
+                  <input
+                    formControlName="height"
+                    type="number"
+                    class="form-control"
+                    placeholder="Altura"
+                    min="1" max="5" step="0.5"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Peso/Kg</label>
+                  <input
+                    formControlName="weight"
+                    type="number"
+                    class="form-control"
+                    placeholder="Peso/Kg"
+                    minlength="2"
+                    maxlength="5"
+                    required
+                  />
+                </div>
+              </div>
+            
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Observacion Persona</label>
+                <input 
+                formControlName="descriptionPersonP" 
+                type="text" class="form-control"
+                placeholder="Observacion Persona" 
+                required>
               </div>
             </div>
             <div class="col-sm">
               <div class="form-group">
-                <label for="exampleInputEmail1">Descripcion 2</label>
+                <label for="exampleInputEmail1">Descripcion (Opcional)</label>
                 <input
-                  formControlName="description2"
+                  formControlName="description1"
                   type="text"
                   class="form-control"
-                  placeholder="Descripcion 2"
+                  placeholder="Descripcion"
                   required
                 />
               </div>
             </div>
+            
+            
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group" hidden>
+            <label for="exampleInputEmail1">Descripcion 2</label>
+            <input
+              formControlName="description2"
+              value="{{ description2 }}"
+              type="text"
+              class="form-control"
+              placeholder="Descripcion 2"
+              required
+            />
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Guardar Cliente</button>
