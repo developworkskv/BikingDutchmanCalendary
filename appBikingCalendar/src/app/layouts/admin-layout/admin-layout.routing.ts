@@ -16,6 +16,7 @@ import { DestinationsDetailsComponent } from "app/_details/destinations-details/
 import { ReportsComponent } from "app/reports/reports.component";
 import { TypePackagesDetailsComponent } from "app/_details/type-packages-details/type-packages-details.component";
 import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
+import { ClientsDetailsComponent } from "app/_details/clients-details/clients-details.component";
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -59,5 +60,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "typePackages-gestion/:id_typePackages", component: TypePackagesDetailsComponent },
   //DETAILS CITIES 
   { path: "cities-gestion/:id_city", component: CitiesDetailsComponent },
+  //DEATILS CLIENTS
+  { path: "clients-gestion/:id_client", component: ClientsDetailsComponent }, 
 
 ];

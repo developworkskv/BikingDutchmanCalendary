@@ -34,6 +34,7 @@ import { CitiesComponent } from 'app/cities/cities.component';
 import { ReportsComponent } from 'app/reports/reports.component';
 import { TypePackagesDetailsComponent } from "app/_details/type-packages-details/type-packages-details.component";//DETAILS
 import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
+import { ClientsDetailsComponent } from "app/_details/clients-details/clients-details.component";
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { CitiesDetailsComponent } from "app/_details/cities-details/cities-detai
     CitiesComponent,
     ReportsComponent,
     TypePackagesDetailsComponent,
-    CitiesDetailsComponent
+    CitiesDetailsComponent,
+    ClientsDetailsComponent
     
    
   
