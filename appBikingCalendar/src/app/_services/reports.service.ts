@@ -12,4 +12,10 @@ export class ReportsService {
     return this.http.get( URL_SERVICIOS+'/descargar-pdf/'+ localStorage.getItem('bd_org'));
     
   }
+
+  getUrlToDownloadPdf(numberDoc: any){
+  // var url = URL_SERVICIOS+'/descargar-pdf/'+ localStorage.getItem('bd_org');
+    var url = URL_SERVICIOS + '/trasnformUrlToDownloadPdf/'+localStorage.getItem('bd_org') + '/doc/'+ numberDoc;
+   return url;
+  }
 }

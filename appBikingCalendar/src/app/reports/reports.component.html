@@ -1,22 +1,149 @@
 <div class="main-content">
   <div class="row justify-content-md-center">
     <div class="col-md-auto" style="padding-top: 0%;">
-      <h3>REPORTES DEL SISTEMA</h3>
+      <h3>REPORTES BIKING DUTCHMAN MOUNTAIN</h3>
     </div>
   </div>
+  &nbsp;&nbsp;&nbsp;
 
-  <div class="row">
-    <div class="col">
-      <i class="material-icons">reorder</i>&nbsp;&nbsp;&nbsp; REPORTES
-    </div>
-    <div class="col-md-auto">
-    
-      <button (click)="report()" type="button" class="btn btn-info">
-        <i class="material-icons">print</i>&nbsp;&nbsp;&nbsp; Generar Reporte de Destinos
-      </button>
+  <div class="container">
+    <h3>TOURS COMPLETADOS</h3>
+    <div class="row">
+      <div class="col-sm">
+        <div class="card text-center">
+          <div class="card-header bg-info">
+            MES ACTUAL
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Tours completados mes actual</h5>
+            <p class="card-text">3</p>
+            <a href="#" class="btn btn-success"> 👉 <small> Descargar </small></a>
+          </div>
+          <div class="card-footer text-muted">
+            Marzo
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="card text-center">
+          <div class="card-header bg-info">
+            AÑO ACTUAL
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Tours completados año actual</h5>
+            <p class="card-text">43</p>
+            <a href="#" class="btn btn-success"> 👉 <small> Descargar </small></a>
+          </div>
+          <div class="card-footer text-muted">
+            Enero - Junio
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="card text-center">
+          <div class="card-header bg-info">
+            FILTRO
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Tours busqueda</h5>
 
-      <a href="http://localhost:8000/api/descargar-pdf/1">CLICK TO DOWNLOAD REPORT</a>
+            Fecha inicio: <input type="date"> 
+            Fecha fin: &nbsp;&nbsp;&nbsp;&nbsp; <input type="date">
+
+            <button (click)="report(1)" type="button" class="btn btn-info">
+              <i class="material-icons">search</i>&nbsp; Buscar
+            </button>
+            <br>
+            <a class="btn btn-success" *ngIf="urltoDownload" href="{{urltoDownload}}">👉 <small> Descargar </small></a>
+          </div>
+          <div class="card-footer text-muted">
+            Personalizado
+          </div>
+        </div>
+      </div>
     </div>
+
+    <h3>TOURS EN PROCESOS</h3>
+    <div class="row">
+      <div class="col-sm">
+        TIPO PAQUETE GOLDEN
+      </div>
+      <div class="col-sm">
+        TIPO PAQUETE PREMIUM
+      </div>
+      <div class="col-sm">
+        TIPO PAQUETE STANDAR
+      </div>
+    </div>
+
+
+    <h3>TOURS PERSONALIZADO</h3>
+    <div class="row">
+      <div class="col-sm">
+        TIPO PAQUETE GOLDEN
+      </div>
+      <div class="col-sm">
+        TIPO PAQUETE PREMIUM
+      </div>
+      <div class="col-sm">
+        TIPO PAQUETE STANDAR
+      </div>
+    </div>
+
+
+    <h3>USUARIOS</h3>
+    <div class="row">
+      <div class="col-sm">
+        TIPO PAQUETE GOLDEN
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+    </div>
+
+    <h3>CLIENTES</h3>
+    <div class="row">
+      <div class="col-sm">
+        TIPO PAQUETE GOLDEN
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+    </div>
+
+    <h3>DESTINOS</h3>
+    <div class="row">
+      <div class="col-sm">
+        TIPO PAQUETE GOLDEN
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+    </div>
+
+    <h3>PAQUETES</h3>
+    <div class="row">
+      <div class="col-sm">
+        TIPO PAQUETE GOLDEN
+      </div>
+      <div class="col-sm">
+        TIPO PAQUETE PREMIUM
+      </div>
+      <div class="col-sm">
+        TIPO PAQUETE STANDAR
+      </div>
+    </div>
+
+
   </div>
 
 </div>

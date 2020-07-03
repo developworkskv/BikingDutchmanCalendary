@@ -12,7 +12,7 @@ import {Location} from '@angular/common';
 })
 export class DestinationsDetailsComponent implements OnInit {
 
-    DestinoA:any;
+    destinoA:any;
     destinoForm: FormGroup;
    // id_destination: any;
     id_destination = localStorage.getItem("bd_destination_id");
@@ -41,8 +41,8 @@ export class DestinationsDetailsComponent implements OnInit {
             resp=>{
               //console.log(resp);
               if(resp['status'] == 1){
-                this.DestinoA = resp['data'][0];
-                console.log("DATA Details: " + JSON.stringify(this.DestinoA));
+                this.destinoA = resp['data'][0];
+                console.log("DATA Details: " + JSON.stringify(this.destinoA));
                 this.crearFormularioD();
   
               }
@@ -60,13 +60,16 @@ export class DestinationsDetailsComponent implements OnInit {
       // Creamos el formulario  
       this.destinoForm = this.formBuilder.group({
   
-      name: [this.DestinoA['name'], Validators.required],
-      availability: [this.DestinoA['availability'], Validators.required],
-      isActive: [this.DestinoA['isActive'], Validators.required],
-      description: [this.DestinoA['description'], Validators.required],
-      description2: [this.DestinoA['description2'], Validators.required],
-      value: [this.DestinoA['value'], Validators.required],
-      status: [this.DestinoA['status'], Validators.required],
+      name: [this.destinoA['name'], Validators.required],
+      availability: [this.destinoA['availability'], Validators.required],
+      isActive: [this.destinoA['isActive'], Validators.required],
+      description1: [this.destinoA['description1'], Validators.required],
+      description2: [this.destinoA['description2'], Validators.required],
+      value: [this.destinoA['value'], Validators.required],
+      status: [this.destinoA['status'], Validators.required],
+      city: [this.destinoA['city'], Validators.required],
+      descriptionCity: [this.destinoA['descriptionCity'], Validators.required],
+      
       
     
   

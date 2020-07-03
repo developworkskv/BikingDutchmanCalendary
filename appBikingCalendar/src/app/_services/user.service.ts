@@ -12,7 +12,6 @@ export class UserService {
 
 
   constructor(public htpp: HttpClient) {
-    console.log('User Service Active');
      this.testConexion();// TEST
      this.isLogginUser();
    }
@@ -27,14 +26,12 @@ export class UserService {
    }
 
    testConexion(){ // TEST
-     console.log( this.htpp.get( URL_SERVICIOS+'/conexionApiTest')
+    this.htpp.get( URL_SERVICIOS+'/conexionApiTest')
      .subscribe(data=> {
             console.log(data);
             
-     })
-     );
-     
-    
+     });
+
    }
 
    //CRUD 

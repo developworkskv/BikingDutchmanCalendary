@@ -1,3 +1,4 @@
+import { LoginService } from 'app/_services/login.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
@@ -31,11 +32,15 @@ export class ClientsComponent implements OnInit, AfterViewInit {
     this._dtElement = value;
   }
 
+
   constructor(public _client: ClientService,
     private formBuilder: FormBuilder,
-    private toastService: ToastService)
-    //private _person:UserService) 
-    {
+    private toastService: ToastService,
+    public _login: LoginService) {
+      // VERIFICAR SESION DEL USUARIO
+    this._login.sesionActive(localStorage.getItem('token_bd_users'), localStorage.getItem('bd_org'));  
+  
+    
     this.getAllC();
     this.id_org = localStorage.getItem('bd_org');
     
@@ -73,19 +78,6 @@ export class ClientsComponent implements OnInit, AfterViewInit {
     this.dtTrigger.unsubscribe();
   }
 
-  //GET ALL PERSONAS 
-/*getPerson(){
-  this._client.getAllClient().subscribe(
-    resp=>{
-      if( resp['status'] == 1){
-        this.persons = resp['data'];
-        console.log(this.persons);
-        
-      }
-    }
-  );
-  
-}*/
 
  //CREAR CLIENTS.
  onSubmit(clientForm){ // 

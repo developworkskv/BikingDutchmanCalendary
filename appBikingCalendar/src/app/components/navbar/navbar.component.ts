@@ -150,10 +150,8 @@ export class NavbarComponent implements OnInit {
         .subscribe(
             resp=>{
                 this.notifications = resp;
-                console.log(this.notifications);
                 this.numberNotifications = this.notifications.length;
-                console.log(this.notifications.length );
-                
+               
             }
         )
     }

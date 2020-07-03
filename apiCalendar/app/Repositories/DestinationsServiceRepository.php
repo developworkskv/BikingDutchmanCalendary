@@ -36,8 +36,12 @@ class DestinationsServiceRepository
      public function getDestinoById($id_destination, $id_org)
      {
          $destino = DB::table('bd_destination')
-         ->where('bd_destination_id', $id_destination) 
-         ->where('bd_organization_id', $id_org)
+         ->join('bd_cities', 'bd_destination.bd_cities_id', '=', 'bd_cities.bd_cities_id')
+         ->join('bd_organization', 'bd_destination.bd_organization_id', '=', 'bd_organization.bd_organization_id')
+         ->select('bd_destination.*', 'bd_cities.name as city', 'bd_cities.description as descriptionCity')
+         //->where('bd_destination_id', $id_destination) 
+         //->where('bd_organization_id', $id_org, $id_destination)
+         ->where('bd_destination.bd_destination_id', $id_destination)
          ->get();
          return $destino;
      }
@@ -89,14 +93,14 @@ class DestinationsServiceRepository
 
     //UPDATE PARA DESTINOS 
    
-    public function updateDestino($bd_destination_id, $name, $availability, $isActive, $description, $description2, $value, $status)
+    public function updateDestino($bd_destination_id, $nameC, $availability, $isActive, $description, $description2, $value, $status)
     {
         date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
         $fecha = new DateTime('NOW');
           $affected = DB::table('bd_destination')
               ->where('bd_destination_id', $bd_destination_id)
               ->update([
-                  'name' => $name,
+                  'nameC' => $nameC,
                   'availability' => $availability,
                   'isActive' => $isActive,
                   'description1' => $description,
