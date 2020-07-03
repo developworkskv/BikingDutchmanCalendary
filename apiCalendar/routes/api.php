@@ -88,3 +88,11 @@ Route::post('clientUpdate/{id_client}/update', 'ClientController@updateClient');
 Route::get('clientDelete/{id_client}/org/{id_org}', 'ClientController@deleteClient');
 Route::get('clientById/{id_client}/org/{id_org}', 'ClientController@getClientById');
 
+//CRUD PACKS
+Route::get('packsRead/{id_org}', 'PackController@getAllPacks');
+Route::post('packsCreate/{id_org}', 'PackController@createPack');
+Route::get('packsDelete/{id_packs}/org/{id_org}', 'PackController@deletePacks');
+Route::get('packsById/{id_packs}/org/{id_org}', 'PackController@getPacksById');
+Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@updatePackageData');
+
+
