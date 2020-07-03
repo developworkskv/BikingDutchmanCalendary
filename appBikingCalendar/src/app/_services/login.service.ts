@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../config/url.servicios';
 import { ToastService } from './toast.service';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(public http: HttpClient, public toastService: ToastService,) { }
+  constructor(public http: HttpClient, public toastService: ToastService,private router: Router) { }
 
   iniciarSesion(user: any){
     return this.http.post(URL_SERVICIOS +'/iniciarSesion', user)
@@ -41,8 +42,29 @@ export class LoginService {
     });
 
   }
+  // VALIDACION DE RUTAS CUANDO EL USUARIO ESTE ACTIVO o INACTIVO
   sesionActive( token, id_org ){
-    return this.http.get(URL_SERVICIOS + '/sesion/' + token + '/'+ id_org);
+    if(localStorage.getItem('token_bd_users') && localStorage.getItem('token_bd_users') ){
+      return this.http.get(URL_SERVICIOS + '/sesion/' + token + '/'+ id_org)
+    .subscribe(
+      resp =>{
+       // console.log("USER EN SESION " + JSON.stringify(resp['data']['token']));
+        if(localStorage.getItem('token_bd_users') == resp['data']['token']){
+          console.log("SESION ACTIVA");
+        
+        }else{
+          console.log("SESION INACTIVA - servidor");
+          localStorage.clear();
+          window.location.reload();
+        }
+      }
+    )
+    }else{
+      this.router.navigate(['/','login']);
+      console.log("SESION INACTIVA ");
+    }
+ }
+
   }
-}
+
 

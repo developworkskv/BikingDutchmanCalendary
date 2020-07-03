@@ -6,6 +6,7 @@ import { TypeUsersService } from 'app/_services/type-users.service';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DataTableDirective } from 'angular-datatables';
+import { LoginService } from 'app/_services/login.service';
 
 @Component({
   selector: 'app-users',
@@ -34,8 +35,10 @@ export class UsersComponent implements OnInit ,AfterViewInit {
   constructor(public _user: UserService,
     private formBuilder: FormBuilder,
     private toast: ToastService,
-    private _typeUser: TypeUsersService
-    ) { 
+    private _typeUser: TypeUsersService,
+    public _login: LoginService) {
+      // VERIFICAR SESION DEL USUARIO
+    this._login.sesionActive(localStorage.getItem('token_bd_users'), localStorage.getItem('bd_org'));  
     this.getAll();  
     this.typesAdmin();  
     this.id_org = localStorage.getItem('bd_org');
@@ -125,7 +128,7 @@ crearFormularios(){
   // Creamos el formulario  
   
   this.adminForm = this.formBuilder.group({
-    name: ['', Validators.required],
+    tourId: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],

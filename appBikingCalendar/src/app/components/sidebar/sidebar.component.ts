@@ -70,7 +70,6 @@ export class SidebarComponent implements OnInit {
   }
 
   estadoSesion(){ // logueado o no logueado
-    console.log("Usuario En sesion: "+this._user.isLoggin);
     // DETERMINAR LOS MENUS A CARGAR 
     if(!this.showMenu){
       // Usuario no registrado no hay nada en local stroage
