@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'app/_services/login.service';
-=======
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
@@ -9,7 +6,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from 'app/_services/client.service';
 import { ToastService } from 'app/_services/toast.service';
 
->>>>>>> 6a8e7cc96dd2348959b974a25f179b47c47dc51c
 
 @Component({
   selector: 'app-clients',
@@ -36,17 +32,15 @@ export class ClientsComponent implements OnInit, AfterViewInit {
     this._dtElement = value;
   }
 
-<<<<<<< HEAD
-  constructor(public _login: LoginService) {
-    // VERIFICAR SESION DEL USUARIO
-  this._login.sesionActive(localStorage.getItem('token_bd_users'), localStorage.getItem('bd_org'));  
-}
-=======
+
   constructor(public _client: ClientService,
     private formBuilder: FormBuilder,
-    private toastService: ToastService)
-    //private _person:UserService) 
-    {
+    private toastService: ToastService,
+    public _login: LoginService) {
+      // VERIFICAR SESION DEL USUARIO
+    this._login.sesionActive(localStorage.getItem('token_bd_users'), localStorage.getItem('bd_org'));  
+  
+    
     this.getAllC();
     this.id_org = localStorage.getItem('bd_org');
     
@@ -55,7 +49,6 @@ export class ClientsComponent implements OnInit, AfterViewInit {
      ngAfterViewInit() {
       // It is necesary to reload the datatable
     }
->>>>>>> 6a8e7cc96dd2348959b974a25f179b47c47dc51c
 
   ngOnInit() {
     this.crearFormularios();   
@@ -85,19 +78,6 @@ export class ClientsComponent implements OnInit, AfterViewInit {
     this.dtTrigger.unsubscribe();
   }
 
-  //GET ALL PERSONAS 
-/*getPerson(){
-  this._client.getAllClient().subscribe(
-    resp=>{
-      if( resp['status'] == 1){
-        this.persons = resp['data'];
-        console.log(this.persons);
-        
-      }
-    }
-  );
-  
-}*/
 
  //CREAR CLIENTS.
  onSubmit(clientForm){ // 
