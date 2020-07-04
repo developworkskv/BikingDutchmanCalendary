@@ -35,6 +35,7 @@ import { ReportsComponent } from 'app/reports/reports.component';
 import { TypePackagesDetailsComponent } from "app/_details/type-packages-details/type-packages-details.component";//DETAILS
 import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
 import { ClientsDetailsComponent } from "app/_details/clients-details/clients-details.component";
+import { PacksComponent } from 'app/packs/packs.component';
 
 
 @NgModule({
@@ -73,9 +74,9 @@ import { ClientsDetailsComponent } from "app/_details/clients-details/clients-de
     ReportsComponent,
     TypePackagesDetailsComponent,
     CitiesDetailsComponent,
-    ClientsDetailsComponent
-    
-   
+    ClientsDetailsComponent,
+    PacksComponent
+     
   
   ]
 })
