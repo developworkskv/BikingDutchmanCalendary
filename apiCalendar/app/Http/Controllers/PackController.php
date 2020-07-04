@@ -63,7 +63,7 @@ public function deletePacks($id_package, $id_org)
     {
         $gestionPaquetes = new PackServiceRepository;
         // verificar si el usuario existe para borrar
-        $packIsRegister = $gestionPaquetes->getPacksById($id_package, $id_org);
+        $packIsRegister = $gestionPaquetes->getPackById($id_package, $id_org);
         if (count($packIsRegister) == 0) {
             // no hay Datos
             return $this->sendError('Registro no encontrado', 'Ningun registro insertado en esta tabla.');
