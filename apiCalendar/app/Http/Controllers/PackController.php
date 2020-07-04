@@ -29,9 +29,12 @@ public function createPack(Request $request, $id_org){
     $insert = $gestionPaquetes->newPack(
         $request->input('name'),
         $request->input('price'),
-        $request->input('numbers_clients'),
+        $request->input('numbers_passengers'),
+        $request->input('isActive'),
         $request->input('description'),
         $request->input('description2'),
+        $request->input('value'),
+        $request->input('status'),
         $id_org,
         $request->input('id_type_packages')
         
@@ -41,10 +44,10 @@ public function createPack(Request $request, $id_org){
 
 }
 // Get - By Id
-public function getPackById($id_package, $id_org)
+public function getPacksById($id_package, $id_org)
 {
     $gestionPack = new PackServiceRepository;
-    $package = $gestionPack->getPacksById($id_package, $id_org);
+    $package = $gestionPack->getPackById($id_package, $id_org);
 
     if (count($package) == 0) {
         // no hay Datos
@@ -87,9 +90,13 @@ public function deletePacks($id_package, $id_org)
                   $id_package,
                   $request->input('name'),
                   $request->input('price'),
-                  $request->input('numbers_clients'),
+                  $request->input('numbers_passengers'),
+                  
                   $request->input('description'),
                   $request->input('description2'),
+              
+
+                 
                   $id_org,
               );
               $newRegisterEdit = $gestionPaquetes->getPacksById($id_package, $id_org);
