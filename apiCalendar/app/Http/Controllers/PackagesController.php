@@ -41,7 +41,7 @@ class PackagesController extends BaseController
     }
 
     // GET - TYPE PACKAGES
-    public function getAllTypesPackages($id_org =1 ) //DATO QUEMADO HASTA UTILIZAR FRONT END
+    public function getAllTypesPackages($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
     {
         $gestionPaquetes = new PackageServiceRepository;
         $packages = $gestionPaquetes->getAllTypePackages($id_org);
