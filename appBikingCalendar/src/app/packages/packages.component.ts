@@ -18,7 +18,6 @@ export class PackagesComponent implements OnInit {
   id_org = localStorage.getItem("bd_org");
   typePackageForm: FormGroup;
   typesPackages: any;
-
   @ViewChild(DataTableDirective, null)
   private _dtElement: DataTableDirective;
 

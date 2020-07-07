@@ -1,0 +1,77 @@
+<form [formGroup]="packageForm" (ngSubmit)="onSubmit(packageForm)">
+  <div class="form-row">
+    <div class="form-group col"> 
+      <label for="inputEmail4">Destinos</label> 
+      <mat-form-field >
+        <mat-select placeholder="👉 SELECIONE EL ó LOS DESTINOS" formControlName="id_destinations" multiple>
+          <mat-option  *ngFor="let destino of destinos" [value]="destino.bd_destination_id">{{destino.city}} - {{destino.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div> 
+  
+  <div class="form-row">
+    <div class="form-group col">              
+      <label for="inputEmail4">Nombre del paquete</label>
+      <input type="text" formControlName="nombre" class="form-control"  placeholder="Nombre del paquete">
+    </div>
+    <div class="form-group col"> 
+      <label for="inputEmail4">Tipo de Paquete</label>
+      <select formControlName="id_type_package" class="custom-select">
+        <option>-- SELECIONAR</option>
+        <option *ngFor="let item of typesPackages" 
+        value="{{ item.bd_type_packages_id }}">
+        {{ item.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group col">
+      <label for="inputEmail4">Precio Tour</label>
+      <input formControlName="price" type="number" min="1" step=".00" class="form-control" placeholder="$">
+    </div>  
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">              
+      <label for="inputEmail4">Código HIDDEN</label>
+      <input formControlName="code" type="text" class="form-control" id="codigo" >
+    </div>
+    <div class="form-group col">
+      <label for="inputEmail4">Numero pasajeros.</label>
+      <input formControlName="number_passengers" type="number" min="1" max="4" class="form-control" placeholder="#">
+    </div>
+    <div class="form-group col">
+      <label for="inputEmail4">Número de días</label>
+      <input formControlName="number_days" type="number" max="5" min="1" class="form-control" id="codigo" placeholder="#">
+    </div>  
+    <div class="form-group col">
+      <label for="inputPassword4">Longitud</label>
+      <input formControlName="longitud" type="number" min="1" step="any" class="form-control" id="inputPassword4" placeholder="Km">
+
+    </div>
+
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="inputPassword4">Dificultad</label>
+      <select formControlName="dificultad"  class="custom-select">
+        <option>Fácil</option>
+        <option>Intermedio</option>
+        <option>Moderado</option>
+        <option>Dificil</option>
+      </select>
+    </div>
+    <div class="form-group col">
+      <label for="inputEmail4">Descripción</label>
+      <textarea formControlName="descripcion" type="text"  class="form-control"> </textarea>
+    </div>  
+    <div class="form-group col">
+      <label for="inputEmail4">Descripción (observación)</label>
+      <textarea formControlName="descripcion2" type="text" class="form-control"></textarea>
+    </div>  
+  </div>
+
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
