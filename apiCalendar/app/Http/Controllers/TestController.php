@@ -20,28 +20,6 @@ class TestController extends Controller
         ]);
         return "SERVICIO POST";
     }
-   /* public function testChatbotWA($productoAndComent){
- 
-        $newAdmin = DB::table('bd_ch_test')->insert([
-            'bd_ch_name' => $productoAndComent,
-        ]);
-        return "SERVICIO POST";
-    }
-    public function responseChatbotDataToBDWA(){
- 
-        $data = DB::table('bd_ch_test')
-        ->get();
-    
-        return $data;
-    }
-    public function deleteBDWA(){
-
-        $delete = DB::table('bd_ch_test')
-        ->delete();
-    return $delete;
-    }
-*/
-
 
     public function responseChatbotDataToBD(){
  
@@ -69,4 +47,48 @@ class TestController extends Controller
       return $data;
     }
     
+    // PRUEBAS CHATBOR CHATFUEL
+
+    public function getDestinationsWithButtons(){
+        $dataDB = DB::table('bd_destination')
+        ->get();
+        
+        $data = '[
+            {
+              "type": "show_block",
+              "block_names": ["name of block"],
+              "title": "Show Block"
+            },
+            {
+              "type": "web_url",
+              "url": "https://rockets.chatfuel.com",
+              "title": "Visit Website"
+            },
+            {
+              "url": "https://rockets.chatfuel.com/api/welcome",
+              "type":"json_plugin_url",
+              "title":"Postback"
+            }
+          ]';
+        $json_resp_chatbot=' {
+            
+              "messages": [
+              {
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "button",
+                    "text": "Hello!",
+                    "buttons": '.$data.'
+                  }
+                }
+              }
+            ]
+          };';
+
+          return $json_resp_chatbot;
+          
+    }
+
+
 }

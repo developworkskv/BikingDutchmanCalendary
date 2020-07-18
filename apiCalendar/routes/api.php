@@ -45,19 +45,15 @@ Route::get('packagesRead', 'PackagesController@getAllTypesPackages');
 Route::get('packageById/{id_admin}/org/{id_org}', 'PackagesController@getTypePackageId');
 Route::post('package/{bd_users_id}/update/{id_org}/org', 'PackagesController@updateTypePackageData');
 Route::get('packageDelete/{id_package}/org/{id_org}', 'PackagesController@deleteTypePackage');
-
-// API BOT
-//test - get
 Route::get('packagesReadB', 'PackagesController@getAllTypesPackagesBot');
-// test -post
+
+// TEST CHATBOT
 Route::post('testChatbot', 'TestController@testChatbot');
 Route::get('responseTest', 'TestController@responseChatbotDataToBD');
 //test -show view data of chatbot
 Route::get('notifications', 'TestController@getToShowInView');
+Route::get('destinations', 'TestController@getDestinationsWithButtons');
 
-Route::get('testWA/{prdoComent}', 'TestController@testChatbotWA');
-Route::get('responseTestWA', 'TestController@responseChatbotDataToBDWA');
-Route::get('deleteBDWA', 'TestController@deleteBDWA');
 
 
 //CRUD PARA DETINOS 
