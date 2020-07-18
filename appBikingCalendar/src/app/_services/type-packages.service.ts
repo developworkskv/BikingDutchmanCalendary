@@ -16,7 +16,7 @@ export class TypePackagesService {
 }
    //GET 
    getAllTypesPackages(){ // TEST
-    return this.http.get( URL_SERVICIOS+'/packagesRead');
+    return this.http.get( URL_SERVICIOS+'/packagesRead/'+localStorage.getItem('bd_org'));
     
   }
   //GET TYPEPAKAGES BY ID

@@ -42,15 +42,15 @@ export class UsersComponent implements OnInit ,AfterViewInit {
     this.getAll();  
     this.typesAdmin();  
     this.id_org = localStorage.getItem('bd_org');
-
   }
   ngAfterViewInit() {
     // It is necesary to reload the datatable
   }
-
   ngOnInit() {
     this.crearFormularios();   
     this.buildOptionDatatable();
+    this.id_org = localStorage.getItem('bd_org');
+
   }
   buildOptionDatatable(){
     this.dtOptions = {
@@ -128,7 +128,7 @@ crearFormularios(){
   // Creamos el formulario  
   
   this.adminForm = this.formBuilder.group({
-    tourId: ['', Validators.required],
+    name: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', Validators.required],
     fechaNacimiento: ['', Validators.required],
@@ -139,12 +139,6 @@ crearFormularios(){
     bd_type_users_id: ['', Validators.required],
 });
 
-  // Creamos el formulario  
- /* this.rutaForm = this.formBuilder.group({
-   nombre_ruta: ['', Validators.required],
-   hora_ruta: ['', Validators.required],
-   mes_ruta_id: ['', Validators.required]
-});*/
 }
 
 //DELETE

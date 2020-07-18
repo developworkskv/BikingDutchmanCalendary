@@ -75,4 +75,23 @@ $affected = DB::table('bd_packages')
         return $affected;      
 
 }
+
+public function newPackDestination($code , $bd_destination_id, $bd_packages_id){
+    date_default_timezone_set('America/Guayaquil');
+    $fecha = new DateTime('NOW');
+
+    $newPackDestination = DB::table('bd_packages_destination')->insert([
+        'code_pack_destination' =>$code,
+        'bd_destination_id' =>$bd_destination_id,
+        'bd_packages_id' =>$bd_packages_id,
+        'created_at' => $fecha->format('Y-m-d H:i:s')
+    ]);
+    
+}
+
+public function getLastRow(){
+   return  $deletePackage = DB::table('bd_packages')
+   ->get()->last();
+}
+
 }

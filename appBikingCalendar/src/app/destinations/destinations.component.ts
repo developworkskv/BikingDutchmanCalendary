@@ -42,7 +42,7 @@ export class DestinationsComponent implements OnInit {
       // VERIFICAR SESION DEL USUARIO
     this._login.sesionActive(localStorage.getItem('token_bd_users'), localStorage.getItem('bd_org'));  
     this.getAllCitiesSelect();
-
+    this.id_org = localStorage.getItem("bd_org");
   }
 
   ngOnInit() {
@@ -50,6 +50,8 @@ export class DestinationsComponent implements OnInit {
     this.buildForm();
     this.buildOptionDatatable();
     this.getAllCitiesSelect();
+    this.id_org = localStorage.getItem("bd_org");
+
   }
   buildOptionDatatable(){
     this.dtOptions = {

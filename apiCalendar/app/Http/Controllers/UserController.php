@@ -51,7 +51,7 @@ class UserController extends BaseController
             return $this->sendError('Datos Incompletos', 'Error, porfavor ingresa los datos solicitados');
         }
 
-        if (count($request->all()) >= 7 ) {
+        if (count($request->all()) >= 5 ) {
        
             // verificar si ese email ya existe registrado
             $userExist = $gestionUser->userExist($request->input('email'));

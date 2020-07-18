@@ -41,7 +41,7 @@ Route::get('typesUser', 'UserController@allTipesUser');
 
 //CRUD para TIPOS DE PAQUETES
 Route::post('packageCreate/{id_org}', 'PackagesController@createTypePackages');
-Route::get('packagesRead', 'PackagesController@getAllTypesPackages');
+Route::get('packagesRead/{id_org}', 'PackagesController@getAllTypesPackages');
 Route::get('packageById/{id_admin}/org/{id_org}', 'PackagesController@getTypePackageId');
 Route::post('package/{bd_users_id}/update/{id_org}/org', 'PackagesController@updateTypePackageData');
 Route::get('packageDelete/{id_package}/org/{id_org}', 'PackagesController@deleteTypePackage');
@@ -86,7 +86,7 @@ Route::get('clientById/{id_client}/org/{id_org}', 'ClientController@getClientByI
 
 //CRUD PACKS
 Route::get('packsRead/{id_org}', 'PackController@getAllPacks');
-Route::post('packsCreate/{id_org}', 'PackController@createPack');
+Route::post('packsCreate/{id_org}/destino/{id_destino}', 'PackController@createPack');
 Route::get('packsDelete/{id_packs}/org/{id_org}', 'PackController@deletePacks');
 Route::get('packsById/{id_packs}/org/{id_org}', 'PackController@getPacksById');
 Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@updatePackageData');

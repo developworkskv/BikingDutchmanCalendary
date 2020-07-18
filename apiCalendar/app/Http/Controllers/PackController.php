@@ -23,9 +23,9 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
     }
 }
 //POST - PACKAGES
-public function createPack(Request $request, $id_org){
+public function createPack(Request $request, $id_org, $id_destino){
     $gestionPaquetes = new PackServiceRepository;
-
+    // INSERTA EN LA TABLA 
     $insert = $gestionPaquetes->newPack(
         $request->input('name'),
         $request->input('price'),
@@ -37,9 +37,19 @@ public function createPack(Request $request, $id_org){
         $request->input('status'),
         $id_org,
         $request->input('id_type_packages')
-        
-         
+           
     );
+    // NECESITO EL ULTIMO REGISTRO DEL ANTERIOR QUERY
+    // PARA OBTENER EL ID
+    $id_package = $gestionPaquetes->getLastRow();
+  
+    // INSERT AL LA TABLA DE ROMPIMIENTO
+     $insertTableRelacion = $gestionPaquetes->newPackDestination(
+        $request->input('code'),
+        $id_destino,
+        $id_package->bd_packages_id, // Id_del Query obtenido         
+    );
+
     return $this->sendResponse('Tipo paquete creado', 'Tipo de Paquete Biking Dutchman registrado.');
 
 }
