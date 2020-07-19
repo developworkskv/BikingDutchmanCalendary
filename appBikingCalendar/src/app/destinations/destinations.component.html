@@ -53,7 +53,7 @@
                 <h2 _ngcontent-xkm-c107="" hidden>DESTINOS BIKING DUTCHMAN</h2>
               </div>
               <div class="col-md-auto">
-                <button type="button" class="btn btn-success bmd-btn-fab"
+                <button (click)="getAllCitiesSelect()" type="button" class="btn btn-success bmd-btn-fab"
                   >
                   <i class="material-icons">sync</i> <small> Sincronizar</small>
                 </button>
@@ -97,21 +97,21 @@
             <div class="form-row">
 
               <div class="col">
-                <label>Descripción 1</label>
+                <label>Observación</label>
                 <input
                   formControlName="description1"
                   type="text"
                   class="form-control"
-                  placeholder="Descripción 1"
+                  placeholder="Observación"
                 />
               </div>
               <div class="col">
-                <label>Descripción 2</label>
+                <label>Descripción (Opcional)</label>
                 <input
                   formControlName="description2"
                   type="text"
                   class="form-control"
-                  placeholder="Descripción 2"
+                  placeholder="Descripción (Opcional)"
                 />
               </div>
               <div class="col">
