@@ -16,8 +16,7 @@
           <span class="nav-tabs-title">ADMINISTRACIÓN:</span>
           <ul class="nav nav-tabs" data-tabs="tabs">
             <li class="nav-item">
-              <a mat-button class="nav-link active" href="#profile"
-                data-toggle="tab">
+              <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
                 <i class="material-icons">directions_bike</i> Paquetes
                 <div class="ripple-container"></div>
               </a>
@@ -37,13 +36,18 @@
         <div class="tab-pane active" id="profile">
           <div class="row">
             <div class="col">
-              <h2 _ngcontent-xkm-c107="">PAQUETES BIKING DUTCHMAN</h2>
+              <h4 _ngcontent-xkm-c107="">PAQUETES BIKING DUTCHMAN</h4>
             </div>
-           
+            <div class="col-md-auto">
+              <button type="button" class="btn btn-info bmd-btn-fab" data-toggle="collapse" href="#collapsePacks"
+                role="button" aria-expanded="false" aria-controls="collapsePacks">
+                <i class="material-icons">fiber_new</i> Registrar Paquete
+              </button>
+            </div>
+            <!--  COMPONENTE PACKS -->
+            <app-packs></app-packs>
           </div>
-          <!--  COMPONENTE PACKS -->
-          <app-packs></app-packs>
-
+          <!--FIN-->
         </div>
         <div class="tab-pane" id="messages">
           <div class="row">
@@ -51,16 +55,15 @@
               <h2 _ngcontent-xkm-c107="">TIPO DE PAQUETES BIKING DUTCHMAN</h2>
             </div>
             <div class="col-md-auto">
-              <button type="button" class="btn btn-info bmd-btn-fab"
-              data-toggle="collapse" href="#collapseExample2" role="button"
-              aria-expanded="false" aria-controls="collapseExample2">
-              <i class="material-icons">fiber_new</i> Registrar
-            </button>
+              <button type="button" class="btn btn-info bmd-btn-fab" data-toggle="collapse" href="#collapseExample2"
+                role="button" aria-expanded="false" aria-controls="collapseExample2">
+                <i class="material-icons">fiber_new</i> Registrar
+              </button>
             </div>
           </div>
           <div class="collapse" id="collapseExample2">
-            
-            
+
+
             <div class="card">
               <div class="card-header">
                 FORMULARIO TIPO PAQUETES
@@ -84,48 +87,46 @@
                     <button type="submit" class="btn btn-danger">Guardar.</button>
 
                   </div>
-                 
+
                 </form>
-                
+
               </div>
             </div>
-          
-          </div>
-         
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-          class="row-border hover">
-                <thead class="thead-dark">
-        <tr>
-          <th scope="col">Tipo Paquete</th>
-          <th scope="col">Descrición</th>
-          <th scope="col">Descrición 2</th>
-          <th scope="col">Fecha creación</th>
-          <th scope="col"> Editar </th>
-          <th scope="col">Eliminar</th>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let typePackage of typesPackages ">
-          <td>{{typePackage.name}}</td>
-          <td>{{typePackage.description1}}</td>
-          <td>{{typePackage.description2}}</td>
-          <td>{{typePackage.created_at}}</td>
-          <td> 
-            <button
-            [routerLink]="[
+          </div>
+
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Tipo Paquete</th>
+                <th scope="col">Descrición</th>
+                <th scope="col">Descrición 2</th>
+                <th scope="col">Fecha creación</th>
+                <th scope="col"> Editar </th>
+                <th scope="col">Eliminar</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let typePackage of typesPackages ">
+                <td>{{typePackage.name}}</td>
+                <td>{{typePackage.description1}}</td>
+                <td>{{typePackage.description2}}</td>
+                <td>{{typePackage.created_at}}</td>
+                <td>
+                  <button [routerLink]="[
                       '/typePackages-gestion',
-                      typePackage.bd_type_packages_id]"
-            type="button" class="btn btn-outline-success">
-            <i class="material-icons">visibility</i>
-          </button>          </td>
-          <td>
-            <button (click)="deleteTypePackage(typePackage.bd_type_packages_id, id_org, typePackage.name)" type="button" class="btn btn-outline-danger">
-              <i class="material-icons">delete</i>
-            </button> 
-          </td>
-        </tr>
-      </tbody>
+                      typePackage.bd_type_packages_id]" type="button" class="btn btn-outline-success">
+                    <i class="material-icons">visibility</i>
+                  </button> </td>
+                <td>
+                  <button (click)="deleteTypePackage(typePackage.bd_type_packages_id, id_org, typePackage.name)"
+                    type="button" class="btn btn-outline-danger">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
           </table>
 
         </div>
@@ -154,7 +155,8 @@
 
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -185,12 +187,12 @@
 
 <script>
   $('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
 </script>

@@ -35,6 +35,9 @@ public function createPack(Request $request, $id_org, $id_destino){
         $request->input('description2'),
         $request->input('value'),
         $request->input('status'),
+        $request->input('dificultad'),
+        $request->input('longitud'),
+        $request->input('number_days'),
         $id_org,
         $request->input('id_type_packages')
            

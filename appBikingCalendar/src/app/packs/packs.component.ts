@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { DestinationService } from 'app/_services/destination.service';
 import { TypePackagesService } from 'app/_services/type-packages.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ToastService } from 'app/_services/toast.service';
+import { PackService } from 'app/_services/pack.service';
+import { Subject } from 'rxjs';
+import 'rxjs/add/operator/map';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-packs',
@@ -12,17 +16,39 @@ import { ToastService } from 'app/_services/toast.service';
 export class PacksComponent implements OnInit {
   destinos: any;
   typesPackages:any;
+  paquetes: any;
   packageForm: FormGroup;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger = new Subject();
+  @ViewChild(DataTableDirective, null)
+  private _dtElement: DataTableDirective;
+
+  public get dtElement(): DataTableDirective {
+    return this._dtElement;
+  }
+  public set dtElement(value: DataTableDirective) {
+    this._dtElement = value;
+  }
 
   constructor(public _destinos: DestinationService,
     public _typePackages: TypePackagesService,
     private formBuilder: FormBuilder, 
-    public toastService: ToastService,) { }
+    public toastService: ToastService,
+    public _packs: PackService ) { }
 
   ngOnInit() {
     this.getAllDestination();
     this.getAllTypesPackages();
     this.buildForm();
+    this.buildOptionDatatable();
+    this.getAllPaquetes();
+
+  }
+  buildOptionDatatable(){
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5
+    };
   }
 
   // ******************* SELECTORS ******************
@@ -46,16 +72,16 @@ export class PacksComponent implements OnInit {
   buildForm() {
     this.packageForm = this.formBuilder.group({
       id_destinations: ["", Validators.required],
-      nombre: ["", Validators.required],
-      id_type_package: ["", Validators.required],
+      name: ["", Validators.required],
+      id_type_packages: ["", Validators.required],
       price: ["", Validators.required],
       code: ["", Validators.required],
-      number_passengers: ["", Validators.required],
+      numbers_passengers: ["", Validators.required],
       number_days: ["", Validators.required],
       longitud: ["", Validators.required],
       dificultad: ["", Validators.required],
-      descripcion: ["", Validators.required],
-      descripcion2: ["", Validators.required],
+      description: ["", Validators.required],
+      description2: ["", Validators.required],
       //bd_organization_id: [localStorage.getItem("bd_org"), Validators.required],
     });
   }
@@ -70,7 +96,47 @@ export class PacksComponent implements OnInit {
       );
     }
     console.log(packageForm.value);
-    
+    packageForm.value.id_destinations.forEach(id => {
+      this._packs.createTypePackage(packageForm.value, id)
+      .subscribe(
+        (resp) => {
+          if (resp["status"] == 1) {
+            this.toastService.showNotification(
+              "top",
+              "right",
+              "success",
+              resp["data"]
+            );
+            this.getAllPaquetes(); // PAQUETES
+            // NECESARIO.. volver actualizar la data y la datatable 
+            this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+              // Destroy the table first
+              dtInstance.destroy();
+              // Call the dtTrigger to rerender again
+            });
+            this.packageForm.reset();
+            this.buildForm();
+            this.buildOptionDatatable();
+  
+          }else{
+            this.toastService.showNotification(
+              "top",
+              "right",
+              "danger",
+              resp["data"]
+            );
+          }
+        }
+      ); 
+    });
 
+  }
+  getAllPaquetes(){
+    this._packs.allPacks().subscribe((resp) => {
+      console.log(resp["data"]);
+      this.paquetes = resp["data"];
+      this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
+
+    });
   }
 }
