@@ -81,7 +81,7 @@ public function getPersonById($id_person)
         'passport' => $passportC,
         'isActive' => true,
         'description1' => $description1C,
-        'description2' => $description2C,
+      //  'description2' => $description2C,
         'value' => 1,
         'status' => true,
         'bd_organization_id' => $id_org,

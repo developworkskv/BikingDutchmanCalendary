@@ -131,7 +131,7 @@ crearFormularios(){
     weight: ['', Validators.required],
     passport: ['', Validators.required],
     description1: ['', Validators.required],
-    description2: ['', Validators.required],
+   // description2: ['', Validators.required],
     //bd_persons_id: ['', Validators.required],
 
     bd_organization_id: [localStorage.getItem('bd_org') , Validators.required],
