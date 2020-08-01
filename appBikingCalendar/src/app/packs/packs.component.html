@@ -1,4 +1,7 @@
-<form [formGroup]="packageForm" (ngSubmit)="onSubmit(packageForm)">
+
+<div class="collapse" id="collapsePacks" style="padding-left: 80px; padding-right: 50px;" >
+
+  <form [formGroup]="packageForm" (ngSubmit)="onSubmit(packageForm)">
   <div class="form-row">
     <div class="form-group col"> 
       <label for="inputEmail4">Destinos</label> 
@@ -13,11 +16,11 @@
   <div class="form-row">
     <div class="form-group col">              
       <label for="inputEmail4">Nombre del paquete</label>
-      <input type="text" formControlName="nombre" class="form-control"  placeholder="Nombre del paquete">
+      <input type="text" formControlName="name" class="form-control"  placeholder="Nombre del paquete">
     </div>
     <div class="form-group col"> 
       <label for="inputEmail4">Tipo de Paquete</label>
-      <select formControlName="id_type_package" class="custom-select">
+      <select formControlName="id_type_packages" class="custom-select">
         <option>-- SELECIONAR</option>
         <option *ngFor="let item of typesPackages" 
         value="{{ item.bd_type_packages_id }}">
@@ -39,7 +42,7 @@
     </div>
     <div class="form-group col">
       <label for="inputEmail4">Numero pasajeros.</label>
-      <input formControlName="number_passengers" type="number" min="1" max="4" class="form-control" placeholder="#">
+      <input formControlName="numbers_passengers" type="number" min="1" max="4" class="form-control" placeholder="#">
     </div>
     <div class="form-group col">
       <label for="inputEmail4">Número de días</label>
@@ -47,7 +50,7 @@
     </div>  
     <div class="form-group col">
       <label for="inputPassword4">Longitud</label>
-      <input formControlName="longitud" type="number" min="1" step="any" class="form-control" id="inputPassword4" placeholder="Km">
+      <input formControlName="longitud" type="text" class="form-control" id="inputPassword4" placeholder="Km">
 
     </div>
 
@@ -64,13 +67,55 @@
       </select>
     </div>
     <div class="form-group col">
+<<<<<<< HEAD
       <label for="inputEmail4">Observacion</label>
       <textarea formControlName="descripcion" type="text"  class="form-control"> </textarea>
     </div>  
     <div class="form-group col">
       <label for="inputEmail4">Descripción (Opcional)</label>
       <textarea formControlName="descripcion2" type="text" class="form-control"></textarea>
+=======
+      <label for="inputEmail4">Descripción</label>
+      <textarea formControlName="description" type="text"  class="form-control"> </textarea>
+    </div>  
+    <div class="form-group col">
+      <label for="inputEmail4">Descripción (observación)</label>
+      <textarea formControlName="description2" type="text" class="form-control"></textarea>
+
+>>>>>>> master
     </div>  
   </div>
 
   <button type="submit" class="btn btn-primary">Guardar</button>
+
+  </form>
+  </div>
+
+           <!-- PAQUETES -->
+           <table style=" width:100% " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Código Paquete</th>
+                <th scope="col">Tipo Paquete</th>
+                <th scope="col">Nombre Paquete</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Nº Pasajeros</th>
+                <th scope="col">Longitud</th>
+                <th scope="col">Dificultad</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of paquetes ">
+              <td>{{ p.CODIGO}} </td>
+              <td>{{ p.Tipo_paquete}} </td>
+              <td>{{ p.Nombre_Paquete}} </td>
+              <td>{{ p.DESTINO}} </td>
+              <td>{{ p.precio_paquete}} </td>
+              <td>{{ p.numbers_passengers}} </td>
+              <td>{{ p.longitud_paquete}} </td>
+              <td>{{ p.difficulty}} </td>
+              </tr>
+            </tbody>
+          </table>

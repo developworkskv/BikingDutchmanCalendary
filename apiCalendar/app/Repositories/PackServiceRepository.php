@@ -10,7 +10,7 @@ class PackServiceRepository{
 // **************  CRUD ******************
     //CREATE - POST
 
-public function newPack($name, $price, $numbersPassengers, $isActive, $description, $description2, $value, $status, $id_org, $id_type_packages){
+public function newPack($name, $price, $numbersPassengers, $isActive, $description, $description2, $value, $status, $dificultad, $longitud, $number_days, $id_org, $id_type_packages){
     $fecha = new DateTime('NOW');
     //INSERTAR EN LA TABLA PACKAGES
     $newPack = DB::table('bd_packages')->insert([
@@ -22,6 +22,9 @@ public function newPack($name, $price, $numbersPassengers, $isActive, $descripti
         'description2' => $description2,
         'value' => $value,
         'status' => $status,
+        'number_days' => $number_days,
+        'length' => $longitud,
+        'difficulty' => $dificultad,
         'bd_organization_id' => $id_org,
         'bd_type_packages_id' => $id_type_packages,
         'created_at' => $fecha->format('Y-m-d H:i:s')
@@ -31,10 +34,26 @@ public function newPack($name, $price, $numbersPassengers, $isActive, $descripti
 
 //GET ALL PACKAGES
 public function getAllPacks($id_org)
-{
-    $packages = DB::table('bd_packages')
-    ->get();
+{ // se relaciona con varias tablas - tabla principal => bd_packages_destination
+ 
+    $packages =  DB::select('SELECT a.bd_packages_destination_id as ID_PACK_DEST,
+    a.code_pack_destination as CODIGO , a.bd_destination_id as ID_DESTINO,
+    a.bd_packages_id as ID_PACKAGE, b.name as Nombre_Paquete,d.name as DESTINO,
+    d.description1 as Description_destino, b.price as precio_paquete,
+    b.numbers_passengers, b.description1 as Descripcion_paquete,
+    b.number_days, b.length as longitud_paquete, b.difficulty,
+    c.name as Tipo_paquete, c.description1 as Descripcion_tipo_pack
+    FROM biking.bd_packages_destination as a
+    Inner Join biking.bd_packages as b
+    ON a.bd_packages_id = b.bd_packages_id
+    inner join biking.bd_type_packages as c
+    ON b.bd_type_packages_id = c.bd_type_packages_id
+    right join biking.bd_destination as d
+    on a.bd_destination_id = d.bd_destination_id
+    WHERE b.bd_organization_id = '.$id_org.' 
+    ORDER BY CODIGO');
     return $packages;
+
 }
 //GET BY ID PACKAGES
 public function getPackById($id_pack, $id_org)
