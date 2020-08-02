@@ -19,13 +19,9 @@ class BdPerson extends Migration
             $table->string('name');
             $table->string('lastName');
             $table->string('email');
-           // $table->string('password');
-           // $table->string('nacionality');
-          //  $table->decimal('height');
-         //   $table->decimal('weight');
             $table->date('birth_date');
             $table->string('gender');
-            $table->integer('dni')->unique()->nullable();
+            $table->bigInteger('dni')->unique()->nullable();
             $table->boolean('isActive')->nullable();
             $table->char('description1', 255)->nullable();
             $table->char('description2', 255)->nullable();

@@ -25,8 +25,8 @@
     </button>
   </div>
 </div>
-<div class="container-fluid">
-  <table
+<div class="container-fluid" >
+  <table 
   datatable
   [dtOptions]="dtOptions"
   [dtTrigger]="dtTrigger"
@@ -102,17 +102,7 @@
       <div class="modal-body">
         <form [formGroup]="clientForm" (ngSubmit)="onSubmit(clientForm)">
         <h4>REGISTRO DEL NUEVO CLIENTE</h4>
-        <div class="form-group" hidden>
-          <label for="exampleInputEmail1">Org</label>
-          <input
-            formControlName="bd_organization_id"
-            value="{{ id_org }}"
-            type="text"
-            class="form-control"
-            placeholder="Org"
-            required
-          />
-        </div>
+
         <div class="container">
           <div class="row">
             <div class="col-sm">
@@ -274,19 +264,7 @@
             
           </div>
         </div>
-        <div class="col-sm">
-          <div class="form-group" hidden>
-            <label for="exampleInputEmail1">Descripcion 2</label>
-            <input
-              formControlName="description2"
-              value="{{ description2 }}"
-              type="text"
-              class="form-control"
-              placeholder="Descripcion 2"
-              required
-            />
-          </div>
-        </div>
+
         <button type="submit" class="btn btn-primary">Guardar Cliente</button>
       </form>
 

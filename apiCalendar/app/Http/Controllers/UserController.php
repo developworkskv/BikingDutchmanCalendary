@@ -80,11 +80,11 @@ class UserController extends BaseController
     }
 
     // GET - READ USER ADMINISTRADOR
-    public function getAllAdministrators()
+    public function getAllAdministrators($id_org)
     {
         $gestionUser = new UserServiceRepository;
 
-        $administrators = $gestionUser->getAllUserAdmin();
+        $administrators = $gestionUser->getAllUserAdmin($id_org);
         if (count($administrators) == 0) {
             // no hay Datos
             return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
@@ -96,10 +96,10 @@ class UserController extends BaseController
 
     }
     // Get - By Id
-    public function getAdmin($id_user)
+    public function getAdmin($id_user, $id_org)
     {
         $gestionUser = new UserServiceRepository;
-        $administrator = $gestionUser->getUserAdminById($id_user);
+        $administrator = $gestionUser->getUserAdminById($id_user, $id_org);
 
         if (count($administrator) == 0) {
             // no hay Datos
@@ -122,11 +122,11 @@ class UserController extends BaseController
     }
 
     //UPDATE - MODIFI DATA $administrators
-    public function updateAdministratorData($id_person, Request $request)
+    public function updateAdministratorData($id_person, $id_org, Request $request)
     {
         $gestionUser = new UserServiceRepository;
         // verficate if exist this user
-        $userIsRegister = $gestionUser->getUserAdminById($id_person);
+        $userIsRegister = $gestionUser->getUserAdminById($id_person, $id_org);
         if (count($userIsRegister) == 0) {
             // no hay Datos
             return $this->sendError('Usuario no encontrado', 'Ningun registro insertado en esta tabla.');
@@ -143,7 +143,7 @@ class UserController extends BaseController
                     $request->input('dni')
                 );
                 //getIdPerson modificated
-                $userEdit = $gestionUser->getUserAdminById($id_person);
+                $userEdit = $gestionUser->getUserAdminById($id_person, $id_org);
                 // EDIT TABLE bd_users where idPersons
                 $update = $gestionUser->updateAdmin($userEdit[0]->bd_persons_id,
                     $request->input('bd_type_users_id')
@@ -158,12 +158,12 @@ class UserController extends BaseController
 
     }
 
-    public function deleteAdmin($id_person)
+    public function deleteAdmin($id_person, $id_org)
     {
         $gestionUser = new UserServiceRepository;
 
         // verificar si el usuario existe para borrar
-        $userIsRegister = $gestionUser->getUserAdminById($id_person);
+        $userIsRegister = $gestionUser->getUserAdminById($id_person,$id_org);
         if (count($userIsRegister) == 0) {
             // no hay Datos
             return $this->sendError('Usuario no encontrado', 'Ningun registro insertado en esta tabla.');

@@ -45,25 +45,28 @@ class UserServiceRepository
     }
     //reade
     //all
-    public function getAllUserAdmin()
+    public function getAllUserAdmin($id_org)
     {
         //ALWAYS JOIN WITH TABLE PERSON to view data
         $usersAdministrators = DB::table('bd_users')
         ->join('bd_persons', 'bd_users.bd_persons_id', '=', 'bd_persons.bd_persons_id')
         ->join('bd_type_users', 'bd_users.bd_type_users_id', '=', 'bd_type_users.bd_type_users_id')
+        ->join('bd_organization', 'bd_users.bd_organization_id', '=', 'bd_organization.bd_organization_id')
         ->select('bd_users.*', 'bd_persons.*', 'bd_type_users.*')
         ->orderBy('bd_users.created_at', 'desc')
+        ->where('bd_organization.bd_organization_id', $id_org)
         ->get();
         return $usersAdministrators;
     }
     //by_Id
-    public function getUserAdminById($id_person)
+    public function getUserAdminById($id_person, $id_org)
     {
         $userAdministrator = DB::table('bd_persons')
         ->join('bd_users', 'bd_persons.bd_persons_id', '=', 'bd_users.bd_persons_id')  
         ->join('bd_type_users', 'bd_type_users.bd_type_users_id', '=', 'bd_users.bd_type_users_id')
         ->select('bd_users.*', 'bd_type_users.*', 'bd_persons.*')
         ->where('bd_persons.bd_persons_id', $id_person)
+        ->where('bd_users.bd_organization_id', $id_org)
         ->get();
         return $userAdministrator;
     }

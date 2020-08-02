@@ -29,6 +29,6 @@ class BdChTest extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('bd_clients_packages');
+        Schema::dropIfExists('bd_ch_test');
     }
 }
