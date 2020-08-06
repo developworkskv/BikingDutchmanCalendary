@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Repositories\PackServiceRepository;
+use App\Repositories\DestinationsServiceRepository;
+
 use Illuminate\Support\Facades\DB;
 
 class PackController extends BaseController
@@ -15,6 +17,8 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 {
     $gestionPaquetes = new PackServiceRepository;
     $packs = $gestionPaquetes->getAllPacks($id_org);
+    return $packs;
+    die();
     if (count($packs) == 0) {
         // no hay Datos
         return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
@@ -24,6 +28,7 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 }
 //POST - PACKAGES
 public function createPack(Request $request, $id_org, $id_destino){
+
     $gestionPaquetes = new PackServiceRepository;
     // INSERTA EN LA TABLA 
     $insert = $gestionPaquetes->newPack(
@@ -42,18 +47,22 @@ public function createPack(Request $request, $id_org, $id_destino){
         $request->input('id_type_packages')
            
     );
-    // NECESITO EL ULTIMO REGISTRO DEL ANTERIOR QUERY
-    // PARA OBTENER EL ID
+
+    return $this->sendResponse('Paquete creado', 'Paquete Biking Dutchman registrado.');
+
+}
+public function createPackDestination(Request $request,$id_org,$id_destino){
+    $gestionPaquetes = new PackServiceRepository;
+    $gestionDestinos = new DestinationsServiceRepository;
     $id_package = $gestionPaquetes->getLastRow();
-  
+    $destination = $gestionDestinos->getDestinoById($id_destino , $id_org);
     // INSERT AL LA TABLA DE ROMPIMIENTO
      $insertTableRelacion = $gestionPaquetes->newPackDestination(
         $request->input('code'),
         $id_destino,
         $id_package->bd_packages_id, // Id_del Query obtenido         
     );
-
-    return $this->sendResponse('Tipo paquete creado', 'Tipo de Paquete Biking Dutchman registrado.');
+    return $this->sendResponse('Destino '.' '. $destination[0]->name.'-'.$destination[0]->city.' '. 'agregado', 'Destino enlazado al paquete.');
 
 }
 // Get - By Id

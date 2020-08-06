@@ -87,6 +87,7 @@ Route::get('clientById/{id_client}/org/{id_org}', 'ClientController@getClientByI
 //CRUD PACKS
 Route::get('packsRead/{id_org}', 'PackController@getAllPacks');
 Route::post('packsCreate/{id_org}/destino/{id_destino}', 'PackController@createPack');
+Route::post('createPackDestination/{id_org}/destino/{id_destino}', 'PackController@createPackDestination');
 Route::get('packsDelete/{id_packs}/org/{id_org}', 'PackController@deletePacks');
 Route::get('packsById/{id_packs}/org/{id_org}', 'PackController@getPacksById');
 Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@updatePackageData');

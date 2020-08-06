@@ -19,8 +19,8 @@ class BdPackages extends Migration
             $table->string('name');
             $table->double('price');
             $table->integer('numbers_passengers'); 
-            $table->string('dificultad');
-            $table->integer('longitud');
+            $table->string('difficulty');
+            $table->integer('length');
             $table->smallInteger('number_days');
             $table->boolean('isActive')->nullable();
             $table->char('description1', 255)->nullable();
