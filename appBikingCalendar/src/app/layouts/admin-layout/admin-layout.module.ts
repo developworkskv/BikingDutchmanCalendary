@@ -17,7 +17,8 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule
+  MatSelectModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import { UsersComponent } from 'app/users/users.component';
 import { PackagesComponent } from 'app/packages/packages.component';
@@ -50,6 +51,7 @@ import { PacksComponent } from 'app/packs/packs.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatAutocompleteModule,
     ChartsModule,
     NgxPaginationModule,
     DataTablesModule,
