@@ -13,6 +13,12 @@
     </div>
   </div> 
   
+  <div class="col-md-auto">
+    <button (click)="getAllPaquetes()" type="button" class="btn btn-success bmd-btn-fab"
+      >
+      <i class="material-icons">sync</i> <small> Sincronizar</small>
+    </button>
+  </div>
   <div class="form-row">
     <div class="form-group col">              
       <label for="inputEmail4">Nombre del paquete</label>
@@ -67,23 +73,16 @@
       </select>
     </div>
     <div class="form-group col">
-<<<<<<< HEAD
+
       <label for="inputEmail4">Observacion</label>
-      <textarea formControlName="descripcion" type="text"  class="form-control"> </textarea>
-    </div>  
-    <div class="form-group col">
-      <label for="inputEmail4">Descripción (Opcional)</label>
-      <textarea formControlName="descripcion2" type="text" class="form-control"></textarea>
-=======
-      <label for="inputEmail4">Descripción</label>
       <textarea formControlName="description" type="text"  class="form-control"> </textarea>
     </div>  
     <div class="form-group col">
-      <label for="inputEmail4">Descripción (observación)</label>
+      <label for="inputEmail4">Descripción (Opcional)</label>
       <textarea formControlName="description2" type="text" class="form-control"></textarea>
-
->>>>>>> master
+      
     </div>  
+     
   </div>
 
   <button type="submit" class="btn btn-primary">Guardar</button>
@@ -91,6 +90,7 @@
   </form>
   </div>
 
+      
            <!-- PAQUETES -->
            <table style=" width:100% " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
             <thead class="thead-dark">
@@ -119,3 +119,4 @@
               </tr>
             </tbody>
           </table>
+        

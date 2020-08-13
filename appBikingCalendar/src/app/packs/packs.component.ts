@@ -20,6 +20,8 @@ export class PacksComponent implements OnInit {
   packageForm: FormGroup;
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
+  packs_select: any;
+
   @ViewChild(DataTableDirective, null)
   private _dtElement: DataTableDirective;
 
@@ -132,10 +134,10 @@ export class PacksComponent implements OnInit {
 
   }
   getAllPaquetes(){
-    this._packs.allPacks().subscribe((resp) => {
+    this._typePackages.getAllTypesPackages().subscribe((resp) => {
       console.log(resp["data"]);
-      this.paquetes = resp["data"];
-      this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
+      this.packs_select = resp["data"];
+      //this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
 
     });
   }

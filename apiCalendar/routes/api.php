@@ -91,4 +91,12 @@ Route::get('packsDelete/{id_packs}/org/{id_org}', 'PackController@deletePacks');
 Route::get('packsById/{id_packs}/org/{id_org}', 'PackController@getPacksById');
 Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@updatePackageData');
 
-
+//EMAIL SEND
+Route::get('email-test', function(){
+  
+	$details['email'] = 'developworkskv@hotmail.com ';
+  
+    dispatch(new App\Jobs\SendEmailJob($details));
+  
+    dd('done');
+});

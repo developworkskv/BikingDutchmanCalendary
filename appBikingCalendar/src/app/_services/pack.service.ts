@@ -16,7 +16,7 @@ export class PackService {
       return this.http.post(URL_SERVICIOS +'/packsCreate/'+localStorage.getItem('bd_org') + '/destino/'+ id_destino, pack)
   }
 
-   allPacks(){
+   getAllPacks(){
      return this.http.get(URL_SERVICIOS + '/packsRead/'+localStorage.getItem('bd_org') )
    }
 }
