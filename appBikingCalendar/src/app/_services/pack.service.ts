@@ -12,8 +12,12 @@ export class PackService {
   }
 
     //CrEATE
-    createTypePackage(pack: any, id_destino:any ){
+    createPack(pack: any, id_destino:any ){
       return this.http.post(URL_SERVICIOS +'/packsCreate/'+localStorage.getItem('bd_org') + '/destino/'+ id_destino, pack)
+  }
+     //CrEATE - DestiantionPacks
+     createPackDestinations(pack: any, id_destino:any ){
+      return this.http.post(URL_SERVICIOS +'/createPackDestination/'+localStorage.getItem('bd_org') + '/destino/'+ id_destino, pack)
   }
 
    getAllPacks(){

@@ -36,7 +36,7 @@ export class UserService {
 
    //CRUD 
    getAllAdministrators(){ // TEST
-    return this.htpp.get( URL_SERVICIOS+'/adminRead');
+    return this.htpp.get( URL_SERVICIOS+'/adminRead/'+localStorage.getItem('bd_org'));
     
   }
 //CrEATE
@@ -46,16 +46,16 @@ export class UserService {
   //READ
   //getUserById
   detailsAdministrator(idAdmin: number){
-    return this.htpp.get( URL_SERVICIOS+'/adminById/' + idAdmin);
+    return this.htpp.get( URL_SERVICIOS+'/adminById/' + idAdmin + '/'+localStorage.getItem('bd_org'));
   }
   //UPDATE
   updateAdmin(id_user, admin:any){
-    return this.htpp.post( URL_SERVICIOS+'/admin/' +id_user+'/update', admin);
+    return this.htpp.post( URL_SERVICIOS+'/admin/' +id_user+'/update'+ '/'+localStorage.getItem('bd_org'), admin);
   }
 
   //DELETE
   deleteAdmin(id_person){
-    return this.htpp.get( URL_SERVICIOS+'/adminDelete/' +id_person);
+    return this.htpp.get( URL_SERVICIOS+'/adminDelete/' +id_person + '/'+localStorage.getItem('bd_org'));
   }
   
 }

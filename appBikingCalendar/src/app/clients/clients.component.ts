@@ -19,7 +19,7 @@ export class ClientsComponent implements OnInit, AfterViewInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
 
-  clients:any;
+  clients: any = [];
   filterPost : any;
   clientForm: FormGroup;
   persons: any;
@@ -130,12 +130,7 @@ crearFormularios(){
     height: ['', Validators.required],
     weight: ['', Validators.required],
     passport: ['', Validators.required],
-    description1: ['', Validators.required],
-   // description2: ['', Validators.required],
-    //bd_persons_id: ['', Validators.required],
-
-    bd_organization_id: [localStorage.getItem('bd_org') , Validators.required],
-    
+    description1: ['', Validators.required] 
 });
 }
 

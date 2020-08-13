@@ -31,10 +31,10 @@ Route::get('dataUserByEmail/{email_user}', 'UserController@dataUserByEmail');
 // ===================================================0
 //CRUD para ADMINISTRADOR Y EMPLEADOS
 Route::post('adminCreate', 'UserController@createAdmin');
-Route::get('adminRead', 'UserController@getAllAdministrators');
-Route::get('adminById/{id_admin}', 'UserController@getAdmin');
-Route::post('admin/{bd_users_id}/update', 'UserController@updateAdministratorData');
-Route::get('adminDelete/{id_admin}', 'UserController@deleteAdmin');
+Route::get('adminRead/{id_org}', 'UserController@getAllAdministrators');
+Route::get('adminById/{id_admin}/{id_org}', 'UserController@getAdmin');
+Route::post('admin/{bd_users_id}/update/{id_org}', 'UserController@updateAdministratorData');
+Route::get('adminDelete/{id_admin}/{id_org}', 'UserController@deleteAdmin');
 
 // TIPE USERS
 Route::get('typesUser', 'UserController@allTipesUser');
@@ -87,6 +87,7 @@ Route::get('clientById/{id_client}/org/{id_org}', 'ClientController@getClientByI
 //CRUD PACKS
 Route::get('packsRead/{id_org}', 'PackController@getAllPacks');
 Route::post('packsCreate/{id_org}/destino/{id_destino}', 'PackController@createPack');
+Route::post('createPackDestination/{id_org}/destino/{id_destino}', 'PackController@createPackDestination');
 Route::get('packsDelete/{id_packs}/org/{id_org}', 'PackController@deletePacks');
 Route::get('packsById/{id_packs}/org/{id_org}', 'PackController@getPacksById');
 Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@updatePackageData');

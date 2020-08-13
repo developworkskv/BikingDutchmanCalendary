@@ -23,14 +23,12 @@ class BdClients extends Migration
             $table->string('nacionality');
             $table->decimal('height');
             $table->decimal('weight');
-            //$table->date('birth_day');
-            $table->integer('passport')->nullable();
+            $table->bigInteger('passport')->nullable();
             $table->boolean('isActive')->nullable();
             $table->char('description1', 255)->nullable();
             $table->char('description2', 255)->nullable();
             $table->double('value')->nullable();
             $table->boolean('status')->nullable();
-           // $table->rememberToken();
             $table->timestamps();
             //FOREIGN KEY 
             $table->unsignedBigInteger('bd_organization_id');

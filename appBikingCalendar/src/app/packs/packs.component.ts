@@ -98,8 +98,8 @@ export class PacksComponent implements OnInit {
       );
     }
     console.log(packageForm.value);
-    packageForm.value.id_destinations.forEach(id => {
-      this._packs.createTypePackage(packageForm.value, id)
+   // packageForm.value.id_destinations.forEach(id => {
+      this._packs.createPack(packageForm.value, packageForm.value.id_destinations)
       .subscribe(
         (resp) => {
           if (resp["status"] == 1) {
@@ -109,6 +109,22 @@ export class PacksComponent implements OnInit {
               "success",
               resp["data"]
             );
+            packageForm.value.id_destinations.forEach(id => {
+            this._packs.createPackDestinations(packageForm.value,id)
+            .subscribe(
+              (res)=>{
+                if (res["status"] == 1) {
+                  this.toastService.showNotification(
+                    "top",
+                    "right",
+                    "success",
+                    res["data"]
+                  );
+                }
+              }
+              );
+            });
+
             this.getAllPaquetes(); // PAQUETES
             // NECESARIO.. volver actualizar la data y la datatable 
             this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -130,7 +146,7 @@ export class PacksComponent implements OnInit {
           }
         }
       ); 
-    });
+   // });
 
   }
   getAllPaquetes(){
