@@ -1,6 +1,11 @@
 
 <div class="collapse" id="collapsePacks" style="padding-left: 80px; padding-right: 50px;" >
-
+  <div class="col-md-auto">
+    <button (click)="getAllPaquetes()" type="button" class="btn btn-success bmd-btn-fab"
+      >
+      <i class="material-icons">sync</i> <small> Sincronizar</small>
+    </button>
+  </div>
   <form [formGroup]="packageForm" (ngSubmit)="onSubmit(packageForm)">
   <div class="form-row">
     <div class="form-group col"> 
@@ -13,12 +18,7 @@
     </div>
   </div> 
   
-  <div class="col-md-auto">
-    <button (click)="getAllPaquetes()" type="button" class="btn btn-success bmd-btn-fab"
-      >
-      <i class="material-icons">sync</i> <small> Sincronizar</small>
-    </button>
-  </div>
+  
   <div class="form-row">
     <div class="form-group col">              
       <label for="inputEmail4">Nombre del paquete</label>
@@ -28,9 +28,10 @@
       <label for="inputEmail4">Tipo de Paquete</label>
       <select formControlName="id_type_packages" class="custom-select">
         <option>-- SELECIONAR</option>
-        <option *ngFor="let item of typesPackages" 
-        value="{{ item.bd_type_packages_id }}">
-        {{ item.name }}
+        <option 
+        *ngFor="let typesPackage of packs_select" 
+        value="{{ typesPackage.bd_type_packages_id }}">
+        {{ typesPackage.name }}
         </option>
       </select>
     </div>
