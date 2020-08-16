@@ -104,7 +104,6 @@ class ClientController extends BaseController
                      $request->input('weight'),
                      $request->input('passport'),
                      $request->input('description1'),
-                     $request->input('description2'),
                      $id_org,
                  );
                  return $this->sendResponse('Correcto Cliente creado', 'Usuario administrador creado correctamente.');

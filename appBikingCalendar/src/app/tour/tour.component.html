@@ -58,26 +58,36 @@
               <h2 _ngcontent-xkm-c107="">FORMULARIO DE PEDIDOS TOURS </h2>
             </div>
           </div>
+
           <form [formGroup]="tourForm" (ngSubmit)="onSubmit(tourForm)">
 
 
           <div class="row">
             <div class="col-sm">
               <div class="form-group">
-                <label for="exampleInputEmail1">Tour</label>
-                <select  formControlName="tourId" class="custom-select">
-                  <option>tour 1 </option>
-                  <option>tour 2</option>
-                </select>
+                <label for="exampleInputEmail1"> <a routerLink="/clients-gestion" routerLinkActive="active">Cliente</a> </label>
+                <mat-form-field class="example-full-width">
+                  <input type="text"
+                         placeholder="Pick one"
+                         aria-label="Number"
+                         matInput
+                         [formControl]="myControl" 
+                         [matAutocomplete]="auto">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
               </div>
             </div>
 
             <div class="col-sm">
               <div class="form-group">
-                <label for="exampleInputEmail1">Cliente</label>
+                <label for="exampleInputEmail1">PAQUETE</label>
                 <select  formControlName="clientId" class="custom-select">
-                  <option>cliente 1 </option>
-                  <option>cliente 2</option>
+                  <option> * SELECCIONAR * </option>
+                  <option>pack 2</option>
                 </select>
               </div>
             </div>

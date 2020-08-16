@@ -34,8 +34,12 @@ export class PacksComponent implements OnInit {
     public _typePackages: TypePackagesService,
     private formBuilder: FormBuilder, 
     public toastService: ToastService,
-    public _packs: PackService ) { }
+    public _packs: PackService ) {
+     }
 
+     ngAfterViewInit() {
+      // It is necesary to reload the datatable
+    }
   ngOnInit() {
     this.getAllDestination();
     this.getAllTypesPackages();
@@ -50,7 +54,10 @@ export class PacksComponent implements OnInit {
       pageLength: 5
     };
   }
-
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
   // ******************* SELECTORS ******************
   getAllDestination() {
     this._destinos.readAllDestinations().subscribe((resp) => {
@@ -96,8 +103,8 @@ export class PacksComponent implements OnInit {
       );
     }
     console.log(packageForm.value);
-    packageForm.value.id_destinations.forEach(id => {
-      this._packs.createTypePackage(packageForm.value, id)
+   // packageForm.value.id_destinations.forEach(id => {
+      this._packs.createPack(packageForm.value, packageForm.value.id_destinations)
       .subscribe(
         (resp) => {
           if (resp["status"] == 1) {
@@ -107,7 +114,23 @@ export class PacksComponent implements OnInit {
               "success",
               resp["data"]
             );
-            this.getAllPaquetes(); // PAQUETES
+            packageForm.value.id_destinations.forEach(id => {
+            this._packs.createPackDestinations(packageForm.value,id)
+            .subscribe(
+              (res)=>{
+                if (res["status"] == 1) {
+                  this.toastService.showNotification(
+                    "top",
+                    "right",
+                    "success",
+                    res["data"]
+                  );
+                }
+              }
+              );
+            });
+
+            this.getAllPaquetes();
             // NECESARIO.. volver actualizar la data y la datatable 
             this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
               // Destroy the table first
@@ -128,15 +151,35 @@ export class PacksComponent implements OnInit {
           }
         }
       ); 
-    });
+   // });
 
   }
   getAllPaquetes(){
+  
     this._packs.allPacks().subscribe((resp) => {
-      console.log(resp["data"]);
+      //console.log("LOS PAQUETES" + resp["data"]);
       this.paquetes = resp["data"];
       this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
 
     });
+  }
+
+  deletePack(code_pak: any){
+
+    if(confirm("Esta seguro de eliminar el paquete con código: " +code_pak)) {
+      //console.log("Implement delete functionality here");
+      this._packs.deletePack(code_pak).subscribe(
+        resp=>{
+          this.toastService.showNotification('top','right','success',resp['data']);
+          this.getAllPaquetes();
+          // NECESARIO.. volver actualizar la data y la datatable 
+          this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            // Destroy the table first
+            dtInstance.destroy();
+            // Call the dtTrigger to rerender again
+          });
+        }
+      );
+    }  
   }
 }
