@@ -77,7 +77,7 @@ import { PacksComponent } from 'app/packs/packs.component';
     TypePackagesDetailsComponent,
     CitiesDetailsComponent,
     ClientsDetailsComponent,
-    PacksComponent
+    PacksComponent,
      
   
   ]

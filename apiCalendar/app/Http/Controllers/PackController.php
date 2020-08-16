@@ -17,8 +17,12 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 {
     $gestionPaquetes = new PackServiceRepository;
     $packs = $gestionPaquetes->getAllPacks($id_org);
+<<<<<<< HEAD
     return $packs;
     die();
+=======
+
+>>>>>>> master
     if (count($packs) == 0) {
         // no hay Datos
         return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
@@ -30,6 +34,7 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 public function createPack(Request $request, $id_org, $id_destino){
 
     $gestionPaquetes = new PackServiceRepository;
+<<<<<<< HEAD
     // INSERTA EN LA TABLA 
     $insert = $gestionPaquetes->newPack(
         $request->input('name'),
@@ -50,6 +55,37 @@ public function createPack(Request $request, $id_org, $id_destino){
 
     return $this->sendResponse('Paquete creado', 'Paquete Biking Dutchman registrado.');
 
+=======
+    $rows = $gestionPaquetes->getPackByName($request->input('name'));
+    $rowsCodeExist = $gestionPaquetes->getPackByCodePack($request->input('code'));
+
+    if(count($rows) > 0 || count($rowsCodeExist)){
+        return $this->sendError('Nombre o Código del paquete ya se encuentran registrados.', 'Error al crear paquete.');
+
+    }else{
+// INSERTA EN LA TABLA 
+$insert = $gestionPaquetes->newPack(
+    $request->input('name'),
+    $request->input('price'),
+    $request->input('numbers_passengers'),
+    $request->input('isActive'),
+    $request->input('description'),
+    $request->input('description2'),
+    $request->input('value'),
+    $request->input('status'),
+    $request->input('dificultad'),
+    $request->input('longitud'),
+    $request->input('number_days'),
+    $id_org,
+    $request->input('id_type_packages')
+       
+);
+
+return $this->sendResponse('Paquete creado', 'Paquete Biking Dutchman registrado.');
+
+    }
+    
+>>>>>>> master
 }
 public function createPackDestination(Request $request,$id_org,$id_destino){
     $gestionPaquetes = new PackServiceRepository;
@@ -81,18 +117,15 @@ public function getPacksById($id_package, $id_org)
 
 }
 //DELETE - 
-public function deletePacks($id_package, $id_org)
+public function deletePacks($code_pack, $id_org)
     {
-        $gestionPaquetes = new PackServiceRepository;
-        // verificar si el usuario existe para borrar
-        $packIsRegister = $gestionPaquetes->getPackById($id_package, $id_org);
-        if (count($packIsRegister) == 0) {
-            // no hay Datos
-            return $this->sendError('Registro no encontrado', 'Ningun registro insertado en esta tabla.');
-        } else {
-            $gestionPaquetes->deletePack($id_package, $id_org);
-            return $this->sendResponse('Paquete Eliminado', 'Paquete dado de baja');
-        }
+        $gestionPack = new PackServiceRepository;
+        $packages = $gestionPack->getPackByCodePack($code_pack);
+        $id_pack =  $packages[0]->bd_packages_id; // id_paquete a eliminar
+
+        $gestionPack->deletePack($id_pack, $id_org);
+        return $this->sendResponse('Paquete Eliminado', 'Paquete dado de baja');
+       
 }
 
 

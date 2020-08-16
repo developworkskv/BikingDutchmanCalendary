@@ -82,10 +82,14 @@ public function getPersonById($id_person)
         'isActive' => true,
         'description1' => $description1C,
 <<<<<<< HEAD
+<<<<<<< HEAD
       //  'description2' => $description2C,
 =======
         'description2' => null,
 >>>>>>> kv-branch-bkd
+=======
+        'description2' => null,
+>>>>>>> master
         'value' => 1,
         'status' => true,
         'bd_organization_id' => $id_org,

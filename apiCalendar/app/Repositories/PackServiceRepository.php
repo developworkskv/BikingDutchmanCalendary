@@ -35,6 +35,7 @@ public function newPack($name, $price, $numbersPassengers, $isActive, $descripti
 //GET ALL PACKAGES
 public function getAllPacks($id_org)
 { // se relaciona con varias tablas - tabla principal => bd_packages_destination
+<<<<<<< HEAD
    // $a = $this->allCodesPacks();
   //  print_r(array_unique($a));
 
@@ -76,6 +77,49 @@ public function allCodesPacks(){
     FROM bd_packages_destination as a
     Inner Join bd_packages as b
     ON a.bd_packages_id = b.bd_packages_id
+=======
+
+    $packages =  DB::select('SELECT DISTINCT(b.code_pack_destination) , c.name as type_tour, a.*
+    from bd_packages a
+    left join bd_packages_destination b
+    On a.bd_packages_id = b.bd_packages_id
+    left join bd_type_packages c
+    On a.bd_type_packages_id = c.bd_type_packages_id');
+
+$destinations = DB::select('SELECT b.code_pack_destination ,  c.name
+from bd_packages a
+left join bd_packages_destination b
+On a.bd_packages_id = b.bd_packages_id
+left join bd_destination c
+On b.bd_destination_id = c.bd_destination_id');
+
+for ($j=0; $j < count($packages); $j++) { 
+    $dataDestinos = array();
+
+    for ($i=0; $i < count($destinations) ; $i++) { 
+        if($destinations[$i]->code_pack_destination == $packages[$j]->code_pack_destination){
+            array_push($dataDestinos,$destinations[$i]->name );
+            $packages[$j]->destinos = $dataDestinos ;
+            
+        }else{
+           // array_push($dataDestinos,null);
+        }
+    }
+}
+
+
+    return $packages;
+    //return array_unique($packages, SORT_REGULAR);
+}
+
+public function allCodesPacks(){
+    $packages_codes =  DB::select('SELECT a.bd_packages_destination_id as ID_PACK_DEST,
+    a.code_pack_destination as CODIGO , a.bd_destination_id as ID_DESTINO, b.bd_organization_id as id_org,
+    a.bd_packages_id as ID_PACKAGE, b.name as Nombre_Paquete
+    FROM bd_packages_destination as a
+    Inner Join bd_packages as b
+    ON a.bd_packages_id = b.bd_packages_id
+>>>>>>> master
    
     WHERE b.bd_organization_id = 1
     ORDER BY CODIGO');
@@ -92,12 +136,33 @@ public function getPackById($id_pack, $id_org)
     ->get();
     return $packages;
 }
+public function getPackByName($name)
+{
+    $packages = DB::table('bd_packages')
+    ->where('name', $name)
+    ->get();
+    return $packages;
+}
+
+public function getPackByCodePack($code_pack)
+{
+    $packages = DB::table('bd_packages_destination')
+    ->where('code_pack_destination', $code_pack)
+    ->get();
+    return $packages;
+}
 
 //DELETE PACKAGES
-public function deletePack($id_package, $id_org)
+public function deletePack($id_pack, $id_org)
 {
+
+    // PRIMERO ELIMINAR REGISTROS DE TABLA RELACION
+    $deletePackage = DB::table('bd_packages_destination')
+    ->where('bd_packages_id', $id_pack)
+    ->delete();
+    // DESPUES ELIMINAR REGISTROS DE TABLA PACKAGES
     $deletePackage = DB::table('bd_packages')
-    ->where('bd_packages_id', $id_package)
+    ->where('bd_packages_id', $id_pack)
     ->where('bd_organization_id', $id_org)
     ->delete();
     return $deletePackage;

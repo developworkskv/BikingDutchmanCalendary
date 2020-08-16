@@ -19,8 +19,20 @@ export class PackService {
      createPackDestinations(pack: any, id_destino:any ){
       return this.http.post(URL_SERVICIOS +'/createPackDestination/'+localStorage.getItem('bd_org') + '/destino/'+ id_destino, pack)
   }
+<<<<<<< HEAD
 
    getAllPacks(){
      return this.http.get(URL_SERVICIOS + '/packsRead/'+localStorage.getItem('bd_org') )
    }
+=======
+
+      allPacks(){
+        return this.http.get(URL_SERVICIOS + '/packsRead/'+localStorage.getItem('bd_org') )
+      }
+
+      deletePack(code_pack: any){
+        return this.http.get(URL_SERVICIOS + '/packsDelete/'+ code_pack +'/org/'+localStorage.getItem('bd_org') )
+      }
+
+>>>>>>> master
 }

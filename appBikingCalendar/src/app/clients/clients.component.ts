@@ -130,7 +130,16 @@ crearFormularios(){
     height: ['', Validators.required],
     weight: ['', Validators.required],
     passport: ['', Validators.required],
+<<<<<<< HEAD
     description1: ['', Validators.required] 
+=======
+    description1: ['', Validators.required],
+   // description2: [null, Validators.required],
+    //bd_persons_id: ['', Validators.required],
+
+    //bd_organization_id: [localStorage.getItem('bd_org') , Validators.required],
+    
+>>>>>>> master
 });
 }
 
