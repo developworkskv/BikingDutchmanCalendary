@@ -23,7 +23,10 @@ export class PackService {
       allPacks(){
         return this.http.get(URL_SERVICIOS + '/packsRead/'+localStorage.getItem('bd_org') )
       }
-
+      //GET PACKS BY ID
+      getPacksById(idPacks: number){
+        return this.http.get( URL_SERVICIOS+'/packsById/' + idPacks +'/org/' + localStorage.getItem('bd_org'));
+      }
       deletePack(code_pack: any){
         return this.http.get(URL_SERVICIOS + '/packsDelete/'+ code_pack +'/org/'+localStorage.getItem('bd_org') )
       }

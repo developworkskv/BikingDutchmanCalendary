@@ -1,4 +1,4 @@
-<div class="collapse" id="collapsePacks" style="padding-left: 80px; padding-right: 50px;">
+<div class="collapse" id="collapsePacks">
 
   <form [formGroup]="packageForm" (ngSubmit)="onSubmit(packageForm)">
     <div class="form-row">
@@ -76,9 +76,10 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary" id="botonGuardar">Guardar</button>
 
   </form>
+
 </div>
 <style>
   #borders-green:hover td
@@ -89,7 +90,7 @@
 
 </style>
 <!-- PAQUETES -->
-<table style=" width:100% " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Código Paquete</th>
@@ -124,7 +125,7 @@
     </td>
     <td>
       <button
-        [routerLink]="['/user-admin', p.code_pack_destination]"
+        [routerLink]="['/packs-gestion', p.code_pack_destination]"
         type="button"
         class="btn btn-outline-success"
       >

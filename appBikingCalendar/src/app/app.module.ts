@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
+
+
 @NgModule({ 
   imports: [
     BrowserAnimationsModule,
@@ -34,6 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    
+    
     
  
   ],

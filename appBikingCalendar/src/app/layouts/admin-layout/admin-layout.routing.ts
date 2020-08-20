@@ -17,6 +17,8 @@ import { ReportsComponent } from "app/reports/reports.component";
 import { TypePackagesDetailsComponent } from "app/_details/type-packages-details/type-packages-details.component";
 import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
 import { ClientsDetailsComponent } from "app/_details/clients-details/clients-details.component";
+import { DialogoConfirmacionComponent } from "app/_details/dialogo-confirmacion/dialogo-confirmacion.component";
+import { PacksDetailsComponent } from 'app/_details/packs-details/packs-details.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -62,5 +64,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: "cities-gestion/:id_city", component: CitiesDetailsComponent },
   //DEATILS CLIENTS
   { path: "clients-gestion/:id_client", component: ClientsDetailsComponent }, 
+  //DIALOGO DE CONFIRMACION ELIMINAR
+  { path: "dialogo-confirmacion/:id_con", component: DialogoConfirmacionComponent },
+  //DETAILS PACKS
+  { path: "packs-gestion/:id_packs", component: PacksDetailsComponent },
 
 ];

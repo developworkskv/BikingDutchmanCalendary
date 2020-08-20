@@ -87,6 +87,8 @@ public function allCodesPacks(){
 public function getPackById($id_pack, $id_org)
 {
     $packages = DB::table('bd_packages')
+    //->join('bd_packages_destination', 'bd_packages_destination.bd_packages_destination_id', '=', 'bd_packages_destination.bd_packages_destination_id')
+    //->select('bd_packages.*', 'bd_packages_destination.bd_packages_destination_id as codePack')
     ->where('bd_packages_id', $id_pack)
     ->where('bd_organization_id', $id_org)
     ->get();

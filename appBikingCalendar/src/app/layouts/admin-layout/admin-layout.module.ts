@@ -37,6 +37,8 @@ import { TypePackagesDetailsComponent } from "app/_details/type-packages-details
 import { CitiesDetailsComponent } from "app/_details/cities-details/cities-details.component";
 import { ClientsDetailsComponent } from "app/_details/clients-details/clients-details.component";
 import { PacksComponent } from 'app/packs/packs.component';
+import { DialogoConfirmacionComponent } from "app/_details/dialogo-confirmacion/dialogo-confirmacion.component";
+import { PacksDetailsComponent } from 'app/_details/packs-details/packs-details.component';
 
 
 @NgModule({
@@ -78,7 +80,8 @@ import { PacksComponent } from 'app/packs/packs.component';
     CitiesDetailsComponent,
     ClientsDetailsComponent,
     PacksComponent,
-     
+    DialogoConfirmacionComponent,
+    PacksDetailsComponent     
   
   ]
 })

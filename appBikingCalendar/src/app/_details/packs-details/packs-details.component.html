@@ -1,0 +1,79 @@
+<div class="main-content" *ngIf="packsA">
+  <div class="container-fluid">
+    <h4>DETALLES DEL PAQUETE</h4>
+
+    <form [formGroup]="packsForm" (ngSubmit)="onSubmit(packsForm)">
+      <div class="row">
+        <div >
+
+        </div>
+        <div class="col-md-auto">
+          <button type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#exampleModal">
+            <i class="material-icons">save</i> &nbsp;&nbsp;&nbsp;
+            Guardar los Cambios
+          </button>
+      </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          DATOS DE LOS PAQUETES  </div> 
+        <div class="card-body">
+          <div class="row">
+
+            <div class="col-sm"> <div class="form-group">
+              <label >Code Pack</label>
+              <input formControlName="code_pack_destination" value="{{packsA.code_pack_destination}}"
+                type="text" class="form-control" required>
+            </div></div>
+            
+          <div class="col-sm"> <div class="form-group">
+            <label >Nombre</label>
+            <input formControlName="name" value="{{packsA.name}}"
+              type="text" class="form-control" required>
+          </div>
+        </div>
+      </div>
+     
+      <div class="row">
+
+       
+
+        <div class="col-sm"> <div class="form-group">
+            <label >Precio</label>
+            <input formControlName="price" value="{{packsA.price}}"
+              type="text" class="form-control" required>
+          </div></div>
+
+        <div class="col-sm"> <div class="form-group">
+            <label >Numero Pasajeros</label>
+            <input formControlName="numbers_passengers"
+              value="{{packsA.numbers_passengers}}" type="text"
+              class="form-control" placeholder="Numero Pasajeros" required>
+          </div></div>
+      </div>
+      <div class="row">
+        
+        <div class="col-sm"> 
+          <div class="form-group">
+            <label >Dificultad</label>
+            <input formControlName="difficulty" value="{{packsA.difficulty}"
+              type="number" class="form-control" placeholder="Dificultad" required>
+          </div>
+        </div>
+        <div class="col-sm"> 
+          <div class="form-group">
+            <label >Longitud</label>
+            <input formControlName="length" value="{{packsA.length}}"
+              type="text" class="form-control" placeholder="Estado" required>
+          </div>
+        </div>
+      </div>
+          
+
+        </div>
+
+      </div>
+    </form>
+  </div> 
+</div>

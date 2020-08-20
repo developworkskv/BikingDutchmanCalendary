@@ -63,6 +63,7 @@
           </td>
           <td>
             <button
+            [routerLink]="['/dialogo-confirmacion', admin.bd_persons_id]"
               (click)="deleteUserAdmin(admin.bd_persons_id, admin.name)"
               type="button"
               class="btn btn-outline-danger"
@@ -225,7 +226,7 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="submit" class="btn btn-primary" id="botonGuardar">Guardar</button>
 
         </form>
       </div>

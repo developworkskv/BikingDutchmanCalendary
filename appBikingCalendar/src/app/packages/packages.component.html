@@ -10,7 +10,7 @@
     <h3>STANDARD - PREMIUM - ... CONSTRUCCION DEL PAQUETE ENTERO</h3>
   </div>-->
   <div class="card">
-    <div class="card-header card-header-tabs card-header-primary">
+    <div class="card-header">
       <div class="nav-tabs-navigation">
         <div class="nav-tabs-wrapper">
           <span class="nav-tabs-title">ADMINISTRACIÓN:</span>
@@ -39,14 +39,15 @@
               <h4 _ngcontent-xkm-c107="">PAQUETES BIKING DUTCHMAN</h4>
             </div>
             <div class="col-md-auto">
-              <button type="button" class="btn btn-info bmd-btn-fab" data-toggle="collapse" href="#collapsePacks"
+              <button type="button" class="btn btn-info bmd-btn-fab" id="botonC" data-toggle="collapse" href="#collapsePacks"
                 role="button" aria-expanded="false" aria-controls="collapsePacks">
                 <i class="material-icons">fiber_new</i> Registrar Paquete
               </button>
             </div>
             <!--  COMPONENTE PACKS -->
-            <app-packs></app-packs>
           </div>
+            <app-packs></app-packs>
+          
           <!--FIN-->
         </div>
         <div class="tab-pane" id="messages">
@@ -55,7 +56,7 @@
               <h2 _ngcontent-xkm-c107="">TIPO DE PAQUETES BIKING DUTCHMAN</h2>
             </div>
             <div class="col-md-auto">
-              <button type="button" class="btn btn-info bmd-btn-fab" data-toggle="collapse" href="#collapseExample2"
+              <button type="button" class="btn btn-info bmd-btn-fab" id="botonC" data-toggle="collapse" href="#collapseExample2"
                 role="button" aria-expanded="false" aria-controls="collapseExample2">
                 <i class="material-icons">fiber_new</i> Registrar
               </button>
@@ -84,7 +85,7 @@
                       <input formControlName="description2" type="text" class="form-control" placeholder="Descripción">
                     </div>
 
-                    <button type="submit" class="btn btn-danger">Guardar.</button>
+                    <button type="submit" class="btn btn-danger" id="botonGuardar">Guardar.</button>
 
                   </div>
 
