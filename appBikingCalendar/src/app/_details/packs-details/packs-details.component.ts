@@ -54,13 +54,13 @@ export class PacksDetailsComponent implements OnInit {
     // Creamos el formulario  
     this.packsForm = this.formBuilder.group({
     
-    code_pack_destination: [this.packsA['code_pack_destination'], Validators.required],  
+      codePack: [this.packsA['codePack'], Validators.required],  
     name: [this.packsA['name'], Validators.required],
     price: [this.packsA['price'], Validators.required],
     numbers_passengers: [this.packsA['numbers_passengers'], Validators.required],
     difficulty: [this.packsA['difficulty'], Validators.required],
     length: [this.packsA['length'], Validators.required],
-    //number_days: [this.packsA['number_days'], Validators.required],
+    nameD: [this.packsA['nameD'], Validators.required],
       
   });
 }

@@ -7,8 +7,24 @@ use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\CitiesServiceRepository;
 
+/**
+ * @group ADMINISTRACION
+ *
+ * 
+ */
+
 class CitiesController extends BaseController
 {
+
+    /**
+	*   ADMINISTRACION CIUDADES.
+	*
+    * Insertar nuevas ciudades en el sistema.  
+    * 
+    * @queryParam name required name. Example: Quito
+    
+    * @bodyParam description string required description. Example: Sierra
+    */
    
     //*******************************  CRUD - Cities  ********************************
     //POST CREAR ADMIN
@@ -39,6 +55,15 @@ class CitiesController extends BaseController
         }
     }
 
+       /**
+	* Mostrar Ciudades.
+	*
+    * Todas las Ciudades registradas.  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+    * @bodyParam id string required id_usuario. Example: 1
+    */
+
     // GET - TYPE PACKAGES
     public function getAllCities($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
     {
@@ -51,6 +76,16 @@ class CitiesController extends BaseController
             return $this->sendResponse($cities, 'Todas las ciudades');
         }
     }
+
+       /**
+	* Mostrar Ciudades Por Parametro.
+	*
+    * Buscar Ciudades por Id.  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+    * @bodyParam id string required id_usuario. Example: 1
+    */
+
     // Get - By Id
     public function getCityId($id_city, $id_org)
     {
@@ -66,6 +101,19 @@ class CitiesController extends BaseController
         }
 
     }
+
+     /**
+	* Actualizar Ciudades.
+	*
+    * Actualizar los datos de la Ciudad.  
+    * 
+    * @queryParam name required Nombre de la Ciudad. Example: Quito
+    * @queryParam description required Descripcion. Example: Sierra
+
+    * @bodyParam name string required nombreCiudad. Example: Quito
+    * @bodyParam description string required Descripcion. Example: Sierra
+    */
+
      //UPDATE - MODIFI DATA $administrators
     public function updateCityData($id_city, $id_org, Request $request)
     {
@@ -94,6 +142,16 @@ class CitiesController extends BaseController
         }
 
     }
+
+     /**
+	* Eliminar Ciudades.
+	*
+    * Eliminar a las Ciudades por Id.  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+
+    * @bodyParam id string required id_usuario. Example: 1
+    */
 
     public function deleteCity($id_city, $id_org)
     {

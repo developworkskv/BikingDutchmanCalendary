@@ -107,6 +107,7 @@ $nacionalityC, $heightC ,$weightC ,$passportC, $description1C, $description2C)
             'gender' => $genderP,
             'dni' => $dniP,
             'description1' => $descriptionP,
+            
             'nacionality' => $nacionalityC,
             'height' => $heightC,
             'weight' => $weightC,

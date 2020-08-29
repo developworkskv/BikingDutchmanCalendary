@@ -18,16 +18,18 @@
       <div class="card">
         <div class="card-header">
           DATOS DE LOS PAQUETES  </div> 
-        <div class="card-body">
+        <div class="card-body" >
+          
           <div class="row">
 
-            <div class="col-sm"> <div class="form-group">
-              <label >Code Pack</label>
-              <input formControlName="code_pack_destination" value="{{packsA.code_pack_destination}}"
-                type="text" class="form-control" required>
+            <div class="col-sm-1"> 
+              <div class="form-group">
+              <label >Codigo</label>
+              <input formControlName="codePack" value="{{packsA.codePack}}"
+                type="number" class="form-control" required>
             </div></div>
             
-          <div class="col-sm"> <div class="form-group">
+          <div class="col-sm-3"> <div class="form-group">
             <label >Nombre</label>
             <input formControlName="name" value="{{packsA.name}}"
               type="text" class="form-control" required>
@@ -39,41 +41,133 @@
 
        
 
-        <div class="col-sm"> <div class="form-group">
+        <div class="col-sm-2"> <div class="form-group">
             <label >Precio</label>
             <input formControlName="price" value="{{packsA.price}}"
-              type="text" class="form-control" required>
+              type="number" class="form-control" required>
           </div></div>
 
-        <div class="col-sm"> <div class="form-group">
+        <div class="col-sm-2"> <div class="form-group">
             <label >Numero Pasajeros</label>
             <input formControlName="numbers_passengers"
-              value="{{packsA.numbers_passengers}}" type="text"
-              class="form-control" placeholder="Numero Pasajeros" required>
+              value="{{packsA.numbers_passengers}}" type="number"
+              class="form-control" required>
           </div></div>
       </div>
       <div class="row">
-        
-        <div class="col-sm"> 
-          <div class="form-group">
-            <label >Dificultad</label>
-            <input formControlName="difficulty" value="{{packsA.difficulty}"
-              type="number" class="form-control" placeholder="Dificultad" required>
-          </div>
-        </div>
-        <div class="col-sm"> 
-          <div class="form-group">
-            <label >Longitud</label>
-            <input formControlName="length" value="{{packsA.length}}"
-              type="text" class="form-control" placeholder="Estado" required>
-          </div>
-        </div>
-      </div>
+        <div class="col-sm-2"> 
           
+          <label >Longitud</label>
+          <input formControlName="length" value="{{packsA.length}}"
+            type="number" class="form-control" required>
+        
+      </div>
+        <div class="col-sm-2">
+          <label for="inputPassword4">Dificultad</label>
+          <select formControlName="dificultad" class="custom-select">
+            <option>Fácil</option>
+            <option>Intermedio</option>
+            <option>Moderado</option>
+            <option>Dificil</option>
+          </select>
+        </div>
+        
+      </div>
+        <!--CARDS P0ARA TOURS-->
+
+        <div class="row" >
+          <div class="col-md-3">
+            <div class="card border-primary mb-2">
+              <div class="card-body"> 
+                <h5 class="card-title">DESTINO</h5>
+              <div class="col-sm-6" >
+              <label >Codigo</label>  
+              <input formControlName="codePack" value="{{packsA.codePack}}"
+              readonly type="text" class="form-control" >
+                
+              </div>
+              &nbsp; &nbsp; 
+              <div class="col-sm-6">
+              <label >Nombre</label>   
+              <input formControlName="nameD" value="{{packsA.nameD}}"
+              readonly type="text" class="form-control" >
+                &nbsp;
+                
+             
+              </div>
+              <button
+              [routerLink]="[
+                '/destinations-gestion',
+                destino.bd_destination_id
+              ]"
+              type="button"
+              class="btn btn-outline-success"
+              
+            >
+              <i class="material-icons">visibility</i>
+            </button>
+            &nbsp; 
+          <button
+              
+              type="button"
+              class="btn btn-outline-danger"
+            >
+              <i class="material-icons">delete</i>
+            </button>
+            </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card border-primary mb-2">
+              <div class="card-body"> 
+                <h5 class="card-title">DESTINO</h5>
+              <div class="col-sm-6" >
+                <label >Codigo</label>
+              <input formControlName="codePack" value="{{packsA.codePack}}"
+              readonly type="text" class="form-control"  >
+                
+              </div>
+              &nbsp; &nbsp; 
+              <div class="col-sm-6" >
+                <label >Nombre</label>  
+              <input formControlName="nameD" value="{{packsA.nameD}}"
+               type="text" class="form-control" readonly>
+                &nbsp;
+                
+             
+              </div>
+              <button
+              [routerLink]="[
+                '/destinations-gestion',
+                destino.bd_destination_id
+              ]"
+              type="button"
+              class="btn btn-outline-success"
+            >
+              <i class="material-icons">visibility</i>
+            </button>
+            &nbsp; 
+          <button
+              
+              type="button"
+              class="btn btn-outline-danger"
+            >
+              <i class="material-icons">delete</i>
+            </button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+          
+
+    
 
         </div>
 
       </div>
     </form>
+
   </div> 
 </div>

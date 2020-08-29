@@ -76,5 +76,24 @@ export class ClientsDetailsComponent implements OnInit {
   // EDITAR CLIENTE
   onSubmit(clientFormDetails: NgForm){ // 
     console.log(clientFormDetails);
+
+    // datos vacios en el formulario
+  if (this.clientFormDetails.invalid) {
+    return this.toast.showNotification('top','right','danger','Completar los datos solicitados.');
+  }
+  //consumir servicio POST 
+//let id_user:any =  localStorage.getItem('client_id');
+this._clients.updateClientP(this.clientA.bd_clients_id, clientFormDetails.value)
+.subscribe(resp => {
+  console.log(resp);
+   if(resp['status'] == 1){
+     this.toast.showNotification('top','right','success','Cliente editado correctamente.');
+     this._clients.getAllClient();
+   }else{
+     this.toast.showNotification('top','right','danger','Ingresa los datos solicitados.');
+   }
+}, err => {
+//this.toastr.error('Servicio Ejecutado', err['data']);
+}); 
   }
 }

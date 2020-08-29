@@ -74,10 +74,10 @@ public function createPackDestination(Request $request,$id_org,$id_destino){
 
 }
 // Get - By Id
-public function getPacksById($id_package, $id_org)
+public function getPacksById($id_pack, $id_org)
 {
     $gestionPack = new PackServiceRepository;
-    $package = $gestionPack->getPackById($id_package, $id_org);
+    $package = $gestionPack->getPackById($id_pack, $id_org);
 
     if (count($package) == 0) {
         // no hay Datos

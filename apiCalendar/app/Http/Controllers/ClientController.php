@@ -126,7 +126,7 @@ class ClientController extends BaseController
             return $this->sendError('Cliente no encontrado', 'Ningun registro insertado en esta tabla.');
         } else {
             if (count($request->all()) >= 6) {
-                //EDIT TABLE bd_persons
+                //EDIT TABLE 
                 $gestionClient->updateClientsPerson(
                     $id_person,
                     $request->input('nameP'),
@@ -136,6 +136,7 @@ class ClientController extends BaseController
                     $request->input('genderP'),
                     $request->input('dniP'),
                     $request->input('descriptionPersonP'),
+                    //CAMPOS DEL CLIENTE
                     $request->input('nacionalityC'),
                     $request->input('heightC'),
                     $request->input('weightC'),

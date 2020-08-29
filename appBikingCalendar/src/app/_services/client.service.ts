@@ -30,4 +30,9 @@ getClientById(idClient: number){
 deleteClient(idPerson ){
 return this.http.get( URL_SERVICIOS+'/clientDelete/' +idPerson +'/org/' + localStorage.getItem('bd_org'));
 }
+
+//UPDATE
+updateClientP(id_client, client:any){
+  return this.http.post( URL_SERVICIOS+'/admin/' +id_client+'/update'+ '/'+localStorage.getItem('bd_org'), client);
+}
 }

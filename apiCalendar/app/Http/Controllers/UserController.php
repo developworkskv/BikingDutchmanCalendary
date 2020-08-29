@@ -7,8 +7,30 @@ use App\Repositories\UserServiceRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @group ADMINISTRACION
+ *
+ * 
+ */
+
 class UserController extends BaseController
 {
+
+    /**
+	 * ADMINISTRACION USUARIO-ADMINISTRADOR.
+	 * 
+	 * Buscar por Id los datos del Usuario-Administrador. Table: bd_user 
+    * 
+    * @queryParam alias_name required  Nombre del usuario. Example: bra
+    * @queryParam user_password required Contraseña del usuario. Example: abcd
+
+
+    * @bodyParam nombre string required usuario. Example: bryan
+    * @bodyParam contraseña string required Contraseña del usuario'. Example: abcd
+    *@response {"status":1,"data":{"id_user":"1","email":"br@gmail.com","name":"Bra"}}
+     */
+
+
     public function dataUserById($id_user)
     {
         $user = DB::table('bd_users')
@@ -22,6 +44,18 @@ class UserController extends BaseController
         array_push($arrayDataUser, $user);
         return $arrayDataUser;
     }
+    
+    /**
+	* Leer Data Email.
+	*
+    * Obtener el dato "Email" del Usuario-Administrador  
+    * 
+    * @queryParam user required  Nombre del usuario. Example: bra
+    * @queryParam email required Email del usuario. Example: br@gmail.com
+    
+    * @bodyParam user string required usuario. Example: bryan
+    * @bodyParam email string required email. Example: br@gmail.com
+    */
     public function dataUserByEmail($email_user)
     {
         // verificar si existe el usuario
@@ -39,6 +73,31 @@ class UserController extends BaseController
         array_push($arrayDataUser, $user);
         return $arrayDataUser;
     }
+
+    /**
+	 * Crear Usuario-Administrador.
+	 *
+	 * insertar usuarios para ingresar al sistema. Table: bd_user 
+     * Guardar los datos del usuario.
+   * @queryParam name required Nombre del usuario. Example: Bryan
+   *  @queryParam lastName required Apellido del usuario. Example: Roblero
+   *  @queryParam email required Nombre del usuario. Example: br@gmail.com
+   * @queryParam fechaNacimiento required Nombre del usuario. Example: 18/05/1997
+   * @queryParam gender required Nombre del usuario. Example: Macho
+   * @queryParam dni required Nombre del usuario. Example: 1724005827
+   * @queryParam password required Clave. Example: bra1
+   
+   * @bodyParam nombre string required Nombre. Example: Bryan
+   * @bodyParam apellido string required Apellido. Example: Roblero
+   * @bodyParam email string required Email. Example: br@gmail.com
+   * @bodyParam fechaNacimiento string required Fecha de Nacimiento. Example: 18/05/1997
+   * @bodyParam genero string required Genero. Example: Masculino
+   * @bodyParam dni string required Cedula. Example: 1724005827
+   * @bodyParam clave string required Clave. Example: bra1
+   
+    *@response {"status":1,"data":{"mensaje":"Usuario Creado"}}
+
+    */
 
     //*******************************  CRUD ********************************
     //POST CREAR ADMIN
@@ -79,6 +138,16 @@ class UserController extends BaseController
         }
     }
 
+     /**
+	* Mostrar Usuario-Administrador.
+	*
+    * Todas los Usuarios  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+    
+    * @bodyParam id string required id_usuario. Example: 1
+    */
+
     // GET - READ USER ADMINISTRADOR
     public function getAllAdministrators($id_org)
     {
@@ -95,6 +164,16 @@ class UserController extends BaseController
         }
 
     }
+
+      /**
+	* Mostrar Administradores.
+	*
+    * Todas los Administradores.  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+    * @bodyParam id string required id_usuario. Example: 1
+    */
+
     // Get - By Id
     public function getAdmin($id_user, $id_org)
     {
@@ -109,6 +188,17 @@ class UserController extends BaseController
         }
 
     }
+
+       /**
+	* Mostrar Tipos de Usuarios.
+	*
+    * Los roles que maneja el sistema.  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+    * @bodyParam id string required id_usuario. Example: 1
+    */
+    
+
     // Get - all Tipe USER
     public function allTipesUser(){
       $gestionUser = new UserServiceRepository;
@@ -120,6 +210,15 @@ class UserController extends BaseController
           return $this->sendResponse($tipes, 'Tipos de administradores');
       }
     }
+
+       /**
+	* Actualizar Usuario-Administrador.
+	*
+    * Actualizar los datos del Usuario-Administrador.  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+    * @bodyParam id string required id_usuario. Example: 1
+    */
 
     //UPDATE - MODIFI DATA $administrators
     public function updateAdministratorData($id_person, $id_org, Request $request)
@@ -157,6 +256,16 @@ class UserController extends BaseController
         }
 
     }
+
+     /**
+	* Eliminar Usuario-Administrador.
+	*
+    * Eliminar a los Usuarios por Id.  
+    * 
+    * @queryParam id required id_usuario. Example: 1
+
+    * @bodyParam id string required id_usuario. Example: 1
+    */
 
     public function deleteAdmin($id_person, $id_org)
     {
