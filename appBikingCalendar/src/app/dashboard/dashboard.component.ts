@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
          this.toast.showNotification('top','right','success',resp['data']);
          }
     }, err => {
-      this.toast.showNotification('top','right','danger','Error en servidor');
+      this.toast.showNotification('top','right','danger','Error en servidor.');
       
     });  
 
