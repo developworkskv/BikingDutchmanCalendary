@@ -74,7 +74,7 @@ Route::get('deleteCity/{id_package}/org/{id_org}', 'CitiesController@deleteCity'
 
 
 // PDF REPORTS BIKING DUTCHMAN
-Route::get('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
+Route::post('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
 Route::get('trasnformUrlToDownloadPdf/{id_org}/doc/{id_documentoToPDF}', 'PDFController@pdfByTipe')->name('pdf');
 
 //CRUD CLIENTES BKD 
@@ -97,3 +97,8 @@ Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@u
 Route::get('destinations/{id_org}', 'BotController@destinations');
 Route::get('packsByNameOfDestination/{destionName}/org/{id_org}', 'BotController@packsByNameOfDestination');
 Route::get('searchPacksDetails/{code_pack}/org/{id_org}', 'BotController@packsDetails');
+
+
+// EMAILS 
+Route::post('email-info', 'EmailInfoClientController@sendEmailToAdminFromCli');
+
