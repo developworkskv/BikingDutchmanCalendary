@@ -90,6 +90,7 @@ Route::post('packsCreate/{id_org}/destino/{id_destino}', 'PackController@createP
 Route::post('createPackDestination/{id_org}/destino/{id_destino}', 'PackController@createPackDestination');
 Route::get('packsDelete/{code_pack}/org/{id_org}', 'PackController@deletePacks');
 Route::get('packsById/{id_packs}/org/{id_org}', 'PackController@getPacksById');
+Route::get('packsByCodePack/{codePacks}/org/{id_org}', 'PackController@getPacksByCodePacks');
 Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@updatePackageData');
 
 

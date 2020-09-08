@@ -137,4 +137,20 @@ public function deletePacks($code_pack, $id_org)
 
 
 }
+
+//get codepack
+public function getPacksByCodePacks($code, $id_org){
+    $gestionPack = new PackServiceRepository;
+    $packageDetail = $gestionPack->getPackByCodePackDetail($code, $id_org);
+
+    if (count($packageDetail) == 0) {
+        // no hay Datos
+        return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
+    } else {
+       
+        return $this->sendResponse($packageDetail, 'Paquete');
+    }
+
+}
+
 }

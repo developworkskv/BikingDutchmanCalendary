@@ -34,7 +34,7 @@ export class PacksDetailsComponent implements OnInit {
         
         const idPacks = param.id_packs;
         //consumir servicio Packs by ID
-        this._packs.getPacksById(idPacks).subscribe(
+        this._packs.getPacksByCodePacks(idPacks).subscribe(
           resp=>{
             //console.log(resp);
             if(resp['status'] == 1){
@@ -54,13 +54,20 @@ export class PacksDetailsComponent implements OnInit {
     // Creamos el formulario  
     this.packsForm = this.formBuilder.group({
     
-      codePack: [this.packsA['codePack'], Validators.required],  
-    name: [this.packsA['name'], Validators.required],
+      codigoPack: [this.packsA['codigoPack'], Validators.required],  
+    nombrePack: [this.packsA['nombrePack'], Validators.required],
     price: [this.packsA['price'], Validators.required],
     numbers_passengers: [this.packsA['numbers_passengers'], Validators.required],
     difficulty: [this.packsA['difficulty'], Validators.required],
     length: [this.packsA['length'], Validators.required],
-    nameD: [this.packsA['nameD'], Validators.required],
+    number_days: [this.packsA['number_days'], Validators.required],
+    description1: [this.packsA['description1'], Validators.required],
+    description2: [this.packsA['description2'], Validators.required],
+    destino: [this.packsA['destino'], Validators.required],
+    ciudad: [this.packsA['ciudad'], Validators.required],
+    tipoPack: [this.packsA['tipoPack'], Validators.required],
+    
+
       
   });
 }
