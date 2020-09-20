@@ -78,7 +78,7 @@ export class ClientsDetailsComponent implements OnInit {
     console.log(clientFormDetails);
 
     // datos vacios en el formulario
-  if (this.clientFormDetails.invalid) {
+  /*if (this.clientFormDetails.invalid) {
     return this.toast.showNotification('top','right','danger','Completar los datos solicitados.');
   }
   //consumir servicio POST 
@@ -94,6 +94,7 @@ this._clients.updateClientP(this.clientA.bd_clients_id, clientFormDetails.value)
    }
 }, err => {
 //this.toastr.error('Servicio Ejecutado', err['data']);
-}); 
+});*/ 
+  
   }
 }

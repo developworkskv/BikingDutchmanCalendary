@@ -28,7 +28,7 @@ public function getClientsById($id_client)
     ->join('bd_persons', 'bd_clients.bd_persons_id', '=', 'bd_persons.bd_persons_id')  
     ->join('bd_organization', 'bd_clients.bd_organization_id', '=', 'bd_organization.bd_organization_id')
     ->select('bd_clients.*','bd_clients.description1 as descriptionC', 'bd_clients.description2 as descriptionC2', 'bd_organization.bd_organization_id', 'bd_persons.*')
-    ->where('bd_clients.bd_clients_id', $id_client) 
+    ->where('bd_persons.bd_persons_id', $id_client) 
     ->get();
     return $client;
     }
@@ -91,32 +91,45 @@ public function getPersonById($id_person)
     return $newClient;
 }
 
-
-public function updateClientsPerson($id_person, $nameP, $lastNameP, $emailP, $fechaNacimientoP, $genderP, $dniP, $descriptionP,
-$nacionalityC, $heightC ,$weightC ,$passportC, $description1C, $description2C)
+///UPDATE PARA BD_CLIENTS   //BYA
+public function updatePerson($bd_persons_id, $nameP, $lastNameP, $emailP, $fechaNacimientoP, $genderP, $dniP, $nacionality, $height ,$weight ,$passport, $description1)
 {
+
   date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
   $fecha = new DateTime('NOW');
-    $affected = DB::table('bd_persons')
-        ->where('bd_persons_id', $id_person)
-        ->update([
-            'name' => $nameP,
+    DB::table('bd_persons')
+        ->where('bd_persons_id', $bd_persons_id)
+        ->update(['name' => $nameP,
             'lastName' => $lastNameP,
             'email' => $emailP,
             'birth_date' => $fechaNacimientoP,
             'gender' => $genderP,
             'dni' => $dniP,
-            'description1' => $descriptionP,
-            
-            'nacionality' => $nacionalityC,
-            'height' => $heightC,
-            'weight' => $weightC,
-            'passport' => $passportC,
-            'description1' => $description1C,
-            'description2' => $description2C,
             'updated_at' =>  $fecha->format('Y-m-d H:i:s')]);
-    return $affected;
+
+
+    DB::table('bd_clients')
+            ->where('bd_persons_id', $bd_persons_id)
+            ->update([
+                
+                'nacionality' => $nacionality,
+                'height' => $height,
+                'weight' => $weight,
+                'passport' => $passport,
+                'description1' => $description1,
+                //'description2' => $description2C,
+                'updated_at' =>  $fecha->format('Y-m-d H:i:s')]);
+
+            
+    $client = DB::table('bd_persons')
+                ->where('bd_persons_id', $bd_persons_id) 
+                ->get();
+
+    return $client;       
+    
+    
 }
+
 
     //POST - ELIMINAR CLIENTE
     public function deleteClient($bd_clients_id, $id_org)

@@ -29,7 +29,7 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 public function createPack(Request $request, $id_org, $id_destino){
 
     $gestionPaquetes = new PackServiceRepository;
-    $rows = $gestionPaquetes->getPackByName($request->input('name'));
+    $rows = $gestionPaquetes->getPackByName($request->input('code'));
     $rowsCodeExist = $gestionPaquetes->getPackByCodePack($request->input('code'));
 
     if(count($rows) > 0 || count($rowsCodeExist)){
@@ -101,30 +101,34 @@ public function deletePacks($code_pack, $id_org)
 }
 
 
-  //UPDATE - MODIFI DATA $administrators
+  //UPDATE - MODIFI DATA 
   public function updatePackageData($id_package, $id_org, Request $request)
   { // corrige los nombres y inputs
       $gestionPaquetes = new PackServiceRepository;
-      // verficate if exist this user
+      // verficate if exist this pack
       $packIsRegister = $gestionPaquetes->getPacksById($id_package, $id_org);
       if (count($packIsRegister) == 0) {
           // no hay Datos
           return $this->sendError('Paquete no encontrado', 'Ningun registro insertado en esta tabla.');
       } else {
           if (count($request->all()) >= 2) {
-              //EDIT TABLE bd_persons
+              //EDIT TABLE bd_packages
               $gestionPaquetes->updatePackages(
                   $id_package,
-                  $request->input('name'),
-                  $request->input('price'),
-                  $request->input('numbers_passengers'),
-                  
-                  $request->input('description'),
-                  $request->input('description2'),
-              
 
-                 
-                  $id_org,
+                    $request->input('name'),
+                    $request->input('price'),
+                    $request->input('numbers_passengers'),
+                    $request->input('isActive'),
+                    $request->input('description'),
+                    $request->input('description2'),
+                    $request->input('value'),
+                    $request->input('status'),
+                    $request->input('dificultad'),
+                    $request->input('longitud'),
+                    $request->input('number_days'),
+                    $id_org,
+                    $request->input('id_type_packages')
               );
               $newRegisterEdit = $gestionPaquetes->getPacksById($id_package, $id_org);
 

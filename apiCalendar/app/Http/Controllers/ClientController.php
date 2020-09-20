@@ -116,49 +116,37 @@ class ClientController extends BaseController
 
 
      //UPDATE - MODIFI DATA CLIENTS
-    public function updateClient($id_person, Request $request)
+    public function updateClientData($bd_persons_id ,Request $request)
     {
-        $gestionClient = new ClientServiceRepository;
-        // verficate if exist this user
-        $clientIsRegister = $gestionClient->getClientsById($id_person);
-        if (count($clientIsRegister) == 0) {
-            // no hay Datos
-            return $this->sendError('Cliente no encontrado', 'Ningun registro insertado en esta tabla.');
-        } else {
-            if (count($request->all()) >= 6) {
-                //EDIT TABLE 
-                $gestionClient->updateClientsPerson(
-                    $id_person,
-                    $request->input('nameP'),
-                    $request->input('lastNameP'),
-                    $request->input('emailP'),
-                    $request->input('fechaNacimientoP'),
-                    $request->input('genderP'),
-                    $request->input('dniP'),
-                    $request->input('descriptionPersonP'),
-                    //CAMPOS DEL CLIENTE
-                    $request->input('nacionalityC'),
-                    $request->input('heightC'),
-                    $request->input('weightC'),
-                    $request->input('passportC'),
-                    $request->input('description1C'),
-                    $request->input('description2C'),
-                );
-                //getIdPerson modificated
-                $clientEdit = $gestionClient->getClientsById($id_person);
-                // EDIT TABLE bd_users where idPersons
-                $update = $gestionClient->updateClient($clientEdit[0]->bd_clients_id,
-                    $request->input('bd_persons_id')
-                                 ); // SI SE QUIERE MODIFICAR ESTE CAMPO CREAR OTRA FUNCION - CAMBIAR datos
-                return $this->sendResponse($userIsRegister, 'Cliente modificado correctamente.');
 
-            } else {
-                return $this->sendError('Ingresar los datos solicitados', 'Ningun registro modificado en esta tabla.');
+         $gestionClient = new ClientServiceRepository;
+         $update = $gestionClient->updatePerson(
+             $bd_persons_id, 
+             $request->input('name'),    
+             $request->input('lastName'),
+             $request->input('email'),
+             $request->input('birth_date'),
+             $request->input('gender'),
+             $request->input('dni'),
+             $request->input('nacionality'),
+             $request->input('height'),
+             $request->input('weight'),
+             $request->input('passport'),
+             $request->input('description1')
+         );
 
-            }
+       
+         if (count($update) > 0 ) {
+            return $this->sendResponse('Correcto Cliente '.$update[0]->name.' Modificado' , 'Correcto Cliente Modificado');
+
+        }else {
+            return $this->sendError('Cliente no modificado', 'Cliente no modificado.');
         }
+        return $update;
 
     }
+
+    
      /// DELETE CLIENTS
      public function deleteClient($id_person, $id_org)
      {

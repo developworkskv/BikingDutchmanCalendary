@@ -93,7 +93,7 @@ class DestinationsServiceRepository
 
     //UPDATE PARA DESTINOS 
    
-    public function updateDestino($bd_destination_id, $nameC, $availability, $isActive, $description, $description2, $value, $status)
+    public function updateDestino($bd_destination_id, $nameC, $availability, $isActive, $description1, $description2, $value, $status)
     {
         date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
         $fecha = new DateTime('NOW');
@@ -103,7 +103,7 @@ class DestinationsServiceRepository
                   'nameC' => $nameC,
                   'availability' => $availability,
                   'isActive' => $isActive,
-                  'description1' => $description,
+                  'description1' => $description1,
                   'description2' => $description2,
                   'value' => $value,
                   'status' => $status,

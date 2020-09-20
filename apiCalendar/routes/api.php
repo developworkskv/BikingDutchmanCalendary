@@ -80,7 +80,7 @@ Route::get('trasnformUrlToDownloadPdf/{id_org}/doc/{id_documentoToPDF}', 'PDFCon
 //CRUD CLIENTES BKD 
 Route::post('clientCreate/{id_org}', 'ClientController@createClient');
 Route::get('clientRead/{id_org}', 'ClientController@getAllClient');
-Route::post('clientUpdate/{id_client}/update/{id_org}', 'ClientController@updateClient');
+Route::post('clientUpdate/{id_client}', 'ClientController@updateClientData');
 Route::get('clientDelete/{id_client}/org/{id_org}', 'ClientController@deleteClient');
 Route::get('clientById/{id_client}/org/{id_org}', 'ClientController@getClientById');
 

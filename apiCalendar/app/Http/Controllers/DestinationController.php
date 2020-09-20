@@ -87,7 +87,7 @@ class DestinationController extends BaseController
         
         $gestionPaquetes = new DestinationsServiceRepository;
 
-        // verficate if exist this user
+        // verficate if exist this Destino
         $destinoIsRegister = $gestionDestino->getDestinoById($id_destination);
         if (count($destinoIsRegister) == 0) {
             // no hay Datos
@@ -95,7 +95,7 @@ class DestinationController extends BaseController
         } else {
             
             if (count($request->all()) >= 2) {
-                //EDIT TABLE bd_destinos
+                //EDIT TABLE bd_destination
                 $gestionDestinos->updateDestino(
                     $id_destination,
                     $request->input('name'),
