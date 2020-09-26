@@ -104,7 +104,7 @@ class ClientController extends BaseController
                      $request->input('weight'),
                      $request->input('passport'),
                      $request->input('description1'),
-                     $id_org,
+                     $id_org
                  );
                  return $this->sendResponse('Correcto Cliente creado', 'Usuario administrador creado correctamente.');
              } else {
@@ -141,7 +141,7 @@ class ClientController extends BaseController
                     $request->input('weightC'),
                     $request->input('passportC'),
                     $request->input('description1C'),
-                    $request->input('description2C'),
+                    $request->input('description2C')
                 );
                 //getIdPerson modificated
                 $clientEdit = $gestionClient->getClientsById($id_person);

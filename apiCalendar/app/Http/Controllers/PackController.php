@@ -68,7 +68,7 @@ public function createPackDestination(Request $request,$id_org,$id_destino){
      $insertTableRelacion = $gestionPaquetes->newPackDestination(
         $request->input('code'),
         $id_destino,
-        $id_package->bd_packages_id, // Id_del Query obtenido         
+        $id_package->bd_packages_id// Id_del Query obtenido         
     );
     return $this->sendResponse('Destino '.' '. $destination[0]->name.'-'.$destination[0]->city.' '. 'agregado', 'Destino enlazado al paquete.');
 
@@ -121,10 +121,7 @@ public function deletePacks($code_pack, $id_org)
                   
                   $request->input('description'),
                   $request->input('description2'),
-              
-
-                 
-                  $id_org,
+                  $id_org
               );
               $newRegisterEdit = $gestionPaquetes->getPacksById($id_package, $id_org);
 
