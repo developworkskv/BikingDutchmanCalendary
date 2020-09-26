@@ -17,12 +17,6 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 {
     $gestionPaquetes = new PackServiceRepository;
     $packs = $gestionPaquetes->getAllPacks($id_org);
-<<<<<<< HEAD
-    return $packs;
-    die();
-=======
-
->>>>>>> master
     if (count($packs) == 0) {
         // no hay Datos
         return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
@@ -34,28 +28,6 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 public function createPack(Request $request, $id_org, $id_destino){
 
     $gestionPaquetes = new PackServiceRepository;
-<<<<<<< HEAD
-    // INSERTA EN LA TABLA 
-    $insert = $gestionPaquetes->newPack(
-        $request->input('name'),
-        $request->input('price'),
-        $request->input('numbers_passengers'),
-        $request->input('isActive'),
-        $request->input('description'),
-        $request->input('description2'),
-        $request->input('value'),
-        $request->input('status'),
-        $request->input('dificultad'),
-        $request->input('longitud'),
-        $request->input('number_days'),
-        $id_org,
-        $request->input('id_type_packages')
-           
-    );
-
-    return $this->sendResponse('Paquete creado', 'Paquete Biking Dutchman registrado.');
-
-=======
     $rows = $gestionPaquetes->getPackByName($request->input('name'));
     $rowsCodeExist = $gestionPaquetes->getPackByCodePack($request->input('code'));
 
@@ -85,7 +57,6 @@ return $this->sendResponse('Paquete creado', 'Paquete Biking Dutchman registrado
 
     }
     
->>>>>>> master
 }
 public function createPackDestination(Request $request,$id_org,$id_destino){
     $gestionPaquetes = new PackServiceRepository;
@@ -96,7 +67,7 @@ public function createPackDestination(Request $request,$id_org,$id_destino){
      $insertTableRelacion = $gestionPaquetes->newPackDestination(
         $request->input('code'),
         $id_destino,
-        $id_package->bd_packages_id, // Id_del Query obtenido         
+        $id_package->bd_packages_id // Id_del Query obtenido         
     );
     return $this->sendResponse('Destino '.' '. $destination[0]->name.'-'.$destination[0]->city.' '. 'agregado', 'Destino enlazado al paquete.');
 
@@ -149,10 +120,7 @@ public function deletePacks($code_pack, $id_org)
                   
                   $request->input('description'),
                   $request->input('description2'),
-              
-
-                 
-                  $id_org,
+                  $id_org
               );
               $newRegisterEdit = $gestionPaquetes->getPacksById($id_package, $id_org);
 

@@ -35,49 +35,6 @@ public function newPack($name, $price, $numbersPassengers, $isActive, $descripti
 //GET ALL PACKAGES
 public function getAllPacks($id_org)
 { // se relaciona con varias tablas - tabla principal => bd_packages_destination
-<<<<<<< HEAD
-   // $a = $this->allCodesPacks();
-  //  print_r(array_unique($a));
-
-    $packages =  DB::select('SELECT a.bd_packages_destination_id as ID_PACK_DEST,
-    DISTINCT ON a.code_pack_destination as CODIGO , a.bd_destination_id as ID_DESTINO,
-    a.bd_packages_id as ID_PACKAGE, b.name as Nombre_Paquete,
-    --d.name as DESTINO,
-    d.description1 as Description_destino, 
-    b.price as precio_paquete,
-    b.numbers_passengers, b.description1 as Descripcion_paquete,
-    b.number_days, b.length as longitud_paquete, b.difficulty,
-    c.name as Tipo_paquete, c.description1 as Descripcion_tipo_pack
-    FROM bd_packages_destination as a
-    Inner Join bd_packages as b
-    ON a.bd_packages_id = b.bd_packages_id
-    inner join bd_type_packages as c
-    ON b.bd_type_packages_id = c.bd_type_packages_id
-    right join bd_destination as d
-    on a.bd_destination_id = d.bd_destination_id
-    WHERE b.bd_organization_id = 1
-    ORDER BY CODIGO');
-    $arrayData = array( );
-  //  for ($i=0; $i < count($packages); $i++) { 
-
-  //  }
-  
-
-    return array_unique($packages, SORT_REGULAR);
-
-   
-
-
-}
-
-public function allCodesPacks(){
-    $packages_codes =  DB::select('SELECT a.bd_packages_destination_id as ID_PACK_DEST,
-    a.code_pack_destination as CODIGO , a.bd_destination_id as ID_DESTINO, b.bd_organization_id as id_org,
-    a.bd_packages_id as ID_PACKAGE, b.name as Nombre_Paquete
-    FROM bd_packages_destination as a
-    Inner Join bd_packages as b
-    ON a.bd_packages_id = b.bd_packages_id
-=======
 
     $packages =  DB::select('SELECT DISTINCT(b.code_pack_destination) , c.name as type_tour, a.*
     from bd_packages a
@@ -119,7 +76,6 @@ public function allCodesPacks(){
     FROM bd_packages_destination as a
     Inner Join bd_packages as b
     ON a.bd_packages_id = b.bd_packages_id
->>>>>>> master
    
     WHERE b.bd_organization_id = 1
     ORDER BY CODIGO');
