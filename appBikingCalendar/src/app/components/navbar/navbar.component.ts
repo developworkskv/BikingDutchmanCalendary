@@ -146,13 +146,13 @@ export class NavbarComponent implements OnInit {
 
     //********************NOTIFICATIONS CHATBOT *************************/
     notificationChatbot(){
-        this._chatbot.getAllNotifications()
+       /* this._chatbot.getAllNotifications()
         .subscribe(
             resp=>{
                 this.notifications = resp;
                 this.numberNotifications = this.notifications.length;
                
             }
-        )
+        )*/
     }
 }

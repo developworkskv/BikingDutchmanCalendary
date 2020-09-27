@@ -1,41 +1,3 @@
-<<<<<<< HEAD
-
-<div class="collapse" id="collapsePacks" style="padding-left: 80px; padding-right: 50px;" >
-  <div class="col-md-auto">
-    <button (click)="getAllPaquetes()" type="button" class="btn btn-success bmd-btn-fab"
-      >
-      <i class="material-icons">sync</i> <small> Sincronizar</small>
-    </button>
-  </div>
-  <form [formGroup]="packageForm" (ngSubmit)="onSubmit(packageForm)">
-  <div class="form-row">
-    <div class="form-group col"> 
-      <label for="inputEmail4">Destinos</label> 
-      <mat-form-field >
-        <mat-select placeholder="👉 SELECIONE EL ó LOS DESTINOS" formControlName="id_destinations" multiple>
-          <mat-option  *ngFor="let destino of destinos" [value]="destino.bd_destination_id">{{destino.city}} - {{destino.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div> 
-  
-  
-  <div class="form-row">
-    <div class="form-group col">              
-      <label for="inputEmail4">Nombre del paquete</label>
-      <input type="text" formControlName="name" class="form-control"  placeholder="Nombre del paquete">
-    </div>
-    <div class="form-group col"> 
-      <label for="inputEmail4">Tipo de Paquete</label>
-      <select formControlName="id_type_packages" class="custom-select">
-        <option>-- SELECIONAR</option>
-        <option 
-        *ngFor="let typesPackage of packs_select" 
-        value="{{ typesPackage.bd_type_packages_id }}">
-        {{ typesPackage.name }}
-        </option>
-      </select>
-=======
 <div class="collapse" id="collapsePacks" style="padding-left: 80px; padding-right: 50px;">
 
   <form [formGroup]="packageForm" (ngSubmit)="onSubmit(packageForm)">
@@ -49,7 +11,6 @@
           </mat-select>
         </mat-form-field>
       </div>
->>>>>>> master
     </div>
 
     <div class="form-row">
@@ -94,7 +55,6 @@
       </div>
 
     </div>
-<<<<<<< HEAD
     <div class="form-group col">
 
       <label for="inputEmail4">Observacion</label>
@@ -106,8 +66,7 @@
       
     </div>  
      
-  </div>
-=======
+ 
 
     <div class="form-row">
       <div class="form-group col">
@@ -128,7 +87,6 @@
         <textarea formControlName="description2" type="text" class="form-control"></textarea>
       </div>
     </div>
->>>>>>> master
 
     <button type="submit" class="btn btn-primary">Guardar</button>
 
@@ -141,40 +99,8 @@
     border-bottom:4px solid green;
 }
 
-<<<<<<< HEAD
-      
-           <!-- PAQUETES -->
-           <table style=" width:100% " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Código Paquete</th>
-                <th scope="col">Tipo Paquete</th>
-                <th scope="col">Nombre Paquete</th>
-                <th scope="col">Destino</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Nº Pasajeros</th>
-                <th scope="col">Longitud</th>
-                <th scope="col">Dificultad</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let p of paquetes ">
-              <td>{{ p.codigo}} </td>
-              <td>{{ p.tipo_paquete}} </td>
-              <td>{{ p.nombre_paquete}} </td>
-              <td>{{ p.destino}} </td>
-              <td>{{ p.precio_paquete}} </td>
-              <td>{{ p.numbers_passengers}} </td>
-              <td>{{ p.longitud_paquete}} </td>
-              <td>{{ p.difficulty}} </td>
-              </tr>
-            </tbody>
-          </table>
-        
-=======
 </style>
-<!-- PAQUETES -->
+<!-- PAQUETES  -->
 <table style=" width:100% " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead class="thead-dark">
     <tr>
@@ -230,4 +156,3 @@
     </tr>
   </tbody>
 </table>
->>>>>>> master

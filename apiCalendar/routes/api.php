@@ -51,7 +51,7 @@ Route::get('packagesReadB', 'PackagesController@getAllTypesPackagesBot');
 Route::post('testChatbot', 'TestController@testChatbot');
 Route::get('responseTest', 'TestController@responseChatbotDataToBD');
 //test -show view data of chatbot
-Route::get('notifications', 'TestController@getToShowInView');
+//Route::get('notifications', 'TestController@getToShowInView');
 Route::get('destinations', 'TestController@getDestinationsWithButtons');
 
 
