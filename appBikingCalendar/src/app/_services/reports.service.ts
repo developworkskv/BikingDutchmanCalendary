@@ -8,14 +8,10 @@ export class ReportsService {
 
   constructor(public http: HttpClient) { }
 
-  getReportDestination(){ // http://localhost:8000/api/descargar-pdf/1
-    return this.http.get( URL_SERVICIOS+'/descargar-pdf/'+ localStorage.getItem('bd_org'));
+  getReportDestination(values:any ){ // http://localhost:8000/api/descargar-pdf/1
+    return this.http.post( URL_SERVICIOS+'/descargar-pdf/'+ localStorage.getItem('bd_org'), values);
     
   }
 
-  getUrlToDownloadPdf(numberDoc: any){
-  // var url = URL_SERVICIOS+'/descargar-pdf/'+ localStorage.getItem('bd_org');
-    var url = URL_SERVICIOS + '/trasnformUrlToDownloadPdf/'+localStorage.getItem('bd_org') + '/doc/'+ numberDoc;
-   return url;
-  }
+
 }
