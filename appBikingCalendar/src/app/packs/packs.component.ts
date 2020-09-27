@@ -132,11 +132,7 @@ export class PacksComponent implements OnInit {
               );
             });
 
-<<<<<<< HEAD
             this.getAllPaquetes(); // PAQUETES
-=======
-            this.getAllPaquetes();
->>>>>>> master
             // NECESARIO.. volver actualizar la data y la datatable 
             this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
               // Destroy the table first
@@ -161,18 +157,11 @@ export class PacksComponent implements OnInit {
 
   }
   getAllPaquetes(){
-<<<<<<< HEAD
-    this._typePackages.getAllTypesPackages().subscribe((resp) => {
-      console.log(resp["data"]);
-      this.packs_select = resp["data"];
-      //this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
-=======
   
     this._packs.allPacks().subscribe((resp) => {
       //console.log("LOS PAQUETES" + resp["data"]);
       this.paquetes = resp["data"];
       this.dtTrigger.next(); // Alwas necesary to storing or read to datatables
->>>>>>> master
 
     });
   }
