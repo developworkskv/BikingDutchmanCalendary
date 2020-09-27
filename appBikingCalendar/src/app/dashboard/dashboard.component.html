@@ -29,34 +29,40 @@
 
             </div>
         </div>
-        <br>
+        <br> 
         <br>
         <br>
         <div class="row">
             <div class="col-8">
 
-                <h4>Deseas mas Información, envianos tus preguntas a nuestor
-                    email</h4>
-                <form>
+               <h4>Deseas más información. Dejame tu comentario, atenderemos tus intereses.</h4>
+               <small>Recuerda escribir a nuestro asistente virtual para mas información</small> 
+               <form [formGroup]="infoForm" (ngSubmit)="onSubmit(infoForm)">
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="name@example.com">
+                        <div class="row">
+                            <div class="col"> <label for="exampleFormControlInput1">Email:</label>
+                                <input formControlName="email_user_cli" type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="name@example.com">
+                            </div>
+                            <div class="col"> <label for="exampleFormControlSelect1">Estado:</label>
+                                <select class="form-control" formControlName="status">
+                                    <option value="0">SELECIONAR 👇</option>
+                                    <option>Urgente</option>
+                                    <option>Aviso</option>
+                                    <option>Información</option>
+                                    <option>Otros</option>
+                                </select></div> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Urgente</option>
-                            <option>Aviso</option>
-                            <option>Información</option>
-                            <option>Otros</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Example
+                        <label for="exampleFormControlTextarea1">Ingresa tus sugerencias, dudas, comentarios, etc.
                             textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
+                    <button type="submit" class="btn btn-info">
+                        <i class="material-icons">send</i>&nbsp; Enviar
+                      </button>
+
                 </form>
             </div>
             <div class="col-4">

@@ -99,9 +99,9 @@ export class DestinationsComponent implements OnInit {
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
           // Destroy the table first
           dtInstance.destroy();
-          // Call the dtTrigger to rerender again
+          // Call the dtTrigger to rerender agains
         });
-          this.destinoForm.reset();
+          this.destinoForm.reset(); 
           this.buildForm();
           this.buildOptionDatatable();
 

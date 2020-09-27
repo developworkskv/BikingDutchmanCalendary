@@ -17,6 +17,10 @@ public function getAllPacks($id_org) //DATO QUEMADO HASTA UTILIZAR FRONT END
 {
     $gestionPaquetes = new PackServiceRepository;
     $packs = $gestionPaquetes->getAllPacks($id_org);
+<<<<<<< HEAD
+=======
+
+>>>>>>> kv-branch-bkd
     if (count($packs) == 0) {
         // no hay Datos
         return $this->sendError('No existen registros', 'Ningun registro insertado en esta tabla.');
@@ -67,7 +71,11 @@ public function createPackDestination(Request $request,$id_org,$id_destino){
      $insertTableRelacion = $gestionPaquetes->newPackDestination(
         $request->input('code'),
         $id_destino,
+<<<<<<< HEAD
         $id_package->bd_packages_id // Id_del Query obtenido         
+=======
+        $id_package->bd_packages_id// Id_del Query obtenido         
+>>>>>>> kv-branch-bkd
     );
     return $this->sendResponse('Destino '.' '. $destination[0]->name.'-'.$destination[0]->city.' '. 'agregado', 'Destino enlazado al paquete.');
 

@@ -132,7 +132,7 @@ export class PacksComponent implements OnInit {
               );
             });
 
-            this.getAllPaquetes(); // PAQUETES
+            this.getAllPaquetes();
             // NECESARIO.. volver actualizar la data y la datatable 
             this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
               // Destroy the table first

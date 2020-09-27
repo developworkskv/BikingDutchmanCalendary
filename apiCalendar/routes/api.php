@@ -74,7 +74,7 @@ Route::get('deleteCity/{id_package}/org/{id_org}', 'CitiesController@deleteCity'
 
 
 // PDF REPORTS BIKING DUTCHMAN
-Route::get('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
+Route::post('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
 Route::get('trasnformUrlToDownloadPdf/{id_org}/doc/{id_documentoToPDF}', 'PDFController@pdfByTipe')->name('pdf');
 
 //CRUD CLIENTES BKD 
@@ -102,13 +102,21 @@ Route::get('email-test', function(){
     dd('done');
 });
 
+<<<<<<< HEAD
 
 // CHATBOT - API
 Route::get('destinations/{id_org}', 'BotController@destinations');
 Route::get('packsByNameOfDestination/{destionName}/org/{id_org}', 'BotController@packsByNameOfDestination');
 Route::get('searchPacksDetails/{code_pack}/org/{id_org}', 'BotController@packsDetails');
 
+=======
+>>>>>>> kv-branch-bkd
 // CHATBOT - API
 Route::get('destinations/{id_org}', 'BotController@destinations');
 Route::get('packsByNameOfDestination/{destionName}/org/{id_org}', 'BotController@packsByNameOfDestination');
 Route::get('searchPacksDetails/{code_pack}/org/{id_org}', 'BotController@packsDetails');
+
+
+// EMAILS 
+Route::post('email-info', 'EmailInfoClientController@sendEmailToAdminFromCli');
+

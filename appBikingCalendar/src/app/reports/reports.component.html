@@ -5,145 +5,44 @@
     </div>
   </div>
   &nbsp;&nbsp;&nbsp;
-
-  <div class="container">
-    <h3>TOURS COMPLETADOS</h3>
+  <form [formGroup]="reportForm" (ngSubmit)="onSubmit(reportForm)">
+    <div class="container">
     <div class="row">
-      <div class="col-sm">
-        <div class="card text-center">
-          <div class="card-header bg-info">
-            MES ACTUAL
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Tours completados mes actual</h5>
-            <p class="card-text">3</p>
-            <a href="#" class="btn btn-success"> 👉 <small> Descargar </small></a>
-          </div>
-          <div class="card-footer text-muted">
-            Marzo
-          </div>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card text-center">
-          <div class="card-header bg-info">
-            AÑO ACTUAL
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Tours completados año actual</h5>
-            <p class="card-text">43</p>
-            <a href="#" class="btn btn-success"> 👉 <small> Descargar </small></a>
-          </div>
-          <div class="card-footer text-muted">
-            Enero - Junio
-          </div>
-        </div>
-      </div>
       <div class="col-sm">
         <div class="card text-center">
           <div class="card-header bg-info">
             FILTRO
           </div>
           <div class="card-body">
-            <h5 class="card-title">Tours busqueda</h5>
+            <h5 class="card-title">INFORMES</h5>
+            
+            <select class="custom-select" formControlName="value">
+              <option value="0">SELECIONAR 👇</option>
+              <option value="1">Órdenes Tours</option>
+              <option value="2">Usuarios (Clientes)</option>
+              <option value="3">Usuarios (Administradores)</option>
+              <option value="4">Destinos y Ciudades</option>
+              <option value="5">Paquetes</option>
+          </select>
+          <br>
+            Fecha inicio: 
+            <br> <input type="date" formControlName="begin_date"> <br><br>
+            Fecha fin: 
+            <br> <input type="date" formControlName="end_date"> <br><br>
 
-            Fecha inicio: <input type="date"> 
-            Fecha fin: &nbsp;&nbsp;&nbsp;&nbsp; <input type="date">
-
-            <button (click)="report(1)" type="button" class="btn btn-info">
+            <button type="submit" class="btn btn-info">
               <i class="material-icons">search</i>&nbsp; Buscar
             </button>
-            <br>
-            <a class="btn btn-success" *ngIf="urltoDownload" href="{{urltoDownload}}">👉 <small> Descargar </small></a>
+            <br> 
           </div>
           <div class="card-footer text-muted">
             Personalizado
           </div>
         </div>
       </div>
+     
     </div>
-
-    <h3>TOURS EN PROCESOS</h3>
-    <div class="row">
-      <div class="col-sm">
-        TIPO PAQUETE GOLDEN
-      </div>
-      <div class="col-sm">
-        TIPO PAQUETE PREMIUM
-      </div>
-      <div class="col-sm">
-        TIPO PAQUETE STANDAR
-      </div>
-    </div>
-
-
-    <h3>TOURS PERSONALIZADO</h3>
-    <div class="row">
-      <div class="col-sm">
-        TIPO PAQUETE GOLDEN
-      </div>
-      <div class="col-sm">
-        TIPO PAQUETE PREMIUM
-      </div>
-      <div class="col-sm">
-        TIPO PAQUETE STANDAR
-      </div>
-    </div>
-
-
-    <h3>USUARIOS</h3>
-    <div class="row">
-      <div class="col-sm">
-        TIPO PAQUETE GOLDEN
-      </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
-    </div>
-
-    <h3>CLIENTES</h3>
-    <div class="row">
-      <div class="col-sm">
-        TIPO PAQUETE GOLDEN
-      </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
-    </div>
-
-    <h3>DESTINOS</h3>
-    <div class="row">
-      <div class="col-sm">
-        TIPO PAQUETE GOLDEN
-      </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
-    </div>
-
-    <h3>PAQUETES</h3>
-    <div class="row">
-      <div class="col-sm">
-        TIPO PAQUETE GOLDEN
-      </div>
-      <div class="col-sm">
-        TIPO PAQUETE PREMIUM
-      </div>
-      <div class="col-sm">
-        TIPO PAQUETE STANDAR
-      </div>
-    </div>
-
 
   </div>
-
+</form>
 </div>
