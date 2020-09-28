@@ -44,7 +44,7 @@ class CitiesController extends BaseController
                 $insert = $gestionCities->newCity(
                     $request->input('name'),
                     $request->input('description'),
-                    $id_org,
+                    $id_org
  
                 );
                 return $this->sendResponse('Nueva ciudad registrada: ' . $request->input('name'), 'Registro correcto.');
@@ -130,7 +130,7 @@ class CitiesController extends BaseController
                     $id_city,
                     $cityIsRegister[0]->bd_organization_id,
                     $request->input('name'),
-                    $request->input('description'),
+                    $request->input('description')
                 );
                 $newRegisterEdit = $gestionCities->getCityById($id_city, $id_org);
 

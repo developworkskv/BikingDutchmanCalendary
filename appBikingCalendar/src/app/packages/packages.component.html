@@ -31,6 +31,7 @@
         </div>
       </div>
     </div>
+    <!--BODY-->
     <div class="card-body">
       <div class="tab-content">
         <div class="tab-pane active" id="profile">
@@ -44,14 +45,18 @@
                 <i class="material-icons">fiber_new</i> Registrar Paquete
               </button>
             </div>
+          </div>
             <!--  COMPONENTE PACKS -->
+
           </div>
             <app-packs></app-packs>
           
           <!--FIN-->
         </div>
-        <div class="tab-pane" id="messages">
-          <div class="row">
+        
+        <div class="collapse" id="messages">
+          
+            <div class="row">
             <div class="col">
               <h2 _ngcontent-xkm-c107="">TIPO DE PAQUETES BIKING DUTCHMAN</h2>
             </div>
@@ -62,6 +67,7 @@
               </button>
             </div>
           </div>
+          
           <div class="collapse" id="collapseExample2">
 
 
@@ -95,13 +101,13 @@
             </div>
 
           </div>
-
+        
           <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Tipo Paquete</th>
-                <th scope="col">Descrición</th>
-                <th scope="col">Descrición 2</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Descripción 2</th>
                 <th scope="col">Fecha creación</th>
                 <th scope="col"> Editar </th>
                 <th scope="col">Eliminar</th>
@@ -131,9 +137,9 @@
           </table>
 
         </div>
+        
 
-
-      </div>
+      
     </div>
   </div>
 </div>

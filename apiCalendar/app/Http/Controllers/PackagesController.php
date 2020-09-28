@@ -29,7 +29,7 @@ class PackagesController extends BaseController
                     $request->input('name'),
                     $request->input('description'),
                     $request->input('description2'),
-                    $id_org,
+                    $id_org
  
                 );
                 return $this->sendResponse('Tipo paquete creado', 'Tipo de Paquete Biking Dutchman registrado.');

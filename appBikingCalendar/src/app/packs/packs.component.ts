@@ -20,6 +20,8 @@ export class PacksComponent implements OnInit {
   packageForm: FormGroup;
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
+  packs_select: any;
+
   @ViewChild(DataTableDirective, null)
   private _dtElement: DataTableDirective;
 

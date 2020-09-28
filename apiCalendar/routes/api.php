@@ -51,7 +51,7 @@ Route::get('packagesReadB', 'PackagesController@getAllTypesPackagesBot');
 Route::post('testChatbot', 'TestController@testChatbot');
 Route::get('responseTest', 'TestController@responseChatbotDataToBD');
 //test -show view data of chatbot
-Route::get('notifications', 'TestController@getToShowInView');
+//Route::get('notifications', 'TestController@getToShowInView');
 Route::get('destinations', 'TestController@getDestinationsWithButtons');
 
 
@@ -74,7 +74,7 @@ Route::get('deleteCity/{id_package}/org/{id_org}', 'CitiesController@deleteCity'
 
 
 // PDF REPORTS BIKING DUTCHMAN
-Route::get('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
+Route::post('descargar-pdf/{id_org}', 'PDFController@pdf')->name('products.pdf');
 Route::get('trasnformUrlToDownloadPdf/{id_org}/doc/{id_documentoToPDF}', 'PDFController@pdfByTipe')->name('pdf');
 
 //CRUD CLIENTES BKD 
@@ -93,8 +93,31 @@ Route::get('packsById/{id_packs}/org/{id_org}', 'PackController@getPacksById');
 Route::get('packsByCodePack/{codePacks}/org/{id_org}', 'PackController@getPacksByCodePacks');
 Route::post('packsEdit/{id_org}/typePackage/{id_type_pakage}', 'PackController@updatePackageData');
 
+//EMAIL SEND
+Route::get('email-test', function(){
+  
+	$details['email'] = 'developworkskv@hotmail.com ';
+  
+    dispatch(new App\Jobs\SendEmailJob($details));
+  
+    dd('done');
+});
+
+<<<<<<< HEAD
 
 // CHATBOT - API
 Route::get('destinations/{id_org}', 'BotController@destinations');
 Route::get('packsByNameOfDestination/{destionName}/org/{id_org}', 'BotController@packsByNameOfDestination');
 Route::get('searchPacksDetails/{code_pack}/org/{id_org}', 'BotController@packsDetails');
+
+=======
+>>>>>>> kv-branch-bkd
+// CHATBOT - API
+Route::get('destinations/{id_org}', 'BotController@destinations');
+Route::get('packsByNameOfDestination/{destionName}/org/{id_org}', 'BotController@packsByNameOfDestination');
+Route::get('searchPacksDetails/{code_pack}/org/{id_org}', 'BotController@packsDetails');
+
+
+// EMAILS 
+Route::post('email-info', 'EmailInfoClientController@sendEmailToAdminFromCli');
+

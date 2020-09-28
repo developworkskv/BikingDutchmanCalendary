@@ -5,19 +5,45 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Repositories\PDFServiceRepository;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\Request;
 
 class PDFController extends BaseController
 {
 
-    public function pdf($id_org)
+    public function pdf(Request $request, $id_org)
     {
         $gestionPDF = new PDFServiceRepository;
+        // determinar el tipo de documento a imprimir
 
-        $destinations = $gestionPDF->readAllDestinos($id_org);
-        //   return $destinations[0]->name;
-        // die();
-        $pdf = PDF::loadView('reportTest', compact('destinations'))->setPaper('a4', 'landscape');
-        return $pdf->download('reportes_BikingDutchman.pdf');
+        switch ($request->input('option')) {
+            case '0':
+                return $this->sendResponse('Porfavor ingrese un tipo de documento', 'Invalido');
+            break;
+            case '1':
+                return $this->sendResponse('Reporte *Órdenes Tours*', 'Órdenes Tours');
+                break;
+            case '2':
+                return $this->sendResponse('Reporte *Usuarios (Clientes)*', 'Usuarios (Clientes)');
+                break;
+            case '3':
+                return $this->sendResponse('Reporte *Usuarios (Administradores)*', 'Usuarios (Administradores)');
+                break;
+            case '4':
+
+                $destinations = $gestionPDF->readAllDestinos($id_org);
+                $pdf = PDF::loadView('reportTest', compact('destinations'))->setPaper('a4', 'landscape');
+                return $pdf->download('reportes_BikingDutchman.pdf');
+
+                // $this->sendResponse('Reporte *Destinos y Ciudades*', 'Destinos y Ciudades');
+                break;
+            case '5':
+                return $this->sendResponse('Reporte *Paquetes*', 'Paquetes');
+                break;
+            default:
+                # code...
+                break;
+        }
+       
     }
 
     public function pdfByTipe($id_org, $number_pdf)
@@ -29,7 +55,7 @@ class PDFController extends BaseController
                 $destinations = $gestionPDF->readAllDestinos($id_org);
                 $pdf = PDF::loadView('reportTest', compact('destinations'))->setPaper('a4', 'landscape');
                 return $pdf->download('reportes_BikingDutchman.pdf');
-        
+
                 break;
             case 2:
                 # code...
@@ -42,6 +68,5 @@ class PDFController extends BaseController
                 break;
         }
 
-       
     }
 }

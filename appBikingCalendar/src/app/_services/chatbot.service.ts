@@ -9,8 +9,8 @@ export class ChatbotService {
 
   constructor(public htpp: HttpClient) { }
      //CRUD 
-     getAllNotifications(){ // TEST
+   /*  getAllNotifications(){ // TEST
       return this.htpp.get( URL_SERVICIOS+'/notifications');
       
-    }
+    }*/
 }

@@ -82,6 +82,7 @@ public function getPersonById($id_person)
         'isActive' => true,
         'description1' => $description1C,
         'description2' => null,
+        'description2' => null,
         'value' => 1,
         'status' => true,
         'bd_organization_id' => $id_org,

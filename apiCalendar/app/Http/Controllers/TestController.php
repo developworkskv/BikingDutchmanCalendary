@@ -14,81 +14,10 @@ class TestController extends Controller
     }
 
     public function testChatbot(Request $request){
- 
         $newAdmin = DB::table('bd_ch_test')->insert([
             'bd_ch_name' => $request->input('nombrebdch'),
         ]);
-        return "SERVICIO POST";
+        return "SERVICIO POST"; 
     }
 
-    public function responseChatbotDataToBD(){
- 
-        $data = DB::table('bd_ch_test')
-        ->get()->last();
-      //  print_r($data->bd_ch_name);
-      //  die();
-       $json_resp_chatbot='
-       {
-        "messages": [
-          {"text": "'.$data->bd_ch_name.'"},
-          {"text": "Lo obtuve de la base de datos"}
-        ]
-       }
-       ';
-        return $json_resp_chatbot;
-    }
-
-    //show datat chatbot in notifications web
-    public function getToShowInView(){
- 
-        $data = DB::table('bd_ch_test')
-        ->get();
-       // print_r($data->bd_ch_name);
-      return $data;
-    }
-    
-    // PRUEBAS CHATBOR CHATFUEL
-
-    public function getDestinationsWithButtons(){
-        $dataDB = DB::table('bd_destination')
-        ->get();
-        
-        $data = '[
-            {
-              "type": "show_block",
-              "block_names": ["name of block"],
-              "title": "Show Block"
-            },
-            {
-              "type": "web_url",
-              "url": "https://rockets.chatfuel.com",
-              "title": "Visit Website"
-            },
-            {
-              "url": "https://rockets.chatfuel.com/api/welcome",
-              "type":"json_plugin_url",
-              "title":"Postback"
-            }
-          ]';
-        $json_resp_chatbot=' {
-            
-              "messages": [
-              {
-                "attachment": {
-                  "type": "template",
-                  "payload": {
-                    "template_type": "button",
-                    "text": "Hello!",
-                    "buttons": '.$data.'
-                  }
-                }
-              }
-            ]
-          };';
-
-          return $json_resp_chatbot;
-          
-    }
-
-
-}
+  }

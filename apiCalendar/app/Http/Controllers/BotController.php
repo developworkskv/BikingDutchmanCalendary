@@ -58,7 +58,7 @@ class BotController extends Controller
         }
 
      
-        return '{ "messages": '.json_encode($dataText).'}';
+        return '{ "messages": '.json_encode($dataText).'}'; 
     }
 
     public function packsDetails($code, $id_org){
@@ -76,7 +76,6 @@ class BotController extends Controller
         for ($i=0; $i < count($buscador) ; $i++) { 
            $valorText = "𝑫𝒆𝒔𝒕𝒊𝒏𝒂𝒕𝒊𝒐𝒏: ". $buscador[$i]->destino 
            . "\n " . "𝑪𝒊𝒕𝒚: " .$buscador[$i]->destino;
-                     // array_push($dataText, $valorText ); 
 
            $object = new \stdClass();
            $object->text = $valorText;
@@ -86,6 +85,48 @@ class BotController extends Controller
         }
 
      
-        return '{ "messages": '.json_encode($dataText).'}';
+        return '{ "messages": '.json_encode($dataText).',"quick_replies": [
+            {
+              "title": "Number 1",
+              "set_attributes": {
+                "number": "1"
+              }
+            },
+            {
+              "title": "Number 2",
+              "set_attributes": {
+                "number": "2"
+              }
+            }
+          ]
+        }';
+
+     /*   $gestionDestino = new BotServiceRepository;
+        $buscador = $gestionDestino->searchPacksDetails($code, $id_org);
+  
+        $dataText = array();
+        $dataBuscador = array();
+        $valueHeader =  "𝗣𝗮𝗰𝗸𝗮𝗴𝗲: ". $buscador[0]->code_pack_destination . ' - ' . $buscador[0]->pack ;
+        $object = new \stdClass();
+        $object->text = $valueHeader;
+        //$myArray[] = $object;
+        array_push($dataText, $object );
+
+        for ($i=0; $i < count($buscador) ; $i++) { 
+           $valorText = "𝑫𝒆𝒔𝒕𝒊𝒏𝒂𝒕𝒊𝒐𝒏: ". $buscador[$i]->destino 
+           . "\n " . "𝑪𝒊𝒕𝒚: " .$buscador[$i]->destino;
+
+           $object = new \stdClass();
+           $object->text = $valorText;
+           //$myArray[] = $object;
+           array_push($dataText, $object ); 
+
+        }
+
+     
+        return '{ "messages": '.json_encode($dataText).'}';*/
     }
+
+
+
 }
