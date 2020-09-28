@@ -103,15 +103,14 @@ Route::get('email-test', function(){
     dd('done');
 });
 
-<<<<<<< HEAD
+
 
 // CHATBOT - API
 Route::get('destinations/{id_org}', 'BotController@destinations');
 Route::get('packsByNameOfDestination/{destionName}/org/{id_org}', 'BotController@packsByNameOfDestination');
 Route::get('searchPacksDetails/{code_pack}/org/{id_org}', 'BotController@packsDetails');
 
-=======
->>>>>>> kv-branch-bkd
+
 // CHATBOT - API
 Route::get('destinations/{id_org}', 'BotController@destinations');
 Route::get('packsByNameOfDestination/{destionName}/org/{id_org}', 'BotController@packsByNameOfDestination');
