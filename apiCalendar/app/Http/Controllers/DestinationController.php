@@ -85,7 +85,7 @@ class DestinationController extends BaseController
 
     public function updateDestino($id_destination, Request $request){
         
-        $gestionPaquetes = new DestinationsServiceRepository;
+        $gestionDestino = new DestinationsServiceRepository;
 
         // verficate if exist this Destino
         $destinoIsRegister = $gestionDestino->getDestinoById($id_destination);
@@ -96,8 +96,10 @@ class DestinationController extends BaseController
             
             if (count($request->all()) >= 2) {
                 //EDIT TABLE bd_destination
-                $gestionDestinos->updateDestino(
+                $gestionDestino->updateDestino(
                     $id_destination,
+                    $request->input('city'),
+                    $request->input('descriptionCity'),
                     $request->input('name'),
                     $request->input('availability'),
                     $request->input('isActive'),

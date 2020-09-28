@@ -84,6 +84,9 @@ class PackagesController extends BaseController
                     $request->input('name'),
                     $request->input('description1'),
                     $request->input('description2'),
+                    $request->input('isActive'),
+                    $request->input('status'),
+                    $request->input('value'),
                     $typePackageIsRegister[0]->bd_organization_id
                 );
                 $newRegisterEdit = $gestionPaquetes->getTypePackageById($id_type_package, $id_org);

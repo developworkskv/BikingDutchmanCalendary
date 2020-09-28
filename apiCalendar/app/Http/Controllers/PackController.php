@@ -102,42 +102,31 @@ public function deletePacks($code_pack, $id_org)
 
 
   //UPDATE - MODIFI DATA 
-  public function updatePackageData($id_package, $id_org, Request $request)
-  { // corrige los nombres y inputs
-      $gestionPaquetes = new PackServiceRepository;
-      // verficate if exist this pack
-      $packIsRegister = $gestionPaquetes->getPacksById($id_package, $id_org);
-      if (count($packIsRegister) == 0) {
-          // no hay Datos
-          return $this->sendError('Paquete no encontrado', 'Ningun registro insertado en esta tabla.');
-      } else {
-          if (count($request->all()) >= 2) {
-              //EDIT TABLE bd_packages
-              $gestionPaquetes->updatePackages(
-                  $id_package,
+  public function updatePackageData($bd_type_packages_id, Request $request)
+  { 
+    $gestionPaquetes = new PackServiceRepository;
+       $update = $gestionPaquetes->updatePackages(
+          $bd_type_packages_id,
+          $request->input('tipoPack'),
 
-                    $request->input('name'),
-                    $request->input('price'),
-                    $request->input('numbers_passengers'),
-                    $request->input('isActive'),
-                    $request->input('description'),
-                    $request->input('description2'),
-                    $request->input('value'),
-                    $request->input('status'),
-                    $request->input('dificultad'),
-                    $request->input('longitud'),
-                    $request->input('number_days'),
-                    $id_org,
-                    $request->input('id_type_packages')
-              );
-              $newRegisterEdit = $gestionPaquetes->getPacksById($id_package, $id_org);
+          $request->input('name'),
+          $request->input('price'),
+          $request->input('numbers_passengers'),
+          $request->input('number_days'),
+          $request->input('difficulty'),
+          $request->input('length'),
+          $request->input('description1'),
+          $request->input('description2'),
+          
+    );
 
-              return $this->sendResponse($newRegisterEdit, 'Paquete  modificado correctamente.');
-          } else {
-              return $this->sendError('Ingresar los datos solicitados', 'Ningun registro modificado en esta tabla.');
+    if (count($update) > 0 ) {
+        return $this->sendResponse('Correcto Pack '.$update[0]->name.' Modificado' , 'Correcto Cliente Modificado');
 
-          }
-      }
+    }else {
+        return $this->sendError('Pack no modificado', 'Pack no modificado.');
+    }
+    return $update;
 
 
 }

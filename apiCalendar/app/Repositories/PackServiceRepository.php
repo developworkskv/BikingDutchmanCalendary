@@ -128,26 +128,45 @@ public function deletePack($id_pack, $id_org)
 
 }
 
-//UPDATE 
-public function updatePackages($id_package, $name, $price, $numbersClients, $description, $description2, $id_org){
-    date_default_timezone_set('America/Guayaquil');
+//UPDATE PACKS
+public function updatePackages($bd_packages_id, $tipoPack, $name, $price, $numbers_passengers, $numbers_days, $difficulty, $length, $description1, $description2){
+    
+    date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
     $fecha = new DateTime('NOW');
-$affected = DB::table('bd_packages')
-              ->where('bd_packages_id', $id_package)
-              ->where('bd_organization_id', $id_org)
-              ->update([
-                'name' => $name,
-                'price' =>$price,
-                'numbers_passengers' =>$numbersClients,
-                'description1' => $description,
-                'description2' => $description2,
-                'updated_at' =>  $fecha->format('Y-m-d H:i:s')
-              ]);
-        return $affected;      
+      DB::table('bd_type_packages')
+          ->where('bd_type_packages_id', $bd_packages_id)
+          ->update(['name' => $tipoPack,
+              
+              'updated_at' =>  $fecha->format('Y-m-d H:i:s')]);
+
+
+      DB::table('bd_packages')
+          ->where('bd_packages_id', $bd_packages_id)
+          ->update([
+            'name' => $name,
+            'price' =>$price,
+            'numbers_passengers' =>$numbers_passengers,
+            'number_days' =>$numbers_days,
+            'difficulty' =>$difficulty,
+            'length' =>$length,
+            'description1' => $description1,
+            'description2' => $description2,
+            'updated_at' =>  $fecha->format('Y-m-d H:i:s')
+          ]);
+
+     $paquete = DB::table('bd_packages')
+          ->where('bd_packages_id', $bd_packages_id) 
+          ->get();
+
+          return $paquete;
 
 }
 
-public function newPackDestination($code , $bd_destination_id, $bd_packages_id){
+
+
+
+
+public function updatePackDestination($code , $bd_destination_id, $bd_packages_id){
     date_default_timezone_set('America/Guayaquil');
     $fecha = new DateTime('NOW');
 
@@ -155,7 +174,7 @@ public function newPackDestination($code , $bd_destination_id, $bd_packages_id){
         'code_pack_destination' =>$code,
         'bd_destination_id' =>$bd_destination_id,
         'bd_packages_id' =>$bd_packages_id,
-        'created_at' => $fecha->format('Y-m-d H:i:s')
+        'updated_at' =>  $fecha->format('Y-m-d H:i:s')
     ]);
     
 }
@@ -179,10 +198,5 @@ public function getPackByCodePackDetail($codePack, $id_org)
 
     return $packages;
 }
-// HEADER 
 
-//NO ngfor array[0]->nombrePAck
-
-//CARDS
-//SI ngfor array{$i}->nombre
 }

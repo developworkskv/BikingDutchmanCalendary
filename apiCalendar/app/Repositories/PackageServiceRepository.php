@@ -51,7 +51,7 @@ class PackageServiceRepository
     }
         
     //update
-    public function updateTypePackage($id_type_package, $name, $description, $description2, $id_org)
+    public function updateTypePackage($id_type_package, $name, $description, $description2, $isActive, $status, $value, $id_org)
     {
         date_default_timezone_set('America/Guayaquil'); //configuro un nuevo timezone
         $fecha = new DateTime('NOW');
@@ -62,6 +62,9 @@ class PackageServiceRepository
                   'name' => $name,
                   'description1' => $description,
                   'description2' => $description2,
+                  'isActive' => $isActive,
+                  'status' => $status,
+                  'values' => $value,
                   'updated_at' =>  $fecha->format('Y-m-d H:i:s')]);
           return $affected;
     }
